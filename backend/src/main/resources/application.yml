@@ -1,0 +1,63 @@
+server:
+  port: ${SERVER_PORT:8080}
+  servlet:
+    context-path: /
+
+spring:
+  application:
+    name: novelia-books-backend
+
+  datasource:
+    url: jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3306}/${DB_NAME:novelia_books}?useSSL=false&serverTimezone=Asia/Ho_Chi_Minh&allowPublicKeyRetrieval=true&characterEncoding=UTF-8
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:123456}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 5
+      idle-timeout: 300000
+      connection-timeout: 20000
+
+  jpa:
+    open-in-view: false
+    hibernate:
+      # Tự động cập nhật thêm cột/bảng mới an toàn, không xóa dữ liệu
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.MySQLDialect
+
+app:
+  cors:
+    allowed-origins: ${CORS_ALLOWED_ORIGINS:http://localhost:5173,http://localhost:3000}
+  jwt:
+    # 256-bit base64/hex secret for HMAC-SHA256
+    secret: ${JWT_SECRET:novelia_books_secret_key_must_be_at_least_256_bits_long_for_hmac_sha256_security_production_token_2026}
+    expiration-ms: ${JWT_EXPIRATION_MS:86400000} # 24 hours
+
+novelia:
+  payment:
+    vnpay:
+      tmn-code: ${VNPAY_TMN_CODE:NOVELIA1}
+      hash-secret: ${VNPAY_HASH_SECRET:NOVELIASECRETKEYVNPAY2026TESTSANDBOX}
+      payment-url: ${VNPAY_PAYMENT_URL:https://sandbox.vnpayment.vn/paymentv2/vpcpay.html}
+      return-url: ${VNPAY_RETURN_URL:http://localhost:5173/payment/vnpay-callback}
+      sandbox-mode: true
+      live-credentials-configured: false
+      connection-timeout-ms: 5000
+      read-timeout-ms: 10000
+  shipping:
+    ghn:
+      carrier-name: GiaoHangNhanh
+      api-token: ${GHN_API_TOKEN:}
+      shop-id: ${GHN_SHOP_ID:}
+      api-endpoint: ${GHN_ENDPOINT:https://dev-online-gateway.ghn.vn/shiip/public-api/v2}
+      sandbox-mode: true
+      connection-timeout-ms: 5000
+      read-timeout-ms: 10000
+      max-retry-attempts: 3
+      retry-backoff-ms: 1000
+      webhook-token: ${GHN_WEBHOOK_TOKEN:novelia_ghn_webhook_secret_2026}
+
