@@ -189,7 +189,7 @@ export const AdminReviewsPage: React.FC = () => {
               onClick={() => { setStatusFilter('ALL'); setPage(0); }}
               className={`px-3 py-1.5 rounded-lg transition-all cursor-pointer ${
                 statusFilter === 'ALL'
-                  ? 'bg-white text-[#1B3B2B] shadow-2xs font-bold'
+                  ? 'bg-white text-[#8C5D3B] shadow-2xs font-bold'
                   : 'text-stone-600 hover:text-stone-900'
               }`}
             >
@@ -243,7 +243,7 @@ export const AdminReviewsPage: React.FC = () => {
                   setRatingFilter(e.target.value === 'ALL' ? 'ALL' : Number(e.target.value));
                   setPage(0);
                 }}
-                className="text-xs bg-stone-50 border border-stone-200 rounded-xl px-3 py-2 text-stone-700 focus:outline-none focus:border-[#1B3B2B]"
+                className="text-xs bg-stone-50 border border-stone-200 rounded-xl px-3 py-2 text-stone-700 focus:outline-none focus:border-[#8C5D3B]"
               >
                 <option value="ALL">Tất cả số sao</option>
                 <option value={5}>5 sao (Rất hài lòng)</option>
@@ -261,7 +261,7 @@ export const AdminReviewsPage: React.FC = () => {
                 value={searchKeyword}
                 onChange={(e) => setSearchKeyword(e.target.value)}
                 placeholder="Tìm sách, độc giả, từ khóa..."
-                className="w-full pl-10 pr-4 py-2 text-xs rounded-xl border border-stone-200 focus:outline-none focus:border-[#1B3B2B] bg-stone-50 shadow-2xs"
+                className="w-full pl-10 pr-4 py-2 text-xs rounded-xl border border-stone-200 focus:outline-none focus:border-[#8C5D3B] bg-stone-50 shadow-2xs"
               />
             </form>
 
@@ -296,7 +296,7 @@ export const AdminReviewsPage: React.FC = () => {
                 {loading ? (
                   <tr>
                     <td colSpan={7} className="py-12 text-center text-stone-400">
-                      <div className="w-6 h-6 border-2 border-[#1B3B2B]/20 border-t-[#1B3B2B] rounded-full animate-spin mx-auto mb-2" />
+                      <div className="w-6 h-6 border-2 border-[#8C5D3B]/20 border-t-[#8C5D3B] rounded-full animate-spin mx-auto mb-2" />
                       Đang tải danh sách đánh giá...
                     </td>
                   </tr>
@@ -479,7 +479,7 @@ export const AdminReviewsPage: React.FC = () => {
                   value={rejectionReason}
                   onChange={(e) => setRejectionReason(e.target.value)}
                   placeholder="VD: Chứa ngôn từ không phù hợp, spam quảng cáo, không liên quan đến tác phẩm..."
-                  className="w-full p-2.5 text-xs rounded-xl border border-stone-300 focus:outline-none focus:border-[#1B3B2B]"
+                  className="w-full p-2.5 text-xs rounded-xl border border-stone-300 focus:outline-none focus:border-[#8C5D3B]"
                 />
               </div>
 

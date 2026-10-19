@@ -1,6 +1,5 @@
 package com.novelia;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.novelia.author.entity.Author;
 import com.novelia.author.repository.AuthorRepository;
 import com.novelia.book.entity.Book;
@@ -47,7 +46,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 class ReportManagementApiTest {
 
     @Autowired private MockMvc mockMvc;
-    @Autowired private ObjectMapper objectMapper;
     @Autowired private UserRepository userRepository;
     @Autowired private RoleRepository roleRepository;
     @Autowired private PasswordEncoder passwordEncoder;
@@ -215,8 +213,8 @@ class ReportManagementApiTest {
     @Test
     @DisplayName("Quy tắc doanh thu: Chỉ tính đơn hợp lệ (CONFIRMED/SHIPPING/DELIVERED), không cộng CANCELLED/PENDING")
     void testOverviewMetricsCalculation_StrictRevenueRules() throws Exception {
-        LocalDateTime now = LocalDateTime.now();
-        LocalDate today = now.toLocalDate();
+        LocalDate today = LocalDate.now();
+        LocalDateTime now = today.atTime(12, 0);
 
         // 1. Đơn DELIVERED (Hợp lệ) = 200,000 VND
         OrderItem item1 = OrderItem.builder()

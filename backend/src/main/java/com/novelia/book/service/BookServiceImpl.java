@@ -19,7 +19,6 @@ import com.novelia.common.exception.ResourceNotFoundException;
 import com.novelia.common.util.SlugUtils;
 import com.novelia.inventory.entity.Inventory;
 import com.novelia.inventory.repository.InventoryRepository;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -414,6 +413,9 @@ public class BookServiceImpl implements BookService {
                 .averageRating(book.getAverageRating())
                 .reviewCount(book.getReviewCount())
                 .stockQuantity(stockQuantity)
+                .readingLevel(book.getReadingLevel())
+                .readingGoals(book.getReadingGoals())
+                .language(book.getLanguage())
                 .authors(authorResponses)
                 .categories(categoryResponses)
                 .createdAt(book.getCreatedAt())

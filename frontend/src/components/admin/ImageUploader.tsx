@@ -192,7 +192,7 @@ export const ImageUploader: React.FC<ImageUploaderProps> = ({
               onClick={() => fileInputRef.current?.click()}
               className={`border-2 border-dashed rounded-xl p-4 text-center cursor-pointer transition-all ${
                 dragActive
-                  ? 'border-[#1B3B2B] bg-[#1B3B2B]/5'
+                  ? 'border-[#8C5D3B] bg-[#8C5D3B]/5'
                   : 'border-stone-200 bg-stone-50/60 hover:bg-stone-50 hover:border-stone-300'
               }`}
             >
@@ -203,7 +203,7 @@ export const ImageUploader: React.FC<ImageUploaderProps> = ({
                 onChange={handleFileChange}
                 className="hidden"
               />
-              <Upload className="w-6 h-6 mx-auto mb-1.5 text-[#1B3B2B]/80" />
+              <Upload className="w-6 h-6 mx-auto mb-1.5 text-[#8C5D3B]/80" />
               <p className="text-xs font-semibold text-stone-800">
                 Nhấp để tải ảnh lên hoặc kéo thả vào đây
               </p>
@@ -221,13 +221,13 @@ export const ImageUploader: React.FC<ImageUploaderProps> = ({
                     value={urlInput}
                     onChange={(e) => setUrlInput(e.target.value)}
                     placeholder="https://example.com/anh-bia-sach.jpg"
-                    className="w-full pl-9 pr-3 py-2 bg-stone-50 border border-stone-200 rounded-xl text-xs text-stone-900 focus:outline-none focus:border-[#1B3B2B] focus:bg-white transition-all font-mono"
+                    className="w-full pl-9 pr-3 py-2 bg-stone-50 border border-stone-200 rounded-xl text-xs text-stone-900 focus:outline-none focus:border-[#8C5D3B] focus:bg-white transition-all font-mono"
                   />
                 </div>
                 <button
                   type="button"
                   onClick={handleApplyUrl}
-                  className="px-3 py-2 bg-[#1B3B2B] hover:bg-[#142e22] text-white text-xs font-semibold rounded-xl transition-colors shrink-0"
+                  className="px-3 py-2 bg-[#8C5D3B] hover:bg-[#142e22] text-white text-xs font-semibold rounded-xl transition-colors shrink-0"
                 >
                   Áp dụng
                 </button>

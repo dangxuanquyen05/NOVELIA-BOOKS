@@ -32,8 +32,8 @@ export const SectionHeading: React.FC<SectionHeadingProps> = ({
       <div className={`space-y-1.5 ${isCentered ? 'mx-auto' : 'max-w-2xl'}`}>
         {overline && (
           <div className="flex items-center gap-2">
-            <span className="w-6 h-[1.5px] bg-[#B88E52]" />
-            <span className="text-[11px] uppercase font-bold tracking-[0.2em] text-[#1B3B2B]">
+            <span className="w-6 h-[1.5px] bg-[#D4AF7A]" />
+            <span className="text-[11px] uppercase font-bold tracking-[0.2em] text-[#8C5D3B]">
               {overline}
             </span>
           </div>
@@ -53,7 +53,7 @@ export const SectionHeading: React.FC<SectionHeadingProps> = ({
       {linkText && linkTo && (
         <Link
           to={linkTo}
-          className="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold text-[#1B3B2B] hover:text-[#25523D] group transition shrink-0"
+          className="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold text-[#8C5D3B] hover:text-[#754C2F] group transition shrink-0"
         >
           <span>{linkText}</span>
           <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />

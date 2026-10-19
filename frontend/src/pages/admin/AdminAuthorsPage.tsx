@@ -196,7 +196,7 @@ export const AdminAuthorsPage: React.FC = () => {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Tìm theo tên tác giả, quốc tịch, slug..."
-            className="w-full sm:w-80 px-3.5 py-2 bg-stone-50 border border-stone-200 rounded-xl text-xs sm:text-sm focus:outline-none focus:border-[#1B3B2B] focus:bg-white"
+            className="w-full sm:w-80 px-3.5 py-2 bg-stone-50 border border-stone-200 rounded-xl text-xs sm:text-sm focus:outline-none focus:border-[#8C5D3B] focus:bg-white"
           />
 
           <div className="flex items-center gap-2.5 w-full sm:w-auto justify-end">
@@ -215,7 +215,7 @@ export const AdminAuthorsPage: React.FC = () => {
               size="sm"
               onClick={handleOpenCreateModal}
               leftIcon={<PlusCircle className="w-4 h-4" />}
-              className="bg-[#1B3B2B] hover:bg-[#142e22] text-white"
+              className="bg-[#8C5D3B] hover:bg-[#142e22] text-white"
             >
               Thêm tác giả
             </Button>
@@ -244,7 +244,7 @@ export const AdminAuthorsPage: React.FC = () => {
               {loading && authors.length === 0 ? (
                 <tr>
                   <td colSpan={5} className="py-12 text-center text-stone-400">
-                    <RefreshCw className="w-6 h-6 animate-spin mx-auto mb-2 text-[#1B3B2B]" />
+                    <RefreshCw className="w-6 h-6 animate-spin mx-auto mb-2 text-[#8C5D3B]" />
                     Đang tải tác giả...
                   </td>
                 </tr>
@@ -266,8 +266,8 @@ export const AdminAuthorsPage: React.FC = () => {
                             className="w-9 h-9 rounded-full object-cover shrink-0 border border-stone-200"
                           />
                         ) : (
-                          <div className="w-9 h-9 rounded-full bg-[#1B3B2B]/10 text-[#1B3B2B] flex items-center justify-center font-bold text-xs shrink-0">
-                            <Feather className="w-4 h-4 text-[#1B3B2B]" />
+                          <div className="w-9 h-9 rounded-full bg-[#8C5D3B]/10 text-[#8C5D3B] flex items-center justify-center font-bold text-xs shrink-0">
+                            <Feather className="w-4 h-4 text-[#8C5D3B]" />
                           </div>
                         )}
                         <div>
@@ -296,7 +296,7 @@ export const AdminAuthorsPage: React.FC = () => {
                       <div className="flex items-center justify-end gap-2">
                         <button
                           onClick={() => handleOpenEditModal(author)}
-                          className="p-1.5 text-stone-500 hover:text-[#1B3B2B] hover:bg-stone-100 rounded-lg transition-colors"
+                          className="p-1.5 text-stone-500 hover:text-[#8C5D3B] hover:bg-stone-100 rounded-lg transition-colors"
                           title="Sửa"
                         >
                           <Edit className="w-4 h-4" />
@@ -339,7 +339,7 @@ export const AdminAuthorsPage: React.FC = () => {
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     placeholder="VD: Nam Cao..."
-                    className="w-full px-3 py-2 border border-stone-300 rounded-xl focus:border-[#1B3B2B] focus:outline-none"
+                    className="w-full px-3 py-2 border border-stone-300 rounded-xl focus:border-[#8C5D3B] focus:outline-none"
                   />
                 </div>
 
@@ -349,7 +349,7 @@ export const AdminAuthorsPage: React.FC = () => {
                     type="text"
                     value={formData.nationality}
                     onChange={(e) => setFormData({ ...formData, nationality: e.target.value })}
-                    className="w-full px-3 py-2 border border-stone-300 rounded-xl focus:border-[#1B3B2B] focus:outline-none"
+                    className="w-full px-3 py-2 border border-stone-300 rounded-xl focus:border-[#8C5D3B] focus:outline-none"
                   />
                 </div>
 
@@ -360,7 +360,7 @@ export const AdminAuthorsPage: React.FC = () => {
                     value={formData.avatarUrl}
                     onChange={(e) => setFormData({ ...formData, avatarUrl: e.target.value })}
                     placeholder="https://..."
-                    className="w-full px-3 py-2 border border-stone-300 rounded-xl focus:border-[#1B3B2B] focus:outline-none"
+                    className="w-full px-3 py-2 border border-stone-300 rounded-xl focus:border-[#8C5D3B] focus:outline-none"
                   />
                 </div>
 
@@ -371,7 +371,7 @@ export const AdminAuthorsPage: React.FC = () => {
                     value={formData.biography}
                     onChange={(e) => setFormData({ ...formData, biography: e.target.value })}
                     placeholder="Năm sinh, sự nghiệp văn chương..."
-                    className="w-full px-3 py-2 border border-stone-300 rounded-xl focus:border-[#1B3B2B] focus:outline-none"
+                    className="w-full px-3 py-2 border border-stone-300 rounded-xl focus:border-[#8C5D3B] focus:outline-none"
                   />
                 </div>
 
@@ -409,7 +409,7 @@ export const AdminAuthorsPage: React.FC = () => {
                     required
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full px-3 py-2 border border-stone-300 rounded-xl focus:border-[#1B3B2B] focus:outline-none"
+                    className="w-full px-3 py-2 border border-stone-300 rounded-xl focus:border-[#8C5D3B] focus:outline-none"
                   />
                 </div>
 
@@ -419,7 +419,7 @@ export const AdminAuthorsPage: React.FC = () => {
                     type="text"
                     value={formData.nationality}
                     onChange={(e) => setFormData({ ...formData, nationality: e.target.value })}
-                    className="w-full px-3 py-2 border border-stone-300 rounded-xl focus:border-[#1B3B2B] focus:outline-none"
+                    className="w-full px-3 py-2 border border-stone-300 rounded-xl focus:border-[#8C5D3B] focus:outline-none"
                   />
                 </div>
 
@@ -429,7 +429,7 @@ export const AdminAuthorsPage: React.FC = () => {
                     type="text"
                     value={formData.avatarUrl}
                     onChange={(e) => setFormData({ ...formData, avatarUrl: e.target.value })}
-                    className="w-full px-3 py-2 border border-stone-300 rounded-xl focus:border-[#1B3B2B] focus:outline-none"
+                    className="w-full px-3 py-2 border border-stone-300 rounded-xl focus:border-[#8C5D3B] focus:outline-none"
                   />
                 </div>
 
@@ -439,7 +439,7 @@ export const AdminAuthorsPage: React.FC = () => {
                     rows={3}
                     value={formData.biography}
                     onChange={(e) => setFormData({ ...formData, biography: e.target.value })}
-                    className="w-full px-3 py-2 border border-stone-300 rounded-xl focus:border-[#1B3B2B] focus:outline-none"
+                    className="w-full px-3 py-2 border border-stone-300 rounded-xl focus:border-[#8C5D3B] focus:outline-none"
                   />
                 </div>
 

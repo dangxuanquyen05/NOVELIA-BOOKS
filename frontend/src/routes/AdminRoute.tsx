@@ -11,7 +11,7 @@ export const AdminRoute: React.FC<{ children: React.ReactNode }> = ({ children }
   if (isLoading) {
     return (
       <div className="flex items-center justify-center min-h-[60vh]">
-        <Loader2 className="w-8 h-8 animate-spin text-[#1B3B2B]" />
+        <Loader2 className="w-8 h-8 animate-spin text-[#8C5D3B]" />
       </div>
     );
   }

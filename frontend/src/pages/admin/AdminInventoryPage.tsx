@@ -385,10 +385,10 @@ export const AdminInventoryPage: React.FC = () => {
         <div className="grid grid-cols-2 md:grid-cols-5 gap-3.5">
           <div className="bg-white border border-[#E7E0D5] rounded-3xl p-4 shadow-xs">
             <div className="flex items-center gap-2 text-stone-500 text-xs mb-1">
-              <Boxes className="w-4 h-4 text-[#1B3B2B]" />
+              <Boxes className="w-4 h-4 text-[#8C5D3B]" />
               <span>Tổng Đầu Sách</span>
             </div>
-            <p className="text-xl font-serif font-bold text-[#1B3B2B]">
+            <p className="text-xl font-serif font-bold text-[#8C5D3B]">
               {summary?.totalBooks ?? invTotalElements}
             </p>
           </div>
@@ -428,7 +428,7 @@ export const AdminInventoryPage: React.FC = () => {
               <Warehouse className="w-4 h-4 text-[#C5A880]" />
               <span>Tổng Tồn Vật Lý</span>
             </div>
-            <p className="text-xl font-serif font-bold text-[#1B3B2B]">
+            <p className="text-xl font-serif font-bold text-[#8C5D3B]">
               {summary?.totalPhysicalStock?.toLocaleString('vi-VN') ?? 0} cuốn
             </p>
           </div>
@@ -467,14 +467,14 @@ export const AdminInventoryPage: React.FC = () => {
             type="button"
             onClick={() => setActiveTab('inventory')}
             className={`pb-3 text-sm font-bold transition-all relative ${
-              activeTab === 'inventory' ? 'text-[#1B3B2B]' : 'text-stone-400 hover:text-stone-700'
+              activeTab === 'inventory' ? 'text-[#8C5D3B]' : 'text-stone-400 hover:text-stone-700'
             }`}
           >
             <span className="flex items-center gap-2">
               <Warehouse className="w-4 h-4" /> Danh Sách Tồn Kho
             </span>
             {activeTab === 'inventory' && (
-              <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#1B3B2B] rounded-full" />
+              <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#8C5D3B] rounded-full" />
             )}
           </button>
 
@@ -482,14 +482,14 @@ export const AdminInventoryPage: React.FC = () => {
             type="button"
             onClick={() => setActiveTab('history')}
             className={`pb-3 text-sm font-bold transition-all relative ${
-              activeTab === 'history' ? 'text-[#1B3B2B]' : 'text-stone-400 hover:text-stone-700'
+              activeTab === 'history' ? 'text-[#8C5D3B]' : 'text-stone-400 hover:text-stone-700'
             }`}
           >
             <span className="flex items-center gap-2">
               <History className="w-4 h-4" /> Nhật Ký Biến Động Kho
             </span>
             {activeTab === 'history' && (
-              <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#1B3B2B] rounded-full" />
+              <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#8C5D3B] rounded-full" />
             )}
           </button>
         </div>
@@ -507,7 +507,7 @@ export const AdminInventoryPage: React.FC = () => {
                     value={searchInput}
                     onChange={(e) => setSearchInput(e.target.value)}
                     placeholder="Tìm theo tựa sách hoặc ISBN..."
-                    className="w-full text-xs rounded-xl border border-[#D5CDC0] pl-9 pr-3 py-2.5 focus:outline-none focus:border-[#1B3B2B] bg-[#FAFAF8]"
+                    className="w-full text-xs rounded-xl border border-[#D5CDC0] pl-9 pr-3 py-2.5 focus:outline-none focus:border-[#8C5D3B] bg-[#FAFAF8]"
                   />
                 </div>
                 <Button type="submit" variant="primary" size="sm">
@@ -536,7 +536,7 @@ export const AdminInventoryPage: React.FC = () => {
                   onClick={() => { setStatusFilter('ALL'); setInvPage(0); }}
                   className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all whitespace-nowrap ${
                     statusFilter === 'ALL'
-                      ? 'bg-[#1B3B2B] text-white shadow-xs'
+                      ? 'bg-[#8C5D3B] text-white shadow-xs'
                       : 'bg-stone-100 text-stone-600 hover:bg-stone-200'
                   }`}
                 >
@@ -583,7 +583,7 @@ export const AdminInventoryPage: React.FC = () => {
               <div className="overflow-x-auto">
                 <table className="w-full text-left border-collapse text-xs">
                   <thead>
-                    <tr className="bg-[#FAF8F5] border-b border-[#E7E0D5] text-[#1B3B2B] font-bold uppercase tracking-wider">
+                    <tr className="bg-[#FAF8F5] border-b border-[#E7E0D5] text-[#8C5D3B] font-bold uppercase tracking-wider">
                       <th className="py-3.5 px-4">Tác Phẩm & ISBN</th>
                       <th className="py-3.5 px-4 text-center">Tổng Tồn</th>
                       <th className="py-3.5 px-4 text-center">Đang Giữ</th>
@@ -597,7 +597,7 @@ export const AdminInventoryPage: React.FC = () => {
                     {isLoadingInventories ? (
                       <tr>
                         <td colSpan={7} className="text-center py-12 text-stone-400">
-                          <RefreshCw className="w-6 h-6 animate-spin mx-auto mb-2 text-[#1B3B2B]" />
+                          <RefreshCw className="w-6 h-6 animate-spin mx-auto mb-2 text-[#8C5D3B]" />
                           Đang tải thông tin tồn kho thời gian thực...
                         </td>
                       </tr>
@@ -623,7 +623,7 @@ export const AdminInventoryPage: React.FC = () => {
                                   className="w-10 h-14 object-cover rounded-md border border-[#E7E0D5] shrink-0"
                                 />
                                 <div className="min-w-0">
-                                  <p className="font-bold text-[#1B3B2B] truncate max-w-xs sm:max-w-sm">
+                                  <p className="font-bold text-[#8C5D3B] truncate max-w-xs sm:max-w-sm">
                                     {item.bookTitle}
                                   </p>
                                   <p className="text-[11px] text-stone-400 mt-0.5">
@@ -667,7 +667,7 @@ export const AdminInventoryPage: React.FC = () => {
                                 <button
                                   type="button"
                                   onClick={() => handleOpenThresholdModal(item)}
-                                  className="text-stone-400 hover:text-[#1B3B2B] p-1 rounded transition-colors"
+                                  className="text-stone-400 hover:text-[#8C5D3B] p-1 rounded transition-colors"
                                   title="Chỉnh sửa ngưỡng cảnh báo"
                                 >
                                   <SlidersHorizontal className="w-3.5 h-3.5" />
@@ -719,7 +719,7 @@ export const AdminInventoryPage: React.FC = () => {
                                     setActiveTab('history');
                                     setTxPage(0);
                                   }}
-                                  className="p-1.5 text-stone-400 hover:text-[#1B3B2B] hover:bg-stone-100 rounded-lg transition-colors"
+                                  className="p-1.5 text-stone-400 hover:text-[#8C5D3B] hover:bg-stone-100 rounded-lg transition-colors"
                                   title="Xem lịch sử biến động của sách này"
                                 >
                                   <History className="w-4 h-4" />
@@ -774,7 +774,7 @@ export const AdminInventoryPage: React.FC = () => {
                     setSelectedTxType(e.target.value);
                     setTxPage(0);
                   }}
-                  className="text-xs rounded-xl border border-[#D5CDC0] px-3 py-2 bg-[#FAFAF8] focus:outline-none focus:border-[#1B3B2B]"
+                  className="text-xs rounded-xl border border-[#D5CDC0] px-3 py-2 bg-[#FAFAF8] focus:outline-none focus:border-[#8C5D3B]"
                 >
                   <option value="ALL">Tất Cả Giao Dịch</option>
                   <option value="SALE">Xuất Bán (SALE)</option>
@@ -785,7 +785,7 @@ export const AdminInventoryPage: React.FC = () => {
               </div>
 
               {selectedBookFilterId && (
-                <div className="flex items-center gap-2 px-3 py-1.5 bg-[#FAF8F5] border border-[#E7E0D5] rounded-xl text-xs text-[#1B3B2B]">
+                <div className="flex items-center gap-2 px-3 py-1.5 bg-[#FAF8F5] border border-[#E7E0D5] rounded-xl text-xs text-[#8C5D3B]">
                   <span>Đang lọc theo sách: <strong>{selectedBookFilterTitle}</strong></span>
                   <button
                     type="button"
@@ -806,7 +806,7 @@ export const AdminInventoryPage: React.FC = () => {
               <div className="overflow-x-auto">
                 <table className="w-full text-left border-collapse text-xs">
                   <thead>
-                    <tr className="bg-[#FAF8F5] border-b border-[#E7E0D5] text-[#1B3B2B] font-bold uppercase tracking-wider">
+                    <tr className="bg-[#FAF8F5] border-b border-[#E7E0D5] text-[#8C5D3B] font-bold uppercase tracking-wider">
                       <th className="py-3.5 px-4">Thời Điểm</th>
                       <th className="py-3.5 px-4">Tác Phẩm</th>
                       <th className="py-3.5 px-4 text-center">Loại Biến Động</th>
@@ -820,7 +820,7 @@ export const AdminInventoryPage: React.FC = () => {
                     {isLoadingHistory ? (
                       <tr>
                         <td colSpan={7} className="text-center py-12 text-stone-400">
-                          <RefreshCw className="w-6 h-6 animate-spin mx-auto mb-2 text-[#1B3B2B]" />
+                          <RefreshCw className="w-6 h-6 animate-spin mx-auto mb-2 text-[#8C5D3B]" />
                           Đang tải lịch sử biến động kho...
                         </td>
                       </tr>
@@ -837,7 +837,7 @@ export const AdminInventoryPage: React.FC = () => {
                             {new Date(tx.createdAt).toLocaleString('vi-VN')}
                           </td>
                           <td className="py-3.5 px-4">
-                            <span className="font-bold text-[#1B3B2B]">{tx.bookTitle || `Sách #${tx.bookId}`}</span>
+                            <span className="font-bold text-[#8C5D3B]">{tx.bookTitle || `Sách #${tx.bookId}`}</span>
                             {tx.isbn && <span className="block text-[11px] text-stone-400 font-mono">ISBN: {tx.isbn}</span>}
                           </td>
                           <td className="py-3.5 px-4 text-center whitespace-nowrap">
@@ -915,11 +915,11 @@ export const AdminInventoryPage: React.FC = () => {
               </button>
 
               <div className="flex items-center gap-3 mb-5">
-                <div className="w-10 h-10 rounded-2xl bg-[#FAF8F5] border border-[#E7E0D5] text-[#1B3B2B] flex items-center justify-center shrink-0">
-                  <Warehouse className="w-5 h-5 text-[#1B3B2B]" />
+                <div className="w-10 h-10 rounded-2xl bg-[#FAF8F5] border border-[#E7E0D5] text-[#8C5D3B] flex items-center justify-center shrink-0">
+                  <Warehouse className="w-5 h-5 text-[#8C5D3B]" />
                 </div>
                 <div>
-                  <h3 className="font-serif font-bold text-lg text-[#1B3B2B]">
+                  <h3 className="font-serif font-bold text-lg text-[#8C5D3B]">
                     Điều Chỉnh Tồn Kho
                   </h3>
                   <p className="text-xs text-stone-500">
@@ -930,7 +930,7 @@ export const AdminInventoryPage: React.FC = () => {
 
               {/* Book Info Summary */}
               <div className="bg-[#FAF8F5] rounded-2xl p-3.5 border border-[#E7E0D5] mb-4 text-xs space-y-1.5">
-                <p className="font-bold text-[#1B3B2B] truncate">{targetBook.bookTitle}</p>
+                <p className="font-bold text-[#8C5D3B] truncate">{targetBook.bookTitle}</p>
                 <div className="grid grid-cols-3 gap-2 pt-1 text-center font-mono">
                   <div className="bg-white p-2 rounded-xl border border-[#E7E0D5]">
                     <span className="block text-[10px] text-stone-400 font-sans">Tổng tồn</span>
@@ -962,7 +962,7 @@ export const AdminInventoryPage: React.FC = () => {
                   <select
                     value={adjustType}
                     onChange={(e) => setAdjustType(e.target.value as TransactionType)}
-                    className="w-full text-xs rounded-xl border border-[#D5CDC0] p-2.5 bg-[#FAFAF8] focus:outline-none focus:border-[#1B3B2B]"
+                    className="w-full text-xs rounded-xl border border-[#D5CDC0] p-2.5 bg-[#FAFAF8] focus:outline-none focus:border-[#8C5D3B]"
                   >
                     <option value="ADJUSTMENT">Kiểm kê định kỳ / Cân đối sai lệch</option>
                     <option value="IMPORT">Nhập bổ sung trực tiếp</option>
@@ -978,7 +978,7 @@ export const AdminInventoryPage: React.FC = () => {
                       type="number"
                       value={adjustQuantity}
                       onChange={(e) => setAdjustQuantity(parseInt(e.target.value, 10) || 0)}
-                      className="w-full text-sm font-mono font-bold rounded-xl border border-[#D5CDC0] p-2.5 bg-[#FAFAF8] focus:outline-none focus:border-[#1B3B2B]"
+                      className="w-full text-sm font-mono font-bold rounded-xl border border-[#D5CDC0] p-2.5 bg-[#FAFAF8] focus:outline-none focus:border-[#8C5D3B]"
                     />
                     <div className="shrink-0 text-right text-xs">
                       <span className="block text-stone-400 text-[10px]">Tồn dự kiến:</span>
@@ -986,7 +986,7 @@ export const AdminInventoryPage: React.FC = () => {
                         className={`font-mono text-sm ${
                           targetBook.quantity + adjustQuantity < 0
                             ? 'text-rose-600'
-                            : 'text-[#1B3B2B]'
+                            : 'text-[#8C5D3B]'
                         }`}
                       >
                         {targetBook.quantity + adjustQuantity}
@@ -1004,7 +1004,7 @@ export const AdminInventoryPage: React.FC = () => {
                     value={adjustNote}
                     onChange={(e) => setAdjustNote(e.target.value)}
                     placeholder="VD: Kiểm kê kho cuối tháng phát hiện thừa 2 bản, hoặc rách nát 1 bản..."
-                    className="w-full text-xs rounded-xl border border-[#D5CDC0] p-2.5 bg-[#FAFAF8] focus:outline-none focus:border-[#1B3B2B]"
+                    className="w-full text-xs rounded-xl border border-[#D5CDC0] p-2.5 bg-[#FAFAF8] focus:outline-none focus:border-[#8C5D3B]"
                     required
                   />
                 </div>
@@ -1051,7 +1051,7 @@ export const AdminInventoryPage: React.FC = () => {
                   <SlidersHorizontal className="w-5 h-5 text-amber-700" />
                 </div>
                 <div>
-                  <h3 className="font-serif font-bold text-base text-[#1B3B2B]">
+                  <h3 className="font-serif font-bold text-base text-[#8C5D3B]">
                     Ngưỡng Cảnh Báo
                   </h3>
                   <p className="text-xs text-stone-500">
@@ -1080,7 +1080,7 @@ export const AdminInventoryPage: React.FC = () => {
                     min={0}
                     value={thresholdValue}
                     onChange={(e) => setThresholdValue(parseInt(e.target.value, 10) || 0)}
-                    className="w-full text-sm font-mono font-bold rounded-xl border border-[#D5CDC0] p-2.5 bg-[#FAFAF8] focus:outline-none focus:border-[#1B3B2B]"
+                    className="w-full text-sm font-mono font-bold rounded-xl border border-[#D5CDC0] p-2.5 bg-[#FAFAF8] focus:outline-none focus:border-[#8C5D3B]"
                   />
                   <span className="text-[11px] text-stone-400 mt-1 block">
                     Khi tồn khả dụng $\le$ ngưỡng này, hệ thống sẽ gắn nhãn "Sắp hết hàng".
@@ -1128,7 +1128,7 @@ export const AdminInventoryPage: React.FC = () => {
                   <FileText className="w-5 h-5 text-emerald-700" />
                 </div>
                 <div>
-                  <h3 className="font-serif font-bold text-lg text-[#1B3B2B]">
+                  <h3 className="font-serif font-bold text-lg text-[#8C5D3B]">
                     Lập Phiếu Nhập Hàng Mới
                   </h3>
                   <p className="text-xs text-stone-500">
@@ -1155,7 +1155,7 @@ export const AdminInventoryPage: React.FC = () => {
                       value={receiptCode}
                       onChange={(e) => setReceiptCode(e.target.value)}
                       placeholder="VD: PN-20261017-001"
-                      className="w-full text-xs font-mono rounded-xl border border-[#D5CDC0] p-2.5 bg-[#FAFAF8] focus:outline-none focus:border-[#1B3B2B]"
+                      className="w-full text-xs font-mono rounded-xl border border-[#D5CDC0] p-2.5 bg-[#FAFAF8] focus:outline-none focus:border-[#8C5D3B]"
                     />
                   </div>
 
@@ -1168,7 +1168,7 @@ export const AdminInventoryPage: React.FC = () => {
                       value={supplierName}
                       onChange={(e) => setSupplierName(e.target.value)}
                       placeholder="VD: NXB Trẻ, Fahasa, Nhã Nam..."
-                      className="w-full text-xs rounded-xl border border-[#D5CDC0] p-2.5 bg-[#FAFAF8] focus:outline-none focus:border-[#1B3B2B]"
+                      className="w-full text-xs rounded-xl border border-[#D5CDC0] p-2.5 bg-[#FAFAF8] focus:outline-none focus:border-[#8C5D3B]"
                     />
                   </div>
                 </div>
@@ -1182,7 +1182,7 @@ export const AdminInventoryPage: React.FC = () => {
                     value={receiptNote}
                     onChange={(e) => setReceiptNote(e.target.value)}
                     placeholder="VD: Lô hàng nhập bổ sung mùa tựu trường đợt 2"
-                    className="w-full text-xs rounded-xl border border-[#D5CDC0] p-2.5 bg-[#FAFAF8] focus:outline-none focus:border-[#1B3B2B]"
+                    className="w-full text-xs rounded-xl border border-[#D5CDC0] p-2.5 bg-[#FAFAF8] focus:outline-none focus:border-[#8C5D3B]"
                   />
                 </div>
 
@@ -1215,7 +1215,7 @@ export const AdminInventoryPage: React.FC = () => {
                           onChange={(e) =>
                             handleReceiptItemChange(idx, 'bookId', parseInt(e.target.value, 10))
                           }
-                          className="flex-1 text-xs rounded-lg border border-stone-200 p-2 bg-[#FAFAF8] truncate focus:outline-none focus:border-[#1B3B2B]"
+                          className="flex-1 text-xs rounded-lg border border-stone-200 p-2 bg-[#FAFAF8] truncate focus:outline-none focus:border-[#8C5D3B]"
                         >
                           {inventories.map((inv) => (
                             <option key={inv.bookId} value={inv.bookId}>
@@ -1232,7 +1232,7 @@ export const AdminInventoryPage: React.FC = () => {
                             onChange={(e) =>
                               handleReceiptItemChange(idx, 'quantity', parseInt(e.target.value, 10) || 1)
                             }
-                            className="w-full text-xs font-mono font-bold rounded-lg border border-stone-200 p-2 text-center focus:outline-none focus:border-[#1B3B2B]"
+                            className="w-full text-xs font-mono font-bold rounded-lg border border-stone-200 p-2 text-center focus:outline-none focus:border-[#8C5D3B]"
                             placeholder="SL"
                           />
                         </div>
@@ -1252,7 +1252,7 @@ export const AdminInventoryPage: React.FC = () => {
 
                 <div className="flex justify-between items-center pt-3 border-t border-[#E7E0D5] shrink-0">
                   <span className="text-xs text-stone-500">
-                    Tổng số lượng nhập: <strong className="text-[#1B3B2B]">{receiptItems.reduce((acc, i) => acc + (i.quantity || 0), 0)}</strong> cuốn
+                    Tổng số lượng nhập: <strong className="text-[#8C5D3B]">{receiptItems.reduce((acc, i) => acc + (i.quantity || 0), 0)}</strong> cuốn
                   </span>
 
                   <div className="flex gap-2">

@@ -43,8 +43,8 @@ export const Logo: React.FC<LogoProps> = ({
       <div
         className={`${currentSize.icon} rounded-xl flex items-center justify-center transition-transform duration-300 group-hover:scale-105 shadow-xs ${
           isDark
-            ? 'bg-[#2A5A42] text-[#FBF9F5] border border-white/10'
-            : 'bg-[#1B3B2B] text-[#FBF9F5]'
+            ? 'bg-[#2A1D13] text-[#E6C687] border border-[#D4AF7A]/30'
+            : 'bg-[#8C5D3B] text-white shadow-sm shadow-[#8C5D3B]/20'
         }`}
       >
         <BookOpen className="w-1/2 h-1/2" />
@@ -62,7 +62,7 @@ export const Logo: React.FC<LogoProps> = ({
         {showSubtitle && (
           <span
             className={`uppercase font-semibold mt-1 leading-none ${currentSize.subtitle} ${
-              isDark ? 'text-[#B88E52]' : 'text-[#1B3B2B]'
+              isDark ? 'text-[#D4AF7A]' : 'text-[#8C5D3B]'
             }`}
           >
             Editorial Bookstore

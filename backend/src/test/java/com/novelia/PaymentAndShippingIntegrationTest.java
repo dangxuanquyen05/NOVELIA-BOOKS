@@ -1,8 +1,6 @@
 package com.novelia;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.novelia.book.entity.Book;
-import com.novelia.book.repository.BookRepository;
 import com.novelia.common.exception.BadRequestException;
 import com.novelia.order.entity.Order;
 import com.novelia.order.repository.OrderRepository;
@@ -27,7 +25,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.MediaType;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.ActiveProfiles;
@@ -42,7 +39,6 @@ import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -78,9 +74,6 @@ class PaymentAndShippingIntegrationTest {
 
     @Autowired
     private RoleRepository roleRepository;
-
-    @Autowired
-    private BookRepository bookRepository;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -458,5 +451,125 @@ class PaymentAndShippingIntegrationTest {
 
         assertThrows(BadRequestException.class, () ->
                 shippingCarrierService.processGhnWebhook(payload, "WRONG_TOKEN"));
+    }
+
+    // ==========================================
+    // 3. PHASE 7: KIỂM THỬ NÂNG CAO TÍCH HỢP LIVE & RESILIENCE
+    // ==========================================
+
+    @Test
+    @DisplayName("Shipping Carrier: GHN API timeout / ResourceAccessException tự động retry đủ số lần và trả về Optional.empty()")
+    void testGhnApiClientRetryAndFallbackOnNetworkTimeout() {
+        ShippingProperties props = new ShippingProperties();
+        props.setApiToken("TEST_GHN_TOKEN_2026");
+        props.setShopId(123456);
+        props.setMaxRetryAttempts(3);
+        props.setRetryBackoffMs(10);
+
+        org.springframework.web.client.RestTemplate mockRestTemplate = org.mockito.Mockito.mock(org.springframework.web.client.RestTemplate.class);
+        org.mockito.Mockito.when(mockRestTemplate.exchange(
+                org.mockito.ArgumentMatchers.anyString(),
+                org.mockito.ArgumentMatchers.eq(org.springframework.http.HttpMethod.POST),
+                org.mockito.ArgumentMatchers.any(),
+                org.mockito.ArgumentMatchers.eq(String.class)
+        )).thenThrow(new org.springframework.web.client.ResourceAccessException("Connection timed out after 5000ms"));
+
+        com.novelia.shipment.service.GhnApiClient client = new com.novelia.shipment.service.GhnApiClient(props, mockRestTemplate, objectMapper);
+        var result = client.calculateFee(1482, "20101", 500);
+
+        assertTrue(result.isEmpty(), "Khi nhà cung cấp bị timeout, client phải trả về empty và không được gây crash");
+        org.mockito.Mockito.verify(mockRestTemplate, org.mockito.Mockito.times(3)).exchange(
+                org.mockito.ArgumentMatchers.anyString(),
+                org.mockito.ArgumentMatchers.eq(org.springframework.http.HttpMethod.POST),
+                org.mockito.ArgumentMatchers.any(),
+                org.mockito.ArgumentMatchers.eq(String.class)
+        );
+    }
+
+    @Test
+    @DisplayName("Shipping Carrier: GHN API lỗi 500 tạm thời ở lần 1, phục hồi thành công ở lần 2")
+    void testGhnApiClientRetryRecoveryOn5xxError() {
+        ShippingProperties props = new ShippingProperties();
+        props.setApiToken("TEST_GHN_TOKEN_2026");
+        props.setShopId(123456);
+        props.setMaxRetryAttempts(3);
+        props.setRetryBackoffMs(10);
+
+        org.springframework.web.client.RestTemplate mockRestTemplate = org.mockito.Mockito.mock(org.springframework.web.client.RestTemplate.class);
+        org.springframework.web.client.RestClientResponseException server500 = new org.springframework.web.client.HttpServerErrorException(
+                org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR, "GHN Gateway Error");
+
+        String successBody = "{\"code\": 200, \"data\": {\"total\": 28500}}";
+        org.springframework.http.ResponseEntity<String> successResponse = org.springframework.http.ResponseEntity.ok(successBody);
+
+        org.mockito.Mockito.when(mockRestTemplate.exchange(
+                org.mockito.ArgumentMatchers.anyString(),
+                org.mockito.ArgumentMatchers.eq(org.springframework.http.HttpMethod.POST),
+                org.mockito.ArgumentMatchers.any(),
+                org.mockito.ArgumentMatchers.eq(String.class)
+        )).thenThrow(server500).thenReturn(successResponse);
+
+        com.novelia.shipment.service.GhnApiClient client = new com.novelia.shipment.service.GhnApiClient(props, mockRestTemplate, objectMapper);
+        var feeOpt = client.calculateFee(1482, "20101", 600);
+
+        assertTrue(feeOpt.isPresent(), "Phải nhận được cước phí khi lần retry thứ 2 thành công");
+        assertEquals(0, new BigDecimal("28500").compareTo(feeOpt.get()));
+        org.mockito.Mockito.verify(mockRestTemplate, org.mockito.Mockito.times(2)).exchange(
+                org.mockito.ArgumentMatchers.anyString(),
+                org.mockito.ArgumentMatchers.eq(org.springframework.http.HttpMethod.POST),
+                org.mockito.ArgumentMatchers.any(),
+                org.mockito.ArgumentMatchers.eq(String.class)
+        );
+    }
+
+    @Test
+    @DisplayName("Shipping Carrier: Tạo vận đơn thực tế khi có live credentials và GHN phản hồi mã vận đơn")
+    void testGhnApiClientCreateRealOrderLiveSuccess() {
+        ShippingProperties props = new ShippingProperties();
+        props.setApiToken("TEST_GHN_TOKEN_2026");
+        props.setShopId(123456);
+        props.setMaxRetryAttempts(2);
+        props.setRetryBackoffMs(10);
+
+        org.springframework.web.client.RestTemplate mockRestTemplate = org.mockito.Mockito.mock(org.springframework.web.client.RestTemplate.class);
+        String ghnSuccessJson = "{\"code\": 200, \"data\": {\"order_code\": \"GHN-REAL-ORDER-999888\"}}";
+        org.mockito.Mockito.when(mockRestTemplate.exchange(
+                org.mockito.ArgumentMatchers.anyString(),
+                org.mockito.ArgumentMatchers.eq(org.springframework.http.HttpMethod.POST),
+                org.mockito.ArgumentMatchers.any(),
+                org.mockito.ArgumentMatchers.eq(String.class)
+        )).thenReturn(org.springframework.http.ResponseEntity.ok(ghnSuccessJson));
+
+        com.novelia.shipment.service.GhnApiClient client = new com.novelia.shipment.service.GhnApiClient(props, mockRestTemplate, objectMapper);
+        var orderCodeOpt = client.createShippingOrder(Map.of("to_name", "Nguyen Van A"));
+
+        assertTrue(orderCodeOpt.isPresent());
+        assertEquals("GHN-REAL-ORDER-999888", orderCodeOpt.get());
+    }
+
+    @Test
+    @DisplayName("Payment Security: Chặn endpoint simulate-success khi không ở chế độ Sandbox (bảo vệ production)")
+    void testPaymentSimulationBlockedWhenProductionMode() {
+        vnPayProperties.setSandboxMode(false);
+        try {
+            assertThrows(BadRequestException.class, () ->
+                    paymentGatewayService.simulateTestPaymentSuccess(testOrder.getOrderNumber(), testCustomer.getEmail()));
+        } finally {
+            vnPayProperties.setSandboxMode(true);
+        }
+    }
+
+    @Test
+    @DisplayName("Payment Security: Frontend hoặc bên thứ 3 không thể tự đánh dấu đơn PAID nếu thiếu chữ ký hợp lệ")
+    void testFrontendCannotMarkOrderPaidWithoutCryptographicSignature() {
+        Map<String, String> forgedParams = new HashMap<>();
+        forgedParams.put("vnp_TxnRef", testOrder.getOrderNumber());
+        forgedParams.put("vnp_ResponseCode", "00");
+        forgedParams.put("vnp_Amount", "10000000");
+
+        assertThrows(BadRequestException.class, () -> paymentGatewayService.processCallback(forgedParams));
+
+        Order order = orderRepository.findByOrderNumber(testOrder.getOrderNumber()).orElseThrow();
+        assertEquals(Order.OrderStatus.PENDING, order.getStatus(), "Đơn hàng vẫn phải giữ PENDING nếu chữ ký không hợp lệ");
     }
 }

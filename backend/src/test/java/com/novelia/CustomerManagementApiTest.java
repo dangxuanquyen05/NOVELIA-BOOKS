@@ -13,7 +13,6 @@ import com.novelia.category.repository.CategoryRepository;
 import com.novelia.inventory.entity.Inventory;
 import com.novelia.inventory.repository.InventoryRepository;
 import com.novelia.order.dto.CreateOrderRequest;
-import com.novelia.order.entity.Order;
 import com.novelia.order.repository.OrderRepository;
 import com.novelia.order.service.OrderService;
 import com.novelia.security.JwtTokenProvider;

@@ -8,6 +8,7 @@ import { Footer } from './components/layout/Footer';
 import { HomePage } from './pages/storefront/HomePage';
 import { BookListPage } from './pages/storefront/BookListPage';
 import { BookDetailPage } from './pages/storefront/BookDetailPage';
+import { BookMatchPage } from './pages/storefront/BookMatchPage';
 import { CartPage } from './pages/storefront/CartPage';
 import { WishlistPage } from './pages/storefront/WishlistPage';
 import { CheckoutPage } from './pages/storefront/CheckoutPage';
@@ -29,6 +30,9 @@ import { AdminAuditLogsPage } from './pages/admin/AdminAuditLogsPage';
 import { VNPayCallbackPage } from './pages/storefront/VNPayCallbackPage';
 import { PrivateRoute } from './routes/PrivateRoute';
 import { AdminRoute } from './routes/AdminRoute';
+
+import { NoveliaAssistant } from './components/common/NoveliaAssistant';
+import { MobileBottomNav } from './components/layout/MobileBottomNav';
 
 const AppContent: React.FC = () => {
   const location = useLocation();
@@ -138,7 +142,7 @@ const AppContent: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#FBF9F5] text-[#1C1917] selection:bg-[#1B3B2B] selection:text-white">
+    <div className="min-h-screen flex flex-col bg-[#FAF8F5] text-[#1C1917] selection:bg-[#8C5D3B] selection:text-white pb-16 lg:pb-0">
       <Header />
       <main className="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8">
         <Routes>
@@ -146,6 +150,8 @@ const AppContent: React.FC = () => {
           <Route path="/" element={<HomePage />} />
           <Route path="/books" element={<BookListPage />} />
           <Route path="/books/:slug" element={<BookDetailPage />} />
+          <Route path="/bookmatch" element={<BookMatchPage />} />
+          <Route path="/book-match" element={<BookMatchPage />} />
           <Route path="/cart" element={<CartPage />} />
           <Route path="/wishlist" element={<WishlistPage />} />
           <Route path="/login" element={<LoginPage />} />
@@ -201,6 +207,10 @@ const AppContent: React.FC = () => {
         </Routes>
       </main>
       <Footer />
+      {/* Novelia Assistant Chatbot Drawer & floating trigger */}
+      <NoveliaAssistant />
+      {/* Mobile Bottom Navigation Bar */}
+      <MobileBottomNav />
     </div>
   );
 };

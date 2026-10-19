@@ -18,10 +18,15 @@ public class DashboardKpiResponse {
     private BigDecimal previousPeriodRevenue;
     private Double growthRatePercentage;
     private BigDecimal grossOrderValue;
+    private BigDecimal averageOrderValue;
     private BigDecimal estimatedNetProfit;
     private long totalOrders;
     private long periodOrders;
+    private long validOrdersCount;
     private long pendingOrdersCount;
+    private long cancelledOrdersCount;
+    private long refundedOrdersCount;
+    private BigDecimal refundedAmount;
     private long totalCustomers;
     private long totalBooks;
     private long lowStockBooksCount;

@@ -1,5 +1,6 @@
 package com.novelia.order.dto;
 
+import com.fasterxml.jackson.annotation.JsonAlias;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -19,9 +20,11 @@ public class CreateOrderRequest {
     @Size(max = 100, message = "Tên người nhận không được vượt quá 100 ký tự")
     private String receiverName;
 
+    @JsonAlias({"phone", "receiver_phone"})
     @Size(max = 20, message = "Số điện thoại không hợp lệ")
     private String receiverPhone;
 
+    @JsonAlias({"provinceCity", "province_city", "city"})
     @Size(max = 100)
     private String province;
 
@@ -31,6 +34,7 @@ public class CreateOrderRequest {
     @Size(max = 100)
     private String ward;
 
+    @JsonAlias({"specificAddress", "specific_address", "addressLine1"})
     @Size(max = 255)
     private String detailedAddress;
 

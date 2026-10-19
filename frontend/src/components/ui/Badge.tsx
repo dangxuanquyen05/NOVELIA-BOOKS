@@ -14,9 +14,9 @@ export const Badge: React.FC<BadgeProps> = ({
   className = '',
 }) => {
   const variants = {
-    forest: 'bg-[#1B3B2B] text-white',
-    gold: 'bg-[#B88E52] text-white',
-    ivory: 'bg-[#F4EFEB] text-[#1B3B2B] border border-[#E7E0D5]',
+    forest: 'bg-[#8C5D3B] text-white',
+    gold: 'bg-[#D4AF7A] text-[#1C1917] font-semibold',
+    ivory: 'bg-[#FAF0E6] text-[#8C5D3B] border border-[#E7E0D5]',
     rose: 'bg-rose-100 text-rose-800',
     slate: 'bg-stone-200 text-stone-800',
   };

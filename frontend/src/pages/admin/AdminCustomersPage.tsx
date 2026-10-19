@@ -219,7 +219,7 @@ export const AdminCustomersPage: React.FC = () => {
         {/* Top Metric Strip */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
           <div className="bg-white p-4 rounded-2xl border border-[#E7E0D5] shadow-xs flex items-center gap-3.5">
-            <div className="w-10 h-10 rounded-xl bg-[#1B3B2B]/10 text-[#1B3B2B] flex items-center justify-center shrink-0">
+            <div className="w-10 h-10 rounded-xl bg-[#8C5D3B]/10 text-[#8C5D3B] flex items-center justify-center shrink-0">
               <User className="w-5 h-5" />
             </div>
             <div>
@@ -269,7 +269,7 @@ export const AdminCustomersPage: React.FC = () => {
                 value={searchInput}
                 onChange={(e) => setSearchInput(e.target.value)}
                 placeholder="Tìm kiếm theo họ tên, email, số điện thoại..."
-                className="w-full text-xs rounded-xl border border-[#D5CDC0] pl-9 pr-3 py-2.5 focus:outline-none focus:border-[#1B3B2B] bg-[#FAFAF8]"
+                className="w-full text-xs rounded-xl border border-[#D5CDC0] pl-9 pr-3 py-2.5 focus:outline-none focus:border-[#8C5D3B] bg-[#FAFAF8]"
               />
             </div>
             <Button type="submit" variant="primary" size="md">
@@ -314,7 +314,7 @@ export const AdminCustomersPage: React.FC = () => {
                     }}
                     className={`px-3 py-1 rounded-full text-xs font-semibold transition-all ${
                       statusFilter === t.value
-                        ? 'bg-[#1B3B2B] text-white shadow-xs'
+                        ? 'bg-[#8C5D3B] text-white shadow-xs'
                         : 'bg-[#FAFAF8] text-stone-600 border border-[#E7E0D5] hover:border-stone-400'
                     }`}
                   >
@@ -370,7 +370,7 @@ export const AdminCustomersPage: React.FC = () => {
         <div className="bg-white rounded-3xl border border-[#E7E0D5] shadow-xs overflow-hidden">
           {loading && customers.length === 0 ? (
             <div className="p-12 text-center space-y-3">
-              <div className="w-8 h-8 border-2 border-[#1B3B2B]/20 border-t-[#1B3B2B] rounded-full animate-spin mx-auto" />
+              <div className="w-8 h-8 border-2 border-[#8C5D3B]/20 border-t-[#8C5D3B] rounded-full animate-spin mx-auto" />
               <p className="text-xs text-stone-500">Đang tải danh sách người dùng...</p>
             </div>
           ) : customers.length === 0 ? (
@@ -404,7 +404,7 @@ export const AdminCustomersPage: React.FC = () => {
                         {/* Name & Avatar */}
                         <td className="py-3.5 px-4 sm:px-6">
                           <div className="flex items-center gap-3">
-                            <div className="w-9 h-9 rounded-full bg-[#1B3B2B]/10 text-[#1B3B2B] flex items-center justify-center font-bold text-sm shrink-0 border border-[#1B3B2B]/20">
+                            <div className="w-9 h-9 rounded-full bg-[#8C5D3B]/10 text-[#8C5D3B] flex items-center justify-center font-bold text-sm shrink-0 border border-[#8C5D3B]/20">
                               {c.fullName ? c.fullName.charAt(0).toUpperCase() : 'U'}
                             </div>
                             <div>
@@ -468,7 +468,7 @@ export const AdminCustomersPage: React.FC = () => {
                         </td>
 
                         {/* Total Spent */}
-                        <td className="py-3.5 px-4 text-right font-mono font-bold text-[#1B3B2B]">
+                        <td className="py-3.5 px-4 text-right font-mono font-bold text-[#8C5D3B]">
                           {formatCurrencyVND(c.totalSpent || 0)}
                         </td>
 
@@ -496,7 +496,7 @@ export const AdminCustomersPage: React.FC = () => {
                             <button
                               type="button"
                               onClick={() => handleOpenDetailModal(c)}
-                              className="p-1.5 rounded-lg border border-stone-200 hover:bg-white text-stone-600 hover:text-[#1B3B2B]"
+                              className="p-1.5 rounded-lg border border-stone-200 hover:bg-white text-stone-600 hover:text-[#8C5D3B]"
                               title="Xem chi tiết lịch sử đơn hàng & mua sắm"
                             >
                               <Eye className="w-3.5 h-3.5" />
@@ -579,7 +579,7 @@ export const AdminCustomersPage: React.FC = () => {
                     Hồ Sơ Chi Tiết Khách Hàng
                   </span>
                   <div className="flex items-center gap-3 mt-1">
-                    <h3 className="font-bold text-lg sm:text-xl text-[#1B3B2B]">
+                    <h3 className="font-bold text-lg sm:text-xl text-[#8C5D3B]">
                       {selectedDetail?.fullName || 'Đang tải...'}
                     </h3>
                     {selectedDetail?.status === 'ACTIVE' ? (
@@ -604,7 +604,7 @@ export const AdminCustomersPage: React.FC = () => {
 
               {loadingDetail || !selectedDetail ? (
                 <div className="py-12 text-center space-y-3">
-                  <div className="w-8 h-8 border-2 border-[#1B3B2B]/20 border-t-[#1B3B2B] rounded-full animate-spin mx-auto" />
+                  <div className="w-8 h-8 border-2 border-[#8C5D3B]/20 border-t-[#8C5D3B] rounded-full animate-spin mx-auto" />
                   <p className="text-xs text-stone-500">Đang tải thông tin chi tiết và lịch sử đơn hàng...</p>
                 </div>
               ) : (
@@ -644,7 +644,7 @@ export const AdminCustomersPage: React.FC = () => {
                       </div>
                       <div className="flex justify-between">
                         <span className="text-stone-500">Tổng chi tiêu thực:</span>
-                        <span className="font-mono font-bold text-[#1B3B2B] text-sm">
+                        <span className="font-mono font-bold text-[#8C5D3B] text-sm">
                           {formatCurrencyVND(selectedDetail.totalSpent || 0)}
                         </span>
                       </div>
@@ -703,7 +703,7 @@ export const AdminCustomersPage: React.FC = () => {
                         {selectedDetail.recentOrders.map((ord) => (
                           <div key={ord.id} className="p-3.5 flex items-center justify-between bg-white hover:bg-stone-50/50">
                             <div className="space-y-0.5">
-                              <span className="font-mono font-bold text-[#1B3B2B] block">{ord.orderNumber}</span>
+                              <span className="font-mono font-bold text-[#8C5D3B] block">{ord.orderNumber}</span>
                               <span className="text-[10px] text-stone-400">
                                 {new Date(ord.createdAt).toLocaleString('vi-VN')} • {ord.paymentMethod} ({ord.paymentStatus})
                               </span>
@@ -809,7 +809,7 @@ export const AdminCustomersPage: React.FC = () => {
                       value={lockReason}
                       onChange={(e) => setLockReason(e.target.value)}
                       placeholder="Ví dụ: Gian lận đơn hàng, spam tài khoản, yêu cầu từ khách..."
-                      className="w-full rounded-xl border border-[#D5CDC0] p-2.5 text-xs focus:outline-none focus:border-[#1B3B2B] bg-[#FAFAF8]"
+                      className="w-full rounded-xl border border-[#D5CDC0] p-2.5 text-xs focus:outline-none focus:border-[#8C5D3B] bg-[#FAFAF8]"
                     />
                   </div>
                 )}

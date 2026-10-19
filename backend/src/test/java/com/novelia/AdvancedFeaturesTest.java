@@ -3,12 +3,9 @@ package com.novelia;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.novelia.book.entity.Book;
 import com.novelia.book.repository.BookRepository;
-import com.novelia.coupon.dto.CreateCouponRequest;
-import com.novelia.coupon.dto.ValidateCouponRequest;
 import com.novelia.coupon.entity.Coupon;
 import com.novelia.coupon.repository.CouponRepository;
 import com.novelia.coupon.service.CouponService;
-import com.novelia.order.dto.CreateOrderRequest;
 import com.novelia.order.entity.Order;
 import com.novelia.order.entity.OrderItem;
 import com.novelia.order.repository.OrderRepository;
@@ -25,8 +22,6 @@ import com.novelia.review.entity.Review;
 import com.novelia.review.repository.ReviewRepository;
 import com.novelia.shipment.dto.CreateShipmentRequest;
 import com.novelia.shipment.dto.ShipmentResponse;
-import com.novelia.shipment.entity.Shipment;
-import com.novelia.shipment.repository.ShipmentRepository;
 import com.novelia.shipment.service.ShippingCarrierService;
 import com.novelia.user.entity.Role;
 import com.novelia.user.entity.User;
@@ -98,9 +93,6 @@ public class AdvancedFeaturesTest {
 
     @Autowired
     private ShippingCarrierService shippingCarrierService;
-
-    @Autowired
-    private ShipmentRepository shipmentRepository;
 
     @Autowired
     private PasswordEncoder passwordEncoder;

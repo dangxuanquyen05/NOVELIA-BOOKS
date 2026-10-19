@@ -24,7 +24,6 @@ import com.novelia.order.entity.Order.OrderStatus;
 import com.novelia.order.repository.OrderRepository;
 import com.novelia.order.service.OrderService;
 import com.novelia.payment.entity.Payment;
-import com.novelia.payment.entity.Payment.PaymentMethod;
 import com.novelia.payment.entity.Payment.PaymentStatus;
 import com.novelia.payment.repository.PaymentRepository;
 import com.novelia.security.JwtTokenProvider;

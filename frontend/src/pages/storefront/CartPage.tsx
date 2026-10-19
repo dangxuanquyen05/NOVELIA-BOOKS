@@ -64,7 +64,7 @@ export const CartPage: React.FC = () => {
   if (!isAuthenticated) {
     return (
       <div className="py-20 text-center space-y-6 max-w-lg mx-auto px-4">
-        <div className="w-16 h-16 rounded-full bg-[#EDF3EF] text-[#1B3B2B] mx-auto flex items-center justify-center">
+        <div className="w-16 h-16 rounded-full bg-[#FAF0E6] text-[#8C5D3B] mx-auto flex items-center justify-center border border-[#E8D7C5]">
           <ShoppingBag className="w-8 h-8" />
         </div>
         <h2 className="font-serif-title text-2xl font-bold text-stone-900">
@@ -98,15 +98,15 @@ export const CartPage: React.FC = () => {
       {/* Toast Notification */}
       {toast.show && (
         <div
-          className={`fixed bottom-6 right-6 z-50 flex items-center gap-3 p-4 rounded-2xl shadow-xl border animate-fade-in max-w-md ${
+          className={`fixed bottom-6 right-6 z-50 flex items-center gap-3 p-4 rounded-2xl shadow-2xl border animate-fade-in max-w-sm ${
             toast.isError
               ? 'bg-rose-900 text-white border-rose-700'
-              : 'bg-[#1B3B2B] text-white border-white/10'
+              : 'bg-[#1C1917] text-white border-white/10'
           }`}
         >
           <div
-            className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 ${
-              toast.isError ? 'bg-rose-600' : 'bg-[#B88E52]'
+            className={`w-7 h-7 rounded-full flex items-center justify-center shrink-0 ${
+              toast.isError ? 'bg-rose-600' : 'bg-[#8C5D3B]'
             }`}
           >
             {toast.isError ? <AlertCircle className="w-4 h-4 text-white" /> : <Check className="w-4 h-4 text-white" />}
@@ -115,21 +115,41 @@ export const CartPage: React.FC = () => {
         </div>
       )}
 
+      {/* 3-Step Checkout Stepper from screenshot */}
+      <div className="flex items-center justify-center max-w-xl mx-auto py-2">
+        <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2">
+            <span className="w-6 h-6 rounded-full bg-[#8C5D3B] text-white flex items-center justify-center text-xs font-bold">
+              1
+            </span>
+            <span className="text-xs font-bold text-[#1C1917]">Giỏ hàng</span>
+          </div>
+          <div className="w-12 sm:w-16 h-0.5 bg-stone-300" />
+          <div className="flex items-center gap-2">
+            <span className="w-6 h-6 rounded-full bg-stone-200 text-stone-600 flex items-center justify-center text-xs font-semibold">
+              2
+            </span>
+            <span className="text-xs text-stone-500">Thanh toán</span>
+          </div>
+          <div className="w-12 sm:w-16 h-0.5 bg-stone-300" />
+          <div className="flex items-center gap-2">
+            <span className="w-6 h-6 rounded-full bg-stone-200 text-stone-600 flex items-center justify-center text-xs font-semibold">
+              3
+            </span>
+            <span className="text-xs text-stone-500">Hoàn tất</span>
+          </div>
+        </div>
+      </div>
+
       {/* Header & Breadcrumb */}
       <div className="space-y-4">
-        <nav className="flex items-center gap-2 text-xs text-[#78716C]">
-          <Link to="/" className="hover:text-[#1B3B2B] transition">Trang Chủ</Link>
-          <span>/</span>
-          <span className="text-[#1C1917] font-semibold">Giỏ Hàng</span>
-        </nav>
-
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-[#EAE4DC] pb-4">
           <div>
-            <h1 className="font-serif-title text-3xl sm:text-4xl font-bold text-[#1C1917]">
-              Giỏ Hàng Tuyển Chọn
+            <h1 className="font-serif-title text-2xl sm:text-3xl font-bold text-[#1C1917]">
+              Giỏ hàng của bạn
             </h1>
-            <p className="text-xs sm:text-sm text-[#57534E] mt-1 font-normal">
-              Bạn đang có <strong className="text-[#1B3B2B] font-bold">{cart?.totalItems || 0} tác phẩm</strong> trong giỏ hàng.
+            <p className="text-xs sm:text-sm text-stone-500 mt-1 font-normal">
+              Bạn đang có <strong className="text-[#8C5D3B] font-bold">{cart?.totalItems || 0} sản phẩm</strong> trong giỏ hàng.
             </p>
           </div>
 
@@ -169,22 +189,22 @@ export const CartPage: React.FC = () => {
             <div className="p-4 sm:p-5 rounded-2xl bg-[#FAF7F2] border border-[#EBE3D7] space-y-2">
               <div className="flex items-center justify-between text-xs">
                 <span className="font-semibold text-stone-800 flex items-center gap-1.5">
-                  <Truck className="w-4 h-4 text-[#1B3B2B]" />
+                  <Truck className="w-4 h-4 text-[#8C5D3B]" />
                   {isFreeShip ? (
                     <span className="text-emerald-800 font-bold">
                       Đơn hàng đã đạt chuẩn Miễn Phí Vận Chuyển toàn quốc!
                     </span>
                   ) : (
                     <span>
-                      Mua thêm <strong className="text-[#1B3B2B]">{formatCurrencyVND(remainingForFreeShip)}</strong> để được Miễn Phí Vận Chuyển
+                      Mua thêm <strong className="text-[#8C5D3B]">{formatCurrencyVND(remainingForFreeShip)}</strong> để được Miễn Phí Vận Chuyển
                     </span>
                   )}
                 </span>
-                <span className="font-bold text-[#B88E52] font-mono">{freeShipPercent}%</span>
+                <span className="font-bold text-[#8C5D3B] font-mono">{freeShipPercent}%</span>
               </div>
               <div className="w-full h-2 bg-stone-200 rounded-full overflow-hidden">
                 <div
-                  className="h-full bg-[#1B3B2B] transition-all duration-500 rounded-full"
+                  className="h-full bg-[#8C5D3B] transition-all duration-500 rounded-full"
                   style={{ width: `${freeShipPercent}%` }}
                 />
               </div>
@@ -199,7 +219,7 @@ export const CartPage: React.FC = () => {
                 return (
                   <div
                     key={item.id}
-                    className="p-4 sm:p-5 rounded-2xl bg-white border border-[#EBE5DC] shadow-xs hover:border-[#D8CFBF] transition flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4"
+                    className="p-4 sm:p-5 rounded-2xl bg-white border border-[#EBE5DC] shadow-xs hover:border-[#8C5D3B]/40 transition flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4"
                   >
                     {/* Book Thumbnail & Info */}
                     <div className="flex items-center gap-4 flex-1 min-w-0">
@@ -220,13 +240,13 @@ export const CartPage: React.FC = () => {
                       <div className="space-y-1 min-w-0 flex-1">
                         <Link
                           to={`/books/${item.bookSlug}`}
-                          className="font-serif-title text-sm sm:text-base font-bold text-[#1C1917] hover:text-[#1B3B2B] transition-colors line-clamp-2"
+                          className="font-serif-title text-sm sm:text-base font-bold text-[#1C1917] hover:text-[#8C5D3B] transition-colors line-clamp-2"
                         >
                           {item.bookTitle}
                         </Link>
 
                         <div className="flex items-baseline gap-2">
-                          <span className="text-xs sm:text-sm font-bold text-[#1B3B2B] font-mono">
+                          <span className="text-xs sm:text-sm font-bold text-[#1C1917] font-mono">
                             {formatCurrencyVND(item.unitPrice)}
                           </span>
                           {item.originalPrice && item.originalPrice > item.unitPrice && (
@@ -282,7 +302,7 @@ export const CartPage: React.FC = () => {
 
                       {/* Total Price */}
                       <div className="text-right min-w-[100px]">
-                        <span className="text-sm sm:text-base font-bold text-[#1B3B2B] font-mono block">
+                        <span className="text-sm sm:text-base font-bold text-[#1C1917] font-mono block">
                           {formatCurrencyVND(item.totalPrice)}
                         </span>
                       </div>
@@ -341,43 +361,53 @@ export const CartPage: React.FC = () => {
                   </span>
                 </div>
 
-                {isFreeShip && (
-                  <div className="p-2.5 rounded-xl bg-emerald-50 border border-emerald-200 text-[11px] text-emerald-800 flex items-center gap-1.5">
-                    <Sparkles className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
-                    <span>Đơn hàng đủ điều kiện Freeship tiêu chuẩn.</span>
-                  </div>
-                )}
+                {/* Free shipping pill */}
+                <div className="p-3 rounded-2xl bg-emerald-50/80 border border-emerald-200 text-xs text-emerald-800 flex items-center gap-2">
+                  <Check className="w-4 h-4 text-emerald-600 shrink-0" />
+                  <span className="font-semibold">Bạn được miễn phí vận chuyển!</span>
+                </div>
 
                 <div className="pt-4 border-t border-[#F0EBE3] flex items-baseline justify-between">
-                  <span className="font-bold text-sm text-[#1C1917]">Tổng Cộng</span>
+                  <span className="font-bold text-sm text-[#1C1917]">
+                    Tổng tiền ({cart?.totalItems || 0} sản phẩm):
+                  </span>
                   <div className="text-right">
-                    <span className="font-serif-title text-2xl font-bold text-[#1B3B2B] font-mono block">
+                    <span className="font-serif-title text-xl sm:text-2xl font-bold text-[#8C5D3B] font-mono block">
                       {formatCurrencyVND(grandTotal)}
                     </span>
-                    <span className="text-[10px] text-stone-400">Đã bao gồm VAT</span>
                   </div>
                 </div>
               </div>
 
               {/* Checkout Trigger Button */}
-              <Button
-                variant="primary"
-                size="lg"
-                className="w-full"
-                rightIcon={<ArrowRight className="w-4 h-4" />}
-                onClick={() => navigate('/checkout')}
-              >
-                Tiến Hành Đặt Hàng
-              </Button>
+              <div className="space-y-3 pt-2">
+                <button
+                  type="button"
+                  onClick={() => navigate('/checkout')}
+                  className="w-full py-3.5 px-6 rounded-full bg-[#8C5D3B] hover:bg-[#72482B] text-white text-sm font-bold shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-98"
+                >
+                  <span>Tiến hành thanh toán</span>
+                  <ArrowRight className="w-4 h-4" />
+                </button>
+
+                <div className="text-center">
+                  <Link
+                    to="/books"
+                    className="inline-flex items-center gap-1.5 text-xs font-semibold text-stone-600 hover:text-[#8C5D3B] transition"
+                  >
+                    <span>← Tiếp tục mua sắm</span>
+                  </Link>
+                </div>
+              </div>
 
               {/* Commitments */}
               <div className="pt-4 border-t border-[#F0EBE3] space-y-2.5 text-[11px] text-stone-500">
                 <div className="flex items-center gap-2">
-                  <ShieldCheck className="w-4 h-4 text-[#1B3B2B]" />
+                  <ShieldCheck className="w-4 h-4 text-[#8C5D3B]" />
                   <span>Sách chính ngạch có bản quyền 100%</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Truck className="w-4 h-4 text-[#1B3B2B]" />
+                  <Truck className="w-4 h-4 text-[#8C5D3B]" />
                   <span>Đóng gói màng co chống gập mép tuyệt đối</span>
                 </div>
               </div>
@@ -394,7 +424,7 @@ export const CartPage: React.FC = () => {
             onClick={() => setIsCheckoutModalOpen(false)}
           />
           <div className="relative bg-white rounded-3xl p-6 sm:p-8 max-w-md w-full shadow-2xl space-y-5 border border-[#E7E0D5] z-10 text-center animate-fade-in">
-            <div className="w-14 h-14 rounded-full bg-[#EDF3EF] text-[#1B3B2B] mx-auto flex items-center justify-center">
+            <div className="w-14 h-14 rounded-full bg-[#FAF0E6] text-[#8C5D3B] mx-auto flex items-center justify-center">
               <Sparkles className="w-7 h-7 text-[#B88E52]" />
             </div>
 
@@ -404,7 +434,7 @@ export const CartPage: React.FC = () => {
               </h3>
               <p className="text-xs text-stone-600 leading-relaxed">
                 Giỏ hàng của bạn gồm <strong>{cart?.totalItems} cuốn sách</strong> với tổng trị giá{' '}
-                <strong className="text-[#1B3B2B]">{formatCurrencyVND(grandTotal)}</strong> đã được lưu trữ an toàn trong cơ sở dữ liệu.
+                <strong className="text-[#8C5D3B]">{formatCurrencyVND(grandTotal)}</strong> đã được lưu trữ an toàn trong cơ sở dữ liệu.
               </p>
               <p className="text-xs text-stone-500 italic pt-1">
                 (Phân hệ Đặt hàng & Thanh toán tự động sẽ được xây dựng ở giai đoạn tiếp theo theo đúng yêu cầu dự án).

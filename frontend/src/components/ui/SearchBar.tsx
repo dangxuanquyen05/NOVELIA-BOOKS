@@ -92,7 +92,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({
   return (
     <div ref={containerRef} className={`relative w-full ${className}`}>
       <form onSubmit={handleSubmit} className="relative flex items-center w-full group">
-        <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-stone-400 group-focus-within:text-[#1B3B2B] transition-colors">
+        <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-stone-400 group-focus-within:text-[#8C5D3B] transition-colors">
           <Search className="w-4 h-4" />
         </div>
 
@@ -110,7 +110,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({
           }}
           autoFocus={autoFocus}
           placeholder={placeholder}
-          className="w-full pl-11 pr-24 py-2.5 sm:py-3 text-xs sm:text-sm rounded-full bg-white/95 border border-[#E2DDD5] text-stone-900 placeholder:text-stone-400 focus:outline-none focus:border-[#1B3B2B] focus:ring-2 focus:ring-[#1B3B2B]/10 shadow-xs hover:border-[#D1C9BE] transition-all"
+          className="w-full pl-11 pr-24 py-2.5 sm:py-3 text-xs sm:text-sm rounded-full bg-white/95 border border-[#E2DDD5] text-stone-900 placeholder:text-stone-400 focus:outline-none focus:border-[#8C5D3B] focus:ring-2 focus:ring-[#8C5D3B]/20 shadow-xs hover:border-[#8C5D3B]/40 transition-all"
         />
 
         <div className="absolute inset-y-0 right-0 pr-1.5 flex items-center gap-1">
@@ -133,7 +133,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({
 
           <button
             type="submit"
-            className="px-4 py-1.5 text-xs font-semibold rounded-full bg-[#1B3B2B] text-white hover:bg-[#25523D] transition cursor-pointer"
+            className="px-4 py-1.5 text-xs font-semibold rounded-full bg-[#8C5D3B] text-white hover:bg-[#734A2E] transition cursor-pointer"
           >
             Tìm
           </button>
@@ -165,12 +165,12 @@ export const SearchBar: React.FC<SearchBarProps> = ({
                       className="w-10 h-14 object-cover rounded-md shadow-2xs shrink-0"
                     />
                     <div className="flex-1 min-w-0">
-                      <h4 className="text-xs sm:text-sm font-serif-title font-bold text-stone-900 group-hover:text-[#1B3B2B] truncate transition-colors">
+                      <h4 className="text-xs sm:text-sm font-serif-title font-bold text-stone-900 group-hover:text-[#8C5D3B] truncate transition-colors">
                         {book.title}
                       </h4>
                       <p className="text-[11px] text-stone-500 truncate">{authors}</p>
                       <div className="flex items-center gap-2 mt-0.5">
-                        <span className="text-xs font-bold font-mono text-[#1B3B2B]">
+                        <span className="text-xs font-bold font-mono text-[#8C5D3B]">
                           {formatCurrencyVND(book.salePrice)}
                         </span>
                         {book.originalPrice && book.originalPrice > book.salePrice && (
@@ -198,7 +198,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({
             <button
               type="button"
               onClick={handleSubmit}
-              className="w-full py-2 px-4 rounded-xl text-xs font-bold text-[#1B3B2B] hover:bg-[#EAE4D9] flex items-center justify-center gap-1.5 transition cursor-pointer"
+              className="w-full py-2 px-4 rounded-xl text-xs font-bold text-[#8C5D3B] hover:bg-[#EAE4D9] flex items-center justify-center gap-1.5 transition cursor-pointer"
             >
               <span>Xem tất cả kết quả cho "{query}"</span>
               <ArrowRight className="w-3.5 h-3.5" />

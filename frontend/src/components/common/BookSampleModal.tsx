@@ -129,7 +129,7 @@ export const BookSampleModal: React.FC<BookSampleModalProps> = ({ book, isOpen, 
                 type="button"
                 onClick={() => setFontSize('sm')}
                 className={`px-2 py-1 text-xs font-bold rounded-full transition cursor-pointer ${
-                  fontSize === 'sm' ? 'bg-[#1B3B2B] text-white shadow-xs' : 'text-stone-600 dark:text-stone-300'
+                  fontSize === 'sm' ? 'bg-[#8C5D3B] text-white shadow-xs' : 'text-stone-600 dark:text-stone-300'
                 }`}
                 title="Cỡ chữ nhỏ"
               >
@@ -139,7 +139,7 @@ export const BookSampleModal: React.FC<BookSampleModalProps> = ({ book, isOpen, 
                 type="button"
                 onClick={() => setFontSize('md')}
                 className={`px-2 py-1 text-xs font-bold rounded-full transition cursor-pointer ${
-                  fontSize === 'md' ? 'bg-[#1B3B2B] text-white shadow-xs' : 'text-stone-600 dark:text-stone-300'
+                  fontSize === 'md' ? 'bg-[#8C5D3B] text-white shadow-xs' : 'text-stone-600 dark:text-stone-300'
                 }`}
                 title="Cỡ chữ vừa"
               >
@@ -149,7 +149,7 @@ export const BookSampleModal: React.FC<BookSampleModalProps> = ({ book, isOpen, 
                 type="button"
                 onClick={() => setFontSize('lg')}
                 className={`px-2 py-1 text-xs font-bold rounded-full transition cursor-pointer ${
-                  fontSize === 'lg' ? 'bg-[#1B3B2B] text-white shadow-xs' : 'text-stone-600 dark:text-stone-300'
+                  fontSize === 'lg' ? 'bg-[#8C5D3B] text-white shadow-xs' : 'text-stone-600 dark:text-stone-300'
                 }`}
                 title="Cỡ chữ lớn"
               >
@@ -171,7 +171,7 @@ export const BookSampleModal: React.FC<BookSampleModalProps> = ({ book, isOpen, 
                 type="button"
                 onClick={() => setTheme('light')}
                 className={`w-6 h-6 rounded-full border transition cursor-pointer bg-white border-stone-300 ${
-                  theme === 'light' ? 'ring-2 ring-[#1B3B2B] ring-offset-1' : ''
+                  theme === 'light' ? 'ring-2 ring-[#8C5D3B] ring-offset-1' : ''
                 }`}
                 title="Nền trắng thanh lịch"
               />
@@ -250,7 +250,7 @@ export const BookSampleModal: React.FC<BookSampleModalProps> = ({ book, isOpen, 
         >
           <div className="flex items-center gap-3">
             <span className="text-xs opacity-75">Giá niêm yết:</span>
-            <span className="text-base sm:text-lg font-bold font-mono text-[#1B3B2B] dark:text-emerald-400">
+            <span className="text-base sm:text-lg font-bold font-mono text-[#8C5D3B] dark:text-emerald-400">
               {formatCurrencyVND(book.salePrice)}
             </span>
             {book.originalPrice && book.originalPrice > book.salePrice && (
@@ -278,7 +278,7 @@ export const BookSampleModal: React.FC<BookSampleModalProps> = ({ book, isOpen, 
               type="button"
               onClick={handleAddToCart}
               disabled={isAdding || book.stockQuantity <= 0}
-              className="px-5 py-2 rounded-full text-xs font-bold bg-[#1B3B2B] text-white hover:bg-[#25523D] transition flex items-center gap-2 shadow-xs cursor-pointer disabled:opacity-50"
+              className="px-5 py-2 rounded-full text-xs font-bold bg-[#8C5D3B] text-white hover:bg-[#754C2F] transition flex items-center gap-2 shadow-xs cursor-pointer disabled:opacity-50"
             >
               <ShoppingBag className="w-3.5 h-3.5" />
               <span>{addSuccess ? 'Đã thêm vào giỏ!' : 'Thêm Vào Giỏ'}</span>

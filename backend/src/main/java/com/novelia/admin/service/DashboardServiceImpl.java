@@ -113,11 +113,31 @@ public class DashboardServiceImpl implements DashboardService {
         BigDecimal grossOrderValue = orderRepository.calculateGrossOrderValueBetween(startCurrent, endCurrent);
         if (grossOrderValue == null) grossOrderValue = BigDecimal.ZERO;
 
-        BigDecimal estimatedNetProfit = periodRevenue.multiply(new BigDecimal("0.35"))
-                .setScale(0, java.math.RoundingMode.HALF_UP);
-
         long totalOrders = orderRepository.count();
         long periodOrders = orderRepository.countOrdersBetween(startCurrent, endCurrent);
+        long validOrdersCount = orderRepository.countValidOrdersBetween(VALID_REVENUE_STATUSES, startCurrent, endCurrent);
+        BigDecimal averageOrderValue = validOrdersCount > 0
+                ? periodRevenue.divide(BigDecimal.valueOf(validOrdersCount), 0, java.math.RoundingMode.HALF_UP)
+                : BigDecimal.ZERO;
+
+        // Thống kê chi tiết trạng thái đơn trong kỳ (Hủy, Hoàn tiền)
+        List<Object[]> statusCounts = orderRepository.countOrdersByStatusBetweenRaw(startCurrent, endCurrent);
+        long cancelledOrdersCount = 0;
+        long refundedOrdersCount = 0;
+        BigDecimal refundedAmount = BigDecimal.ZERO;
+
+        for (Object[] row : statusCounts) {
+            Order.OrderStatus st = (Order.OrderStatus) row[0];
+            long count = ((Number) row[1]).longValue();
+            BigDecimal amount = (BigDecimal) row[2];
+            if (st == Order.OrderStatus.CANCELLED) {
+                cancelledOrdersCount = count;
+            } else if (st == Order.OrderStatus.REFUNDED) {
+                refundedOrdersCount = count;
+                refundedAmount = amount != null ? amount : BigDecimal.ZERO;
+            }
+        }
+
         long pendingOrdersCount = orderRepository.countByStatus(Order.OrderStatus.PENDING);
         long totalCustomers = userRepository.countCustomers();
         long totalBooks = bookRepository.count();
@@ -130,10 +150,15 @@ public class DashboardServiceImpl implements DashboardService {
                 .previousPeriodRevenue(previousPeriodRevenue)
                 .growthRatePercentage(growthRatePercentage)
                 .grossOrderValue(grossOrderValue)
-                .estimatedNetProfit(estimatedNetProfit)
+                .averageOrderValue(averageOrderValue)
+                .estimatedNetProfit(null) // Không tự ý tính lợi nhuận ròng khi chưa có giá vốn thực
                 .totalOrders(totalOrders)
                 .periodOrders(periodOrders)
+                .validOrdersCount(validOrdersCount)
                 .pendingOrdersCount(pendingOrdersCount)
+                .cancelledOrdersCount(cancelledOrdersCount)
+                .refundedOrdersCount(refundedOrdersCount)
+                .refundedAmount(refundedAmount)
                 .totalCustomers(totalCustomers)
                 .totalBooks(totalBooks)
                 .lowStockBooksCount(lowStockBooksCount)

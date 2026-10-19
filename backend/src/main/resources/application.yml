@@ -60,4 +60,16 @@ novelia:
       max-retry-attempts: 3
       retry-backoff-ms: 1000
       webhook-token: ${GHN_WEBHOOK_TOKEN:novelia_ghn_webhook_secret_2026}
+  ai:
+    # Cờ bật tắt AI: Mặc định false nếu chưa cấu hình API key
+    enabled: ${AI_ENABLED:false}
+    provider: ${AI_PROVIDER:gemini}
+    # API key được truyền qua biến môi trường GEMINI_API_KEY hoặc AI_API_KEY (không hardcode vào repo)
+    api-key: ${AI_API_KEY:${GEMINI_API_KEY:}}
+    model: ${AI_MODEL:gemini-1.5-flash}
+    endpoint: ${AI_ENDPOINT:https://generativelanguage.googleapis.com/v1beta/models}
+    timeout-ms: ${AI_TIMEOUT_MS:4000}
+    rate-limit-per-minute: ${AI_RATE_LIMIT:30}
+    daily-cost-cap-usd: ${AI_COST_CAP:1.0}
+    fallback-enabled: true
 

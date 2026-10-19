@@ -8,7 +8,12 @@ export interface DashboardKpis {
   previousPeriodRevenue?: number;
   growthRatePercentage?: number | null;
   grossOrderValue?: number;
-  estimatedNetProfit?: number;
+  estimatedNetProfit?: number | null;
+  averageOrderValue?: number;
+  validOrdersCount?: number;
+  cancelledOrdersCount?: number;
+  refundedOrdersCount?: number;
+  refundedAmount?: number;
   totalOrders: number;
   periodOrders?: number;
   pendingOrdersCount: number;

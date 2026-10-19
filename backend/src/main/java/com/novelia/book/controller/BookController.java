@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.*;
 public class BookController {
 
     private final BookService bookService;
+    private final com.novelia.recommendation.service.RecommendationService recommendationService;
 
     @GetMapping
     public ResponseEntity<ApiResponse<PageResponse<BookResponse>>> getBooks(
@@ -37,6 +38,35 @@ public class BookController {
 
         PageResponse<BookResponse> pageResponse = bookService.getBooks(params);
         return ResponseEntity.ok(ApiResponse.success(pageResponse));
+    }
+
+    @GetMapping("/recommendations")
+    public ResponseEntity<ApiResponse<java.util.List<BookResponse>>> getRecommendations(
+            @RequestParam(defaultValue = "8") int limit) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String userEmail = (auth != null && auth.isAuthenticated() && !"anonymousUser".equals(auth.getPrincipal()))
+                ? auth.getName() : null;
+
+        java.util.List<BookResponse> recommendations = recommendationService.getPersonalizedRecommendations(userEmail, limit);
+        return ResponseEntity.ok(ApiResponse.success("Lấy danh sách gợi ý sách BookMatch thành công", recommendations));
+    }
+
+    @PostMapping("/recommendations/survey")
+    public ResponseEntity<ApiResponse<com.novelia.recommendation.dto.BookMatchRecommendationResponse>> recommendBySurvey(
+            @jakarta.validation.Valid @RequestBody(required = false) com.novelia.recommendation.dto.BookMatchSurveyRequest request) {
+        if (request == null) {
+            request = new com.novelia.recommendation.dto.BookMatchSurveyRequest();
+        }
+        com.novelia.recommendation.dto.BookMatchRecommendationResponse response = recommendationService.recommendBySurvey(request);
+        return ResponseEntity.ok(ApiResponse.success("Gợi ý sách BookMatch theo khảo sát thành công", response));
+    }
+
+    @GetMapping("/{slugOrId}/related")
+    public ResponseEntity<ApiResponse<java.util.List<BookResponse>>> getRelatedBooks(
+            @PathVariable String slugOrId,
+            @RequestParam(defaultValue = "6") int limit) {
+        java.util.List<BookResponse> related = recommendationService.getRelatedBooks(slugOrId, limit);
+        return ResponseEntity.ok(ApiResponse.success("Lấy danh sách tác phẩm liên quan thành công", related));
     }
 
     @GetMapping("/{slugOrId}")

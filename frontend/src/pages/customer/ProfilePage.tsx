@@ -203,20 +203,20 @@ export const ProfilePage: React.FC = () => {
 
       {/* Top Profile Card */}
       <div className="p-7 sm:p-9 rounded-3xl bg-white border border-[#E7E0D5] shadow-xs flex flex-col sm:flex-row items-center gap-6 text-center sm:text-left">
-        <div className="w-20 h-20 rounded-full bg-[#1B3B2B] text-white flex items-center justify-center text-3xl font-bold font-serif-title shadow-sm">
+        <div className="w-20 h-20 rounded-full bg-[#2A1D13] text-[#E6C687] flex items-center justify-center text-3xl font-bold font-serif-title shadow-sm">
           {user.fullName.charAt(0).toUpperCase()}
         </div>
 
         <div className="space-y-1.5 flex-1">
           <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2">
             <h1 className="font-serif-title text-2xl font-bold text-[#1C1917]">{user.fullName}</h1>
-            <span className="px-3 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-[#EDF3EF] text-[#1B3B2B] border border-[#D5E3DA]">
+            <span className="px-3 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-[#FAF0E6] text-[#8C5D3B] border border-[#E8D7C5]">
               Độc Giả NOVELIA
             </span>
           </div>
 
           <p className="text-xs text-[#78716C] flex items-center justify-center sm:justify-start gap-1.5">
-            <Mail className="w-3.5 h-3.5 text-[#B88E52]" />
+            <Mail className="w-3.5 h-3.5 text-[#8C5D3B]" />
             <span>{user.email}</span>
           </p>
         </div>
@@ -241,7 +241,7 @@ export const ProfilePage: React.FC = () => {
           onClick={() => setActiveTab('orders')}
           className={`pb-3 text-sm font-bold transition-all relative ${
             activeTab === 'orders'
-              ? 'text-[#1B3B2B]'
+              ? 'text-[#8C5D3B]'
               : 'text-stone-400 hover:text-stone-700'
           }`}
         >
@@ -249,7 +249,7 @@ export const ProfilePage: React.FC = () => {
             <Package className="w-4 h-4" /> Đơn Hàng Của Tôi ({totalOrders})
           </span>
           {activeTab === 'orders' && (
-            <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#1B3B2B] rounded-full" />
+            <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#8C5D3B] rounded-full" />
           )}
         </button>
 
@@ -258,7 +258,7 @@ export const ProfilePage: React.FC = () => {
           onClick={() => setActiveTab('addresses')}
           className={`pb-3 text-sm font-bold transition-all relative ${
             activeTab === 'addresses'
-              ? 'text-[#1B3B2B]'
+              ? 'text-[#8C5D3B]'
               : 'text-stone-400 hover:text-stone-700'
           }`}
         >
@@ -266,7 +266,7 @@ export const ProfilePage: React.FC = () => {
             <MapPin className="w-4 h-4" /> Sổ Địa Chỉ Nhận Hàng ({addresses.length})
           </span>
           {activeTab === 'addresses' && (
-            <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#1B3B2B] rounded-full" />
+            <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#8C5D3B] rounded-full" />
           )}
         </button>
       </div>
@@ -290,7 +290,7 @@ export const ProfilePage: React.FC = () => {
                 onClick={() => setSelectedStatus(tab.value)}
                 className={`px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all ${
                   selectedStatus === tab.value
-                    ? 'bg-[#1B3B2B] text-white shadow-xs'
+                    ? 'bg-[#8C5D3B] text-white shadow-xs'
                     : 'bg-white text-stone-600 border border-[#E7E0D5] hover:border-stone-400'
                 }`}
               >
@@ -333,7 +333,7 @@ export const ProfilePage: React.FC = () => {
                       <div className="space-y-1">
                         <div className="flex items-center gap-2">
                           <span className="text-xs text-stone-400">Mã đơn:</span>
-                          <span className="font-mono font-bold text-sm text-[#1B3B2B]">{order.orderNumber}</span>
+                          <span className="font-mono font-bold text-sm text-[#8C5D3B]">{order.orderNumber}</span>
                         </div>
                         <div className="text-[11px] text-stone-400 flex items-center gap-1.5">
                           <Calendar className="w-3.5 h-3.5" />
@@ -367,7 +367,7 @@ export const ProfilePage: React.FC = () => {
                             </div>
                           </div>
                           <div className="text-right">
-                            <span className="font-mono font-semibold text-xs sm:text-sm text-[#1B3B2B]">
+                            <span className="font-mono font-semibold text-xs sm:text-sm text-[#1C1917]">
                               {formatCurrencyVND(item.totalPrice)}
                             </span>
                           </div>
@@ -386,7 +386,7 @@ export const ProfilePage: React.FC = () => {
                     <div className="flex flex-wrap items-center justify-between gap-4 pt-3 border-t border-[#F0EBE3]">
                       <div>
                         <span className="text-xs text-stone-400 block">Tổng thanh toán ({order.paymentMethod}):</span>
-                        <span className="font-serif-title text-base sm:text-lg font-bold text-[#1B3B2B] font-mono">
+                        <span className="font-serif-title text-base sm:text-lg font-bold text-[#8C5D3B] font-mono">
                           {formatCurrencyVND(order.totalAmount)}
                         </span>
                       </div>
@@ -437,7 +437,7 @@ export const ProfilePage: React.FC = () => {
                   <div className="flex items-center justify-between">
                     <span className="font-bold text-sm text-[#1C1917]">{addr.recipientName}</span>
                     {addr.isDefault && (
-                      <span className="text-[10px] bg-[#EDF3EF] text-[#1B3B2B] font-semibold px-2 py-0.5 rounded-full">
+                      <span className="text-[10px] bg-[#FAF0E6] text-[#8C5D3B] font-semibold px-2 py-0.5 rounded-full">
                         Mặc định
                       </span>
                     )}
@@ -474,7 +474,7 @@ export const ProfilePage: React.FC = () => {
             </div>
 
             <p className="text-xs text-stone-600 leading-relaxed">
-              Bạn đang yêu cầu hủy đơn hàng <strong className="text-[#1B3B2B] font-mono">{cancelingOrder.orderNumber}</strong>. Sau khi hủy, đơn hàng sẽ không thể khôi phục và số lượng sách sẽ được hoàn trả lại kho.
+              Bạn đang yêu cầu hủy đơn hàng <strong className="text-[#8C5D3B] font-mono">{cancelingOrder.orderNumber}</strong>. Sau khi hủy, đơn hàng sẽ không thể khôi phục và số lượng sách sẽ được hoàn trả lại kho.
             </p>
 
             {cancelError && (
@@ -493,7 +493,7 @@ export const ProfilePage: React.FC = () => {
                   value={cancelReason}
                   onChange={(e) => setCancelReason(e.target.value)}
                   placeholder="Ví dụ: Thay đổi địa chỉ nhận sách, muốn đặt cuốn khác..."
-                  className="w-full text-xs rounded-xl border border-[#D5CDC0] p-3 focus:outline-none focus:border-[#1B3B2B] bg-[#FAFAF8]"
+                  className="w-full text-xs rounded-xl border border-[#D5CDC0] p-3 focus:outline-none focus:border-[#8C5D3B] bg-[#FAFAF8]"
                   required
                 />
               </div>

@@ -23,7 +23,7 @@ export const EmptyState: React.FC<EmptyStateProps> = ({
     <div
       className={`flex flex-col items-center justify-center text-center p-8 sm:p-12 rounded-3xl bg-white border border-[#EBE5DC] my-8 ${className}`}
     >
-      <div className="w-16 h-16 rounded-2xl bg-[#EDF3EF] text-[#1B3B2B] flex items-center justify-center mb-5 shadow-xs">
+      <div className="w-16 h-16 rounded-2xl bg-[#FAF0E6] text-[#8C5D3B] flex items-center justify-center mb-5 shadow-xs border border-[#E8D7C5]">
         {icon || <BookOpen className="w-8 h-8 stroke-[1.5]" />}
       </div>
 

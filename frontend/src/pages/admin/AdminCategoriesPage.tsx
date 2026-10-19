@@ -198,7 +198,7 @@ export const AdminCategoriesPage: React.FC = () => {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Tìm theo tên hoặc slug..."
-              className="w-full sm:w-72 px-3.5 py-2 bg-stone-50 border border-stone-200 rounded-xl text-xs sm:text-sm focus:outline-none focus:border-[#1B3B2B] focus:bg-white"
+              className="w-full sm:w-72 px-3.5 py-2 bg-stone-50 border border-stone-200 rounded-xl text-xs sm:text-sm focus:outline-none focus:border-[#8C5D3B] focus:bg-white"
             />
             <select
               value={statusFilter}
@@ -227,7 +227,7 @@ export const AdminCategoriesPage: React.FC = () => {
               size="sm"
               onClick={handleOpenCreateModal}
               leftIcon={<PlusCircle className="w-4 h-4" />}
-              className="bg-[#1B3B2B] hover:bg-[#142e22] text-white"
+              className="bg-[#8C5D3B] hover:bg-[#142e22] text-white"
             >
               Thêm danh mục
             </Button>
@@ -256,7 +256,7 @@ export const AdminCategoriesPage: React.FC = () => {
               {loading && categories.length === 0 ? (
                 <tr>
                   <td colSpan={5} className="py-12 text-center text-stone-400">
-                    <RefreshCw className="w-6 h-6 animate-spin mx-auto mb-2 text-[#1B3B2B]" />
+                    <RefreshCw className="w-6 h-6 animate-spin mx-auto mb-2 text-[#8C5D3B]" />
                     Đang tải danh mục...
                   </td>
                 </tr>
@@ -271,8 +271,8 @@ export const AdminCategoriesPage: React.FC = () => {
                   <tr key={cat.id} className="hover:bg-stone-50/70 transition-colors">
                     <td className="py-3.5 px-4 sm:px-6">
                       <div className="flex items-center gap-3">
-                        <div className="w-8 h-8 rounded-lg bg-[#C5A059]/15 text-[#1B3B2B] flex items-center justify-center font-bold text-xs shrink-0">
-                          <FolderTree className="w-4 h-4 text-[#1B3B2B]" />
+                        <div className="w-8 h-8 rounded-lg bg-[#C5A059]/15 text-[#8C5D3B] flex items-center justify-center font-bold text-xs shrink-0">
+                          <FolderTree className="w-4 h-4 text-[#8C5D3B]" />
                         </div>
                         <div>
                           <p className="font-semibold text-stone-900">{cat.name}</p>
@@ -305,7 +305,7 @@ export const AdminCategoriesPage: React.FC = () => {
                       <div className="flex items-center justify-end gap-2">
                         <button
                           onClick={() => handleOpenEditModal(cat)}
-                          className="p-1.5 text-stone-500 hover:text-[#1B3B2B] hover:bg-stone-100 rounded-lg transition-colors"
+                          className="p-1.5 text-stone-500 hover:text-[#8C5D3B] hover:bg-stone-100 rounded-lg transition-colors"
                           title="Sửa"
                         >
                           <Edit className="w-4 h-4" />
@@ -348,7 +348,7 @@ export const AdminCategoriesPage: React.FC = () => {
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     placeholder="VD: Văn học hiện đại..."
-                    className="w-full px-3 py-2 border border-stone-300 rounded-xl focus:border-[#1B3B2B] focus:outline-none"
+                    className="w-full px-3 py-2 border border-stone-300 rounded-xl focus:border-[#8C5D3B] focus:outline-none"
                   />
                 </div>
 
@@ -359,7 +359,7 @@ export const AdminCategoriesPage: React.FC = () => {
                     value={formData.slug}
                     onChange={(e) => setFormData({ ...formData, slug: e.target.value })}
                     placeholder="Tự động tạo nếu để trống"
-                    className="w-full px-3 py-2 border border-stone-300 rounded-xl focus:border-[#1B3B2B] focus:outline-none font-mono"
+                    className="w-full px-3 py-2 border border-stone-300 rounded-xl focus:border-[#8C5D3B] focus:outline-none font-mono"
                   />
                 </div>
 
@@ -369,7 +369,7 @@ export const AdminCategoriesPage: React.FC = () => {
                     rows={3}
                     value={formData.description}
                     onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                    className="w-full px-3 py-2 border border-stone-300 rounded-xl focus:border-[#1B3B2B] focus:outline-none"
+                    className="w-full px-3 py-2 border border-stone-300 rounded-xl focus:border-[#8C5D3B] focus:outline-none"
                   />
                 </div>
 
@@ -379,7 +379,7 @@ export const AdminCategoriesPage: React.FC = () => {
                     id="isActiveCreate"
                     checked={formData.isActive}
                     onChange={(e) => setFormData({ ...formData, isActive: e.target.checked })}
-                    className="rounded text-[#1B3B2B] focus:ring-[#1B3B2B]"
+                    className="rounded text-[#8C5D3B] focus:ring-[#8C5D3B]"
                   />
                   <label htmlFor="isActiveCreate" className="font-medium text-stone-700 cursor-pointer">
                     Kích hoạt hiển thị cho khách hàng
@@ -420,7 +420,7 @@ export const AdminCategoriesPage: React.FC = () => {
                     required
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full px-3 py-2 border border-stone-300 rounded-xl focus:border-[#1B3B2B] focus:outline-none"
+                    className="w-full px-3 py-2 border border-stone-300 rounded-xl focus:border-[#8C5D3B] focus:outline-none"
                   />
                 </div>
 
@@ -430,7 +430,7 @@ export const AdminCategoriesPage: React.FC = () => {
                     type="text"
                     value={formData.slug}
                     onChange={(e) => setFormData({ ...formData, slug: e.target.value })}
-                    className="w-full px-3 py-2 border border-stone-300 rounded-xl focus:border-[#1B3B2B] focus:outline-none font-mono"
+                    className="w-full px-3 py-2 border border-stone-300 rounded-xl focus:border-[#8C5D3B] focus:outline-none font-mono"
                   />
                 </div>
 
@@ -440,7 +440,7 @@ export const AdminCategoriesPage: React.FC = () => {
                     rows={3}
                     value={formData.description}
                     onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                    className="w-full px-3 py-2 border border-stone-300 rounded-xl focus:border-[#1B3B2B] focus:outline-none"
+                    className="w-full px-3 py-2 border border-stone-300 rounded-xl focus:border-[#8C5D3B] focus:outline-none"
                   />
                 </div>
 
@@ -450,7 +450,7 @@ export const AdminCategoriesPage: React.FC = () => {
                     id="isActiveEdit"
                     checked={formData.isActive}
                     onChange={(e) => setFormData({ ...formData, isActive: e.target.checked })}
-                    className="rounded text-[#1B3B2B] focus:ring-[#1B3B2B]"
+                    className="rounded text-[#8C5D3B] focus:ring-[#8C5D3B]"
                   />
                   <label htmlFor="isActiveEdit" className="font-medium text-stone-700 cursor-pointer">
                     Kích hoạt hiển thị cho khách hàng

@@ -5,17 +5,26 @@
     --font-serif: "Playfair Display", Georgia, Cambria, "Times New Roman", Times, serif;
     --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 
-    /* Theme Tokens: Modern Editorial Bookstore */
-    --color-ivory: #FBF9F5;
+    /* Theme Tokens: Modern Luxury Editorial Bookstore */
+    --color-ivory: #FAF8F5;
     --color-ivory-warm: #F4EFEB;
-    --color-forest: #1B3B2B;
-    --color-forest-dark: #12281D;
-    --color-forest-light: #2A5A42;
-    --color-forest-soft: #EDF3EF;
-    --color-gold: #B88E52;
+    --color-ivory-cream: #FAF6F0;
+    --color-forest: #8C5D3B;
+    --color-forest-dark: #754C2F;
+    --color-forest-deep: #1C1815;
+    --color-forest-light: #A06D46;
+    --color-forest-soft: #FAF0E6;
+    --color-leather: #8C5D3B;
+    --color-gold: #D4AF7A;
+    --color-gold-light: #E6C687;
+    --color-gold-champagne: #F5E6CC;
+    --color-gold-dark: #B88E52;
     --color-ink: #1C1917;
+    --color-ink-light: #292524;
     --color-muted: #6E6862;
+    --color-muted-light: #8C857E;
     --color-border: #E8E2D8;
+    --color-border-subtle: #F0EAE1;
   }
 
   body {
@@ -23,33 +32,125 @@
     background-color: var(--color-ivory);
     color: var(--color-ink);
     overflow-x: hidden;
-    letter-spacing: -0.01em;
+    letter-spacing: -0.012em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, .font-serif-title {
+    font-family: var(--font-serif);
   }
 }
 
-.font-serif-title {
-  font-family: var(--font-serif);
+/* Glassmorphism & Modern Surface Effects */
+.glass-panel {
+  background: rgba(251, 249, 245, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(232, 226, 216, 0.7);
 }
 
-/* Custom scrollbar */
+.glass-panel-dark {
+  background: rgba(16, 36, 26, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.glass-card-hover {
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.glass-card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 35px -10px rgba(27, 59, 43, 0.12), 0 0 1px 1px rgba(184, 142, 82, 0.25);
+  border-color: rgba(184, 142, 82, 0.4);
+}
+
+/* Gradient Shimmers & Gold Accents */
+.text-gold-shimmer {
+  background: linear-gradient(135deg, #B88E52 0%, #E6C687 50%, #B88E52 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gold-glow {
+  box-shadow: 0 0 25px -5px rgba(184, 142, 82, 0.35);
+}
+
+.forest-glow {
+  box-shadow: 0 10px 30px -10px rgba(27, 59, 43, 0.35);
+}
+
+/* Book Cover 3D Illusion & Shadows */
+.book-spine-shadow {
+  box-shadow: inset 4px 0 6px -2px rgba(0, 0, 0, 0.3), inset -1px 0 2px rgba(255, 255, 255, 0.4);
+}
+
+.book-shadow {
+  box-shadow: 0 12px 28px -6px rgba(28, 25, 23, 0.14), 0 6px 12px -4px rgba(28, 25, 23, 0.08);
+}
+
+.book-shadow-hover {
+  box-shadow: 0 24px 42px -12px rgba(27, 59, 43, 0.22), 0 12px 20px -6px rgba(28, 25, 23, 0.12);
+}
+
+/* Custom Luxury Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 7px;
+  height: 7px;
 }
 ::-webkit-scrollbar-track {
   background: #F4EFEB;
 }
 ::-webkit-scrollbar-thumb {
   background: #D8CFBE;
-  border-radius: 4px;
+  border-radius: 999px;
+  border: 1px solid #F4EFEB;
 }
 ::-webkit-scrollbar-thumb:hover {
   background: #B88E52;
 }
 
-/* Subtle book shadow effect */
-.book-shadow {
-  box-shadow: 0 10px 25px -5px rgba(28, 25, 23, 0.12), 0 8px 10px -6px rgba(28, 25, 23, 0.08);
+/* Atmospheric Keyframe Animations */
+@keyframes floatGentle {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
 }
-.book-shadow-hover {
-  box-shadow: 0 20px 30px -10px rgba(27, 59, 43, 0.2), 0 10px 15px -5px rgba(28, 25, 23, 0.1);
+
+@keyframes pulseSubtle {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.85;
+    transform: scale(1.02);
+  }
+}
+
+@keyframes shimmerLight {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.animate-float {
+  animation: floatGentle 4s ease-in-out infinite;
+}
+
+.animate-pulse-subtle {
+  animation: pulseSubtle 3s ease-in-out infinite;
+}
+
+.shimmer-badge {
+  background: linear-gradient(90deg, rgba(230, 198, 135, 0.2) 0%, rgba(230, 198, 135, 0.6) 50%, rgba(230, 198, 135, 0.2) 100%);
+  background-size: 200% 100%;
+  animation: shimmerLight 3s linear infinite;
 }

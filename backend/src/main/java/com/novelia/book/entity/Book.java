@@ -81,6 +81,17 @@ public class Book {
     @Builder.Default
     private Integer reviewCount = 0;
 
+    @Column(name = "reading_level", length = 20)
+    @Builder.Default
+    private String readingLevel = "INTERMEDIATE";
+
+    @Column(name = "reading_goals", length = 255)
+    private String readingGoals;
+
+    @Column(name = "language", length = 20)
+    @Builder.Default
+    private String language = "vi";
+
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
         name = "book_authors",

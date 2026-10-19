@@ -35,6 +35,9 @@ public class BookResponse {
     private BigDecimal averageRating;
     private Integer reviewCount;
     private Integer stockQuantity;
+    private String readingLevel;
+    private String readingGoals;
+    private String language;
     private Set<AuthorResponse> authors;
     private Set<CategoryResponse> categories;
     private LocalDateTime createdAt;

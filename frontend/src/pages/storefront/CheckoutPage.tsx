@@ -22,6 +22,7 @@ import type { CheckoutSummary, CreateOrderRequest } from '../../types/order';
 import type { Coupon, CouponValidationResult } from '../../types/coupon';
 import { formatCurrencyVND } from '../../utils/format';
 import { Button } from '../../components/ui/Button';
+import { VietnamAddressSelector } from '../../components/common/VietnamAddressSelector';
 
 const FALLBACK_COVER = 'https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&q=80&w=800';
 
@@ -202,8 +203,11 @@ export const CheckoutPage: React.FC = () => {
 
       if (useNewAddress) {
         payload.receiverName = receiverName.trim();
+        payload.receiverPhone = receiverPhone.trim();
         payload.phone = receiverPhone.trim();
+        payload.detailedAddress = detailedAddress.trim();
         payload.specificAddress = detailedAddress.trim();
+        payload.province = province.trim();
         payload.provinceCity = province.trim();
         payload.district = district.trim();
         payload.ward = ward.trim();
@@ -257,8 +261,8 @@ export const CheckoutPage: React.FC = () => {
     return (
       <div className="min-h-screen bg-[#FDFBF7] py-16 flex items-center justify-center">
         <div className="flex flex-col items-center gap-4">
-          <div className="w-10 h-10 border-3 border-[#1B3B2B]/20 border-t-[#1B3B2B] rounded-full animate-spin" />
-          <span className="font-serif-title text-sm text-[#1B3B2B] font-semibold">
+          <div className="w-10 h-10 border-3 border-[#8C5D3B]/20 border-t-[#8C5D3B] rounded-full animate-spin" />
+          <span className="font-serif-title text-sm text-[#8C5D3B] font-semibold">
             Đang xác nhận tồn kho và giá niêm yết...
           </span>
         </div>
@@ -268,7 +272,8 @@ export const CheckoutPage: React.FC = () => {
 
   if (!summary) return null;
 
-  const freeShippingLeft = Math.max(0, summary.freeShippingThreshold - summary.subtotal);
+  const threshold = summary.freeShippingThreshold || 500000;
+  const freeShippingLeft = Math.max(0, threshold - summary.subtotal);
 
   return (
     <div className="min-h-screen bg-[#FDFBF7] py-8 sm:py-12">
@@ -277,7 +282,7 @@ export const CheckoutPage: React.FC = () => {
         <div className="mb-6">
           <Link
             to="/cart"
-            className="inline-flex items-center gap-2 text-xs font-semibold text-stone-500 hover:text-[#1B3B2B] transition-colors"
+            className="inline-flex items-center gap-2 text-xs font-semibold text-stone-500 hover:text-[#8C5D3B] transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />
             <span>Quay lại Giỏ hàng</span>
@@ -308,7 +313,7 @@ export const CheckoutPage: React.FC = () => {
           <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 backdrop-blur-xs">
             <div className="bg-white rounded-3xl p-6 sm:p-8 max-w-lg w-full border border-[#E7E0D5] shadow-2xl space-y-5 animate-in fade-in zoom-in-95 duration-200">
               <div className="flex items-center gap-3 text-emerald-800">
-                <div className="w-12 h-12 rounded-2xl bg-emerald-50 flex items-center justify-center text-[#1B3B2B]">
+                <div className="w-12 h-12 rounded-2xl bg-emerald-50 flex items-center justify-center text-[#8C5D3B]">
                   <CreditCard className="w-6 h-6" />
                 </div>
                 <div>
@@ -322,7 +327,7 @@ export const CheckoutPage: React.FC = () => {
               <div className="p-4 rounded-2xl bg-[#FAFAF8] border border-[#E7E0D5] space-y-2 text-xs">
                 <div className="flex justify-between">
                   <span className="text-stone-500">Tổng thanh toán:</span>
-                  <span className="font-bold font-mono text-sm text-[#1B3B2B]">
+                  <span className="font-bold font-mono text-sm text-[#8C5D3B]">
                     {formatCurrencyVND(vnpayRedirectData.amount)}
                   </span>
                 </div>
@@ -342,7 +347,7 @@ export const CheckoutPage: React.FC = () => {
                   href={vnpayRedirectData.paymentUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-[#1B3B2B] text-white text-xs font-bold hover:bg-[#234B37] shadow-sm transition-all"
+                  className="w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-[#8C5D3B] text-white text-xs font-bold hover:bg-[#754C2F] shadow-sm transition-all"
                 >
                   <span>Chuyển Sang Cổng VNPay Sandbox</span>
                   <ExternalLink className="w-4 h-4" />
@@ -378,7 +383,7 @@ export const CheckoutPage: React.FC = () => {
             <div className="bg-white rounded-3xl p-6 sm:p-7 border border-[#E7E0D5] shadow-xs space-y-6">
               <div className="flex items-center justify-between pb-3 border-b border-[#F0EBE3]">
                 <div className="flex items-center gap-3">
-                  <span className="w-7 h-7 rounded-full bg-[#1B3B2B] text-white flex items-center justify-center text-xs font-bold">
+                  <span className="w-7 h-7 rounded-full bg-[#8C5D3B] text-white flex items-center justify-center text-xs font-bold">
                     1
                   </span>
                   <h2 className="font-serif-title text-base sm:text-lg font-bold text-[#1C1917]">
@@ -395,7 +400,7 @@ export const CheckoutPage: React.FC = () => {
                     <button
                       type="button"
                       onClick={() => setUseNewAddress(!useNewAddress)}
-                      className="text-xs font-bold text-[#1B3B2B] hover:underline cursor-pointer"
+                      className="text-xs font-bold text-[#8C5D3B] hover:underline cursor-pointer"
                     >
                       {useNewAddress ? 'Chọn từ sổ địa chỉ' : '+ Giao đến địa chỉ mới'}
                     </button>
@@ -411,7 +416,7 @@ export const CheckoutPage: React.FC = () => {
                             onClick={() => setSelectedAddressId(addr.id)}
                             className={`p-4 rounded-2xl border transition-all cursor-pointer flex items-start justify-between ${
                               isSelected
-                                ? 'border-[#1B3B2B] bg-[#1B3B2B]/5 shadow-xs ring-1 ring-[#1B3B2B]'
+                                ? 'border-[#8C5D3B] bg-[#8C5D3B]/5 shadow-xs ring-1 ring-[#8C5D3B]'
                                 : 'border-[#E7E0D5] hover:border-stone-400 bg-white'
                             }`}
                           >
@@ -435,7 +440,7 @@ export const CheckoutPage: React.FC = () => {
                             <div className="mt-1">
                               <div
                                 className={`w-4 h-4 rounded-full border flex items-center justify-center ${
-                                  isSelected ? 'border-[#1B3B2B] bg-[#1B3B2B]' : 'border-stone-300'
+                                  isSelected ? 'border-[#8C5D3B] bg-[#8C5D3B]' : 'border-stone-300'
                                 }`}
                               >
                                 {isSelected && <div className="w-1.5 h-1.5 rounded-full bg-white" />}
@@ -462,7 +467,7 @@ export const CheckoutPage: React.FC = () => {
                         value={receiverName}
                         onChange={(e) => setReceiverName(e.target.value)}
                         placeholder="Nguyễn Văn A"
-                        className="w-full text-xs rounded-xl border border-[#D5CDC0] p-3 focus:outline-none focus:border-[#1B3B2B] bg-[#FAFAF8]"
+                        className="w-full text-xs rounded-xl border border-[#D5CDC0] p-3 focus:outline-none focus:border-[#8C5D3B] bg-[#FAFAF8]"
                         required
                       />
                     </div>
@@ -475,53 +480,24 @@ export const CheckoutPage: React.FC = () => {
                         value={receiverPhone}
                         onChange={(e) => setReceiverPhone(e.target.value)}
                         placeholder="0912345678"
-                        className="w-full text-xs rounded-xl border border-[#D5CDC0] p-3 focus:outline-none focus:border-[#1B3B2B] bg-[#FAFAF8]"
+                        className="w-full text-xs rounded-xl border border-[#D5CDC0] p-3 focus:outline-none focus:border-[#8C5D3B] bg-[#FAFAF8]"
                         required
                       />
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                    <div>
-                      <label className="block text-xs font-semibold text-stone-700 mb-1">
-                        Tỉnh / Thành phố *
-                      </label>
-                      <input
-                        type="text"
-                        value={province}
-                        onChange={(e) => setProvince(e.target.value)}
-                        placeholder="Hà Nội / TP.HCM..."
-                        className="w-full text-xs rounded-xl border border-[#D5CDC0] p-3 focus:outline-none focus:border-[#1B3B2B] bg-[#FAFAF8]"
-                        required
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-xs font-semibold text-stone-700 mb-1">
-                        Quận / Huyện *
-                      </label>
-                      <input
-                        type="text"
-                        value={district}
-                        onChange={(e) => setDistrict(e.target.value)}
-                        placeholder="Quận Hoàn Kiếm..."
-                        className="w-full text-xs rounded-xl border border-[#D5CDC0] p-3 focus:outline-none focus:border-[#1B3B2B] bg-[#FAFAF8]"
-                        required
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-xs font-semibold text-stone-700 mb-1">
-                        Phường / Xã *
-                      </label>
-                      <input
-                        type="text"
-                        value={ward}
-                        onChange={(e) => setWard(e.target.value)}
-                        placeholder="Phường Tràng Tiền..."
-                        className="w-full text-xs rounded-xl border border-[#D5CDC0] p-3 focus:outline-none focus:border-[#1B3B2B] bg-[#FAFAF8]"
-                        required
-                      />
-                    </div>
-                  </div>
+                  {/* Bộ chọn Tỉnh/Thành, Quận/Huyện, Phường/Xã chuẩn Việt Nam */}
+                  <VietnamAddressSelector
+                    province={province}
+                    district={district}
+                    ward={ward}
+                    onChange={({ province: p, district: d, ward: w }) => {
+                      setProvince(p);
+                      setDistrict(d);
+                      setWard(w);
+                    }}
+                    required
+                  />
 
                   <div>
                     <label className="block text-xs font-semibold text-stone-700 mb-1">
@@ -532,7 +508,7 @@ export const CheckoutPage: React.FC = () => {
                       value={detailedAddress}
                       onChange={(e) => setDetailedAddress(e.target.value)}
                       placeholder="Số 45 Tràng Tiền, Cửa hàng sách Novelia..."
-                      className="w-full text-xs rounded-xl border border-[#D5CDC0] p-3 focus:outline-none focus:border-[#1B3B2B] bg-[#FAFAF8]"
+                      className="w-full text-xs rounded-xl border border-[#D5CDC0] p-3 focus:outline-none focus:border-[#8C5D3B] bg-[#FAFAF8]"
                       required
                     />
                   </div>
@@ -541,18 +517,18 @@ export const CheckoutPage: React.FC = () => {
 
               {/* Shipping Carrier Banner (Phase 9 - GHN Carrier Framework) */}
               <div className="pt-2">
-                <div className="p-3.5 rounded-2xl bg-[#EDF3EF]/70 border border-[#D5E4D8] flex items-center justify-between text-xs">
+                <div className="p-3.5 rounded-2xl bg-[#FAF7F2] border border-[#E8D7C5] flex items-center justify-between text-xs">
                   <div className="flex items-center gap-2.5">
-                    <div className="w-8 h-8 rounded-full bg-[#1B3B2B] text-white flex items-center justify-center shrink-0">
-                      <Truck className="w-4 h-4 text-[#C5A059]" />
+                    <div className="w-8 h-8 rounded-full bg-[#8C5D3B] text-white flex items-center justify-center shrink-0">
+                      <Truck className="w-4 h-4 text-white" />
                     </div>
                     <div>
-                      <span className="font-bold text-[#1B3B2B] block">Giao Hàng Nhanh (GHN) • Vận chuyển tiêu chuẩn</span>
+                      <span className="font-bold text-[#1C1917] block">Giao Hàng Nhanh (GHN) • Vận chuyển tiêu chuẩn</span>
                       <span className="text-[11px] text-stone-600">Đóng gói carton & màng co bảo vệ sách • Dự kiến 1 - 3 ngày làm việc</span>
                     </div>
                   </div>
                   <div className="text-right">
-                    <span className="font-mono font-bold text-xs text-[#1B3B2B]">
+                    <span className="font-mono font-bold text-xs text-[#8C5D3B]">
                       {summary.shippingFee === 0 ? 'MIỄN PHÍ' : formatCurrencyVND(summary.shippingFee)}
                     </span>
                     {summary.subtotal >= 500000 && (
@@ -566,7 +542,7 @@ export const CheckoutPage: React.FC = () => {
             {/* Step 2: Payment Method */}
             <div className="bg-white rounded-3xl p-6 sm:p-7 border border-[#E7E0D5] shadow-xs space-y-4">
               <div className="flex items-center gap-3 pb-3 border-b border-[#F0EBE3]">
-                <span className="w-7 h-7 rounded-full bg-[#1B3B2B] text-white flex items-center justify-center text-xs font-bold">
+                <span className="w-7 h-7 rounded-full bg-[#8C5D3B] text-white flex items-center justify-center text-xs font-bold">
                   2
                 </span>
                 <h2 className="font-serif-title text-base sm:text-lg font-bold text-[#1C1917]">
@@ -580,7 +556,7 @@ export const CheckoutPage: React.FC = () => {
                   onClick={() => setPaymentMethod('COD')}
                   className={`p-4 rounded-2xl border transition-all cursor-pointer flex items-start justify-between ${
                     paymentMethod === 'COD'
-                      ? 'border-[#1B3B2B] bg-[#1B3B2B]/5 ring-1 ring-[#1B3B2B]'
+                      ? 'border-[#8C5D3B] bg-[#8C5D3B]/5 ring-1 ring-[#8C5D3B]'
                       : 'border-[#E7E0D5] hover:border-stone-400 bg-white'
                   }`}
                 >
@@ -590,7 +566,7 @@ export const CheckoutPage: React.FC = () => {
                       name="paymentMethod"
                       checked={paymentMethod === 'COD'}
                       onChange={() => setPaymentMethod('COD')}
-                      className="mt-1 text-[#1B3B2B] focus:ring-[#1B3B2B]"
+                      className="mt-1 text-[#8C5D3B] focus:ring-[#8C5D3B]"
                     />
                     <div className="space-y-1">
                       <div className="flex items-center gap-2">
@@ -606,7 +582,7 @@ export const CheckoutPage: React.FC = () => {
                       </p>
                     </div>
                   </div>
-                  <CreditCard className="w-5 h-5 text-[#1B3B2B] shrink-0 mt-0.5" />
+                  <CreditCard className="w-5 h-5 text-[#8C5D3B] shrink-0 mt-0.5" />
                 </div>
 
                 {/* Method 2: VNPay Sandbox */}
@@ -614,7 +590,7 @@ export const CheckoutPage: React.FC = () => {
                   onClick={() => setPaymentMethod('VNPAY')}
                   className={`p-4 rounded-2xl border transition-all cursor-pointer flex items-start justify-between ${
                     paymentMethod === 'VNPAY'
-                      ? 'border-[#1B3B2B] bg-[#1B3B2B]/5 ring-1 ring-[#1B3B2B]'
+                      ? 'border-[#8C5D3B] bg-[#8C5D3B]/5 ring-1 ring-[#8C5D3B]'
                       : 'border-[#E7E0D5] hover:border-stone-400 bg-white'
                   }`}
                 >
@@ -624,7 +600,7 @@ export const CheckoutPage: React.FC = () => {
                       name="paymentMethod"
                       checked={paymentMethod === 'VNPAY'}
                       onChange={() => setPaymentMethod('VNPAY')}
-                      className="mt-1 text-[#1B3B2B] focus:ring-[#1B3B2B]"
+                      className="mt-1 text-[#8C5D3B] focus:ring-[#8C5D3B]"
                     />
                     <div className="space-y-1">
                       <div className="flex items-center gap-2">
@@ -655,7 +631,7 @@ export const CheckoutPage: React.FC = () => {
                 value={note}
                 onChange={(e) => setNote(e.target.value)}
                 placeholder="Ví dụ: Giao giờ hành chính, gọi trước khi giao 15 phút..."
-                className="w-full text-xs rounded-xl border border-[#D5CDC0] p-3 focus:outline-none focus:border-[#1B3B2B] bg-[#FAFAF8]"
+                className="w-full text-xs rounded-xl border border-[#D5CDC0] p-3 focus:outline-none focus:border-[#8C5D3B] bg-[#FAFAF8]"
                 maxLength={500}
               />
             </div>
@@ -668,7 +644,7 @@ export const CheckoutPage: React.FC = () => {
                 <h2 className="font-serif-title text-base sm:text-lg font-bold text-[#1C1917]">
                   Tóm Tắt Đơn Hàng ({summary.items.length})
                 </h2>
-                <Link to="/cart" className="text-xs font-semibold text-[#1B3B2B] hover:underline">
+                <Link to="/cart" className="text-xs font-semibold text-[#8C5D3B] hover:underline">
                   Sửa giỏ hàng
                 </Link>
               </div>
@@ -678,7 +654,7 @@ export const CheckoutPage: React.FC = () => {
                 {summary.items.map((item) => (
                   <div key={item.bookId} className="pt-3 first:pt-0 flex items-start gap-3">
                     <img
-                      src={item.coverImageUrl || FALLBACK_COVER}
+                      src={item.bookCover || item.coverImageUrl || FALLBACK_COVER}
                       alt={item.bookTitle}
                       className="w-12 h-16 object-cover rounded-md border border-[#E7E0D5] shrink-0"
                       onError={(e) => {
@@ -691,8 +667,8 @@ export const CheckoutPage: React.FC = () => {
                       </h4>
                       <div className="flex items-center justify-between mt-1 text-xs text-stone-500">
                         <span>SL: {item.quantity}</span>
-                        <span className="font-mono font-semibold text-[#1B3B2B]">
-                          {formatCurrencyVND(item.subtotal)}
+                        <span className="font-mono font-semibold text-[#1C1917]">
+                          {formatCurrencyVND(item.totalPrice ?? item.subtotal ?? (item.unitPrice * item.quantity))}
                         </span>
                       </div>
                     </div>
@@ -703,7 +679,7 @@ export const CheckoutPage: React.FC = () => {
               {/* Coupon Box */}
               <div className="pt-3 border-t border-[#F0EBE3] space-y-3">
                 <div className="flex items-center gap-1.5 text-xs font-bold text-[#1C1917]">
-                  <Tag className="w-4 h-4 text-[#C5A059]" />
+                  <Tag className="w-4 h-4 text-[#8C5D3B]" />
                   <span>Mã Giảm Giá / Phiếu Ưu Đãi</span>
                 </div>
 
@@ -735,7 +711,7 @@ export const CheckoutPage: React.FC = () => {
                         value={couponInput}
                         onChange={(e) => setCouponInput(e.target.value.toUpperCase())}
                         placeholder="Nhập mã (Vd: NOVELIA10)"
-                        className="flex-1 text-xs uppercase font-mono rounded-xl border border-[#D5CDC0] px-3 py-2.5 focus:outline-none focus:border-[#1B3B2B] bg-[#FAFAF8]"
+                        className="flex-1 text-xs uppercase font-mono rounded-xl border border-[#D5CDC0] px-3 py-2.5 focus:outline-none focus:border-[#8C5D3B] bg-[#FAFAF8]"
                       />
                       <Button
                         type="button"
@@ -767,7 +743,7 @@ export const CheckoutPage: React.FC = () => {
                             key={cp.id}
                             type="button"
                             onClick={() => handleApplyCoupon(cp.code)}
-                            className="text-[11px] font-mono px-2 py-0.5 rounded-md bg-[#1B3B2B]/5 text-[#1B3B2B] hover:bg-[#1B3B2B]/10 border border-[#1B3B2B]/20 transition-all cursor-pointer"
+                            className="text-[11px] font-mono px-2 py-0.5 rounded-md bg-[#8C5D3B]/10 text-[#8C5D3B] hover:bg-[#8C5D3B]/20 border border-[#8C5D3B]/30 transition-all cursor-pointer"
                           >
                             {cp.code}
                           </button>
@@ -780,15 +756,15 @@ export const CheckoutPage: React.FC = () => {
 
               {/* Shipping Progress */}
               {freeShippingLeft > 0 ? (
-                <div className="p-3 rounded-2xl bg-amber-50/70 border border-amber-200/60 text-xs text-amber-800 space-y-1.5">
+                <div className="p-3 rounded-2xl bg-[#FAF7F2] border border-[#E8D7C5] text-xs text-stone-800 space-y-1.5">
                   <div className="flex items-center gap-1.5 font-semibold">
-                    <Truck className="w-4 h-4 text-amber-700" />
+                    <Truck className="w-4 h-4 text-[#8C5D3B]" />
                     <span>Mua thêm {formatCurrencyVND(freeShippingLeft)} để được Miễn Phí Vận Chuyển</span>
                   </div>
-                  <div className="w-full bg-amber-200/50 rounded-full h-1.5 overflow-hidden">
+                  <div className="w-full bg-stone-200 rounded-full h-1.5 overflow-hidden">
                     <div
-                      className="bg-amber-600 h-1.5 rounded-full transition-all duration-500"
-                      style={{ width: `${Math.min(100, (summary.subtotal / summary.freeShippingThreshold) * 100)}%` }}
+                      className="bg-[#8C5D3B] h-1.5 rounded-full transition-all duration-500"
+                      style={{ width: `${Math.min(100, (summary.subtotal / threshold) * 100)}%` }}
                     />
                   </div>
                 </div>
@@ -826,7 +802,7 @@ export const CheckoutPage: React.FC = () => {
                 <div className="pt-3 border-t border-[#F0EBE3] flex items-baseline justify-between">
                   <span className="font-bold text-sm text-[#1C1917]">Tổng Thanh Toán:</span>
                   <div className="text-right">
-                    <span className="font-serif-title text-2xl font-bold text-[#1B3B2B] font-mono block">
+                    <span className="font-serif-title text-2xl font-bold text-[#8C5D3B] font-mono block">
                       {formatCurrencyVND(finalTotal)}
                     </span>
                     <span className="text-[10px] text-stone-400">Đã bao gồm thuế & bọc lót sách</span>
@@ -857,11 +833,11 @@ export const CheckoutPage: React.FC = () => {
               {/* Guarantee */}
               <div className="pt-3 border-t border-[#F0EBE3] space-y-2 text-[11px] text-stone-500">
                 <div className="flex items-center gap-2">
-                  <ShieldCheck className="w-4 h-4 text-[#1B3B2B]" />
+                  <ShieldCheck className="w-4 h-4 text-[#8C5D3B]" />
                   <span>Cam kết giá niêm yết chính xác từ nhà xuất bản</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Clock className="w-4 h-4 text-[#1B3B2B]" />
+                  <Clock className="w-4 h-4 text-[#8C5D3B]" />
                   <span>Xử lý và bàn giao đơn vị vận chuyển trong 24 giờ</span>
                 </div>
               </div>

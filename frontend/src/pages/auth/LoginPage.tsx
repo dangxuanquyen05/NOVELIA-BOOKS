@@ -62,7 +62,7 @@ export const LoginPage: React.FC = () => {
       <div className="w-full max-w-md bg-white rounded-3xl p-8 sm:p-10 border border-[#E7E0D5] shadow-xl space-y-6">
         {/* Header */}
         <div className="text-center space-y-2">
-          <div className="w-12 h-12 rounded-2xl bg-[#EDF3EF] text-[#1B3B2B] flex items-center justify-center mx-auto mb-2 shadow-xs">
+          <div className="w-12 h-12 rounded-2xl bg-[#2A1D13] text-[#E6C687] flex items-center justify-center mx-auto mb-2 shadow-xs">
             <BookOpen className="w-6 h-6" />
           </div>
           <h1 className="font-serif-title text-2xl sm:text-3xl font-bold text-[#1C1917]">
@@ -113,10 +113,10 @@ export const LoginPage: React.FC = () => {
 
           <div className="flex items-center justify-between text-xs pt-1">
             <label className="flex items-center gap-2 cursor-pointer text-stone-600">
-              <input type="checkbox" className="rounded text-[#1B3B2B] focus:ring-[#1B3B2B]" />
+              <input type="checkbox" className="rounded text-[#8C5D3B] focus:ring-[#8C5D3B]" />
               <span>Ghi nhớ đăng nhập</span>
             </label>
-            <a href="#forgot" className="text-[#1B3B2B] hover:underline font-semibold">
+            <a href="#forgot" className="text-[#8C5D3B] hover:text-[#734A2E] hover:underline font-semibold">
               Quên mật khẩu?
             </a>
           </div>
@@ -137,7 +137,7 @@ export const LoginPage: React.FC = () => {
         {/* Register Link */}
         <div className="pt-4 border-t border-[#F2ECE4] text-center text-xs text-[#78716C]">
           <span>Chưa có tài khoản độc giả? </span>
-          <Link to="/register" className="text-[#1B3B2B] font-bold hover:underline">
+          <Link to="/register" className="text-[#8C5D3B] font-bold hover:underline">
             Tạo tài khoản mới
           </Link>
         </div>

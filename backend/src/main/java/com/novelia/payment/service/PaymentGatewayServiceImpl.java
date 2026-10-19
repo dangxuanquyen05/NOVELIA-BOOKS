@@ -411,6 +411,10 @@ public class PaymentGatewayServiceImpl implements PaymentGatewayService {
     @Override
     @Transactional
     public PaymentCallbackResult simulateTestPaymentSuccess(String orderNumber, String userEmail) {
+        if (!vnPayProperties.isSandboxMode()) {
+            throw new BadRequestException("Chức năng mô phỏng thanh toán chỉ được phép hoạt động trong môi trường Sandbox");
+        }
+
         // Safe simulation helper for testing sandbox environment without hitting real bank
         Order order = orderRepository.findByOrderNumber(orderNumber)
                 .orElseThrow(() -> new ResourceNotFoundException("Không tìm thấy đơn hàng: " + orderNumber));

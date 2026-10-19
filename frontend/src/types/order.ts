@@ -23,33 +23,48 @@ export interface AddressRequest {
 }
 
 export interface CheckoutItem {
+  id?: number;
   bookId: number;
   bookTitle: string;
-  isbn: string;
+  bookSlug?: string;
+  bookCover?: string;
   coverImageUrl?: string;
+  isbn?: string;
   unitPrice: number;
+  originalPrice?: number;
   quantity: number;
-  subtotal: number;
-  availableStock: number;
+  totalPrice?: number;
+  subtotal?: number;
+  stockQuantity?: number;
+  availableStock?: number;
+  isAvailable?: boolean;
 }
 
 export interface CheckoutSummary {
   items: CheckoutItem[];
+  totalItems?: number;
   subtotal: number;
   shippingFee: number;
+  isFreeShipping?: boolean;
   totalAmount: number;
-  freeShippingThreshold: number;
-  savedAddresses: Address[];
+  freeShippingThreshold?: number;
+  savedAddresses?: Address[];
+  defaultAddress?: Address;
+  supportedPaymentMethods?: string[];
 }
 
 export interface CreateOrderRequest {
   addressId?: number;
   receiverName?: string;
+  receiverPhone?: string;
   phone?: string;
-  specificAddress?: string;
+  province?: string;
   provinceCity?: string;
   district?: string;
   ward?: string;
+  detailedAddress?: string;
+  specificAddress?: string;
+  shippingAddress?: string;
   paymentMethod: 'COD' | 'VNPAY' | string;
   couponCode?: string;
   note?: string;

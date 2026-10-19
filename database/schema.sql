@@ -99,6 +99,9 @@ CREATE TABLE IF NOT EXISTS books (
     is_featured BOOLEAN DEFAULT FALSE,
     average_rating DECIMAL(3, 2) DEFAULT 0.00,
     review_count INT DEFAULT 0,
+    reading_level VARCHAR(20) DEFAULT 'INTERMEDIATE',
+    reading_goals VARCHAR(255) NULL,
+    language VARCHAR(20) DEFAULT 'vi',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     INDEX idx_book_slug (slug),
@@ -313,7 +316,31 @@ CREATE TABLE IF NOT EXISTS audit_logs (
     INDEX idx_audit_entity (entity_type, entity_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- 12. INITIAL SEED: ROLES
+-- 12. BOOKMATCH USER PREFERENCES & FEEDBACKS
+CREATE TABLE IF NOT EXISTS user_book_preferences (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    user_id BIGINT NOT NULL UNIQUE,
+    reading_goals VARCHAR(255) NULL,
+    preferred_categories VARCHAR(255) NULL,
+    preferred_level VARCHAR(20) NULL,
+    target_budget DECIMAL(14, 2) NULL,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS bookmatch_feedbacks (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    user_id BIGINT NULL,
+    book_id BIGINT NOT NULL,
+    feedback_type ENUM('HELPFUL', 'NOT_RELEVANT') NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    INDEX idx_feedback_user (user_id),
+    INDEX idx_feedback_book (book_id),
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (book_id) REFERENCES books(id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- 13. INITIAL SEED: ROLES
 INSERT IGNORE INTO roles (name, description) VALUES
 ('ROLE_ADMIN', 'Quản trị viên toàn quyền hệ thống'),
 ('ROLE_STAFF', 'Nhân viên quản lý kho và đơn hàng'),

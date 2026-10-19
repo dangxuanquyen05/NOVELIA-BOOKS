@@ -30,18 +30,18 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     const baseStyles =
       'inline-flex items-center justify-center font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer select-none';
 
-    // Variant styles (Forest green + Warm Ivory + Subtle Gold)
+    // Variant styles (Terracotta Bronze + Deep Espresso + Subtle Gold + Warm Ivory)
     const variants = {
       primary:
-        'bg-[#1B3B2B] text-white hover:bg-[#25523D] active:bg-[#152E22] focus:ring-[#1B3B2B] shadow-sm hover:shadow',
+        'bg-[#8C5D3B] text-white hover:bg-[#754C2F] active:bg-[#603D24] focus:ring-[#8C5D3B] shadow-xs hover:shadow-md transition-all',
       secondary:
-        'bg-[#F4EFEB] text-[#1C1917] hover:bg-[#EAE2DA] active:bg-[#DFD5C9] focus:ring-[#D8CFBE] border border-[#E7E0D5]',
+        'bg-white text-[#1C1917] hover:bg-[#FAF8F5] active:bg-[#ECE4D8] focus:ring-[#8C5D3B] border border-[#DDD3C4] shadow-xs',
       outline:
-        'border border-[#1B3B2B] text-[#1B3B2B] hover:bg-[#1B3B2B]/5 active:bg-[#1B3B2B]/10 focus:ring-[#1B3B2B]',
+        'border border-[#8C5D3B] text-[#8C5D3B] hover:bg-[#8C5D3B]/5 active:bg-[#8C5D3B]/10 focus:ring-[#8C5D3B]',
       ghost:
-        'text-[#1C1917] hover:text-[#1B3B2B] hover:bg-[#1B3B2B]/5 active:bg-[#1B3B2B]/10 focus:ring-[#1B3B2B]',
+        'text-[#1C1917] hover:text-[#8C5D3B] hover:bg-[#8C5D3B]/5 active:bg-[#8C5D3B]/10 focus:ring-[#8C5D3B]',
       gold:
-        'bg-[#B88E52] text-white hover:bg-[#A37B42] active:bg-[#8F6B38] focus:ring-[#B88E52] shadow-sm hover:shadow',
+        'bg-[#B88E52] text-white hover:bg-[#A37B42] active:bg-[#8F6B38] focus:ring-[#B88E52] shadow-xs hover:shadow',
     };
 
     // Size styles

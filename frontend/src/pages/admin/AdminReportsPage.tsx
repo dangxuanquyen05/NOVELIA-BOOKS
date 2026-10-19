@@ -149,7 +149,7 @@ export const AdminReportsPage: React.FC = () => {
               onClick={() => setPreset('TODAY')}
               className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all ${
                 preset === 'TODAY'
-                  ? 'bg-[#1B3B2B] text-white shadow-xs'
+                  ? 'bg-[#8C5D3B] text-white shadow-xs'
                   : 'bg-stone-100 text-stone-600 hover:bg-stone-200'
               }`}
             >
@@ -160,7 +160,7 @@ export const AdminReportsPage: React.FC = () => {
               onClick={() => setPreset('7_DAYS')}
               className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all ${
                 preset === '7_DAYS'
-                  ? 'bg-[#1B3B2B] text-white shadow-xs'
+                  ? 'bg-[#8C5D3B] text-white shadow-xs'
                   : 'bg-stone-100 text-stone-600 hover:bg-stone-200'
               }`}
             >
@@ -171,7 +171,7 @@ export const AdminReportsPage: React.FC = () => {
               onClick={() => setPreset('30_DAYS')}
               className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all ${
                 preset === '30_DAYS'
-                  ? 'bg-[#1B3B2B] text-white shadow-xs'
+                  ? 'bg-[#8C5D3B] text-white shadow-xs'
                   : 'bg-stone-100 text-stone-600 hover:bg-stone-200'
               }`}
             >
@@ -182,7 +182,7 @@ export const AdminReportsPage: React.FC = () => {
               onClick={() => setPreset('THIS_MONTH')}
               className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all ${
                 preset === 'THIS_MONTH'
-                  ? 'bg-[#1B3B2B] text-white shadow-xs'
+                  ? 'bg-[#8C5D3B] text-white shadow-xs'
                   : 'bg-stone-100 text-stone-600 hover:bg-stone-200'
               }`}
             >
@@ -193,7 +193,7 @@ export const AdminReportsPage: React.FC = () => {
               onClick={() => setPreset('THIS_YEAR')}
               className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all ${
                 preset === 'THIS_YEAR'
-                  ? 'bg-[#1B3B2B] text-white shadow-xs'
+                  ? 'bg-[#8C5D3B] text-white shadow-xs'
                   : 'bg-stone-100 text-stone-600 hover:bg-stone-200'
               }`}
             >
@@ -204,7 +204,7 @@ export const AdminReportsPage: React.FC = () => {
               onClick={() => setPreset('CUSTOM')}
               className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all ${
                 preset === 'CUSTOM'
-                  ? 'bg-[#1B3B2B] text-white shadow-xs'
+                  ? 'bg-[#8C5D3B] text-white shadow-xs'
                   : 'bg-stone-100 text-stone-600 hover:bg-stone-200'
               }`}
             >
@@ -222,7 +222,7 @@ export const AdminReportsPage: React.FC = () => {
                   setStartDate(e.target.value);
                   setPreset('CUSTOM');
                 }}
-                className="rounded-xl border border-[#D5CDC0] px-2.5 py-1.5 text-xs bg-[#FAFAF8] focus:outline-none focus:border-[#1B3B2B]"
+                className="rounded-xl border border-[#D5CDC0] px-2.5 py-1.5 text-xs bg-[#FAFAF8] focus:outline-none focus:border-[#8C5D3B]"
               />
               <span className="text-stone-400">đến</span>
               <input
@@ -232,7 +232,7 @@ export const AdminReportsPage: React.FC = () => {
                   setEndDate(e.target.value);
                   setPreset('CUSTOM');
                 }}
-                className="rounded-xl border border-[#D5CDC0] px-2.5 py-1.5 text-xs bg-[#FAFAF8] focus:outline-none focus:border-[#1B3B2B]"
+                className="rounded-xl border border-[#D5CDC0] px-2.5 py-1.5 text-xs bg-[#FAFAF8] focus:outline-none focus:border-[#8C5D3B]"
               />
             </div>
 
@@ -264,7 +264,7 @@ export const AdminReportsPage: React.FC = () => {
               <AlertCircle className="w-4 h-4 text-amber-700" />
             </div>
             <div>
-              <p className="font-bold text-[#1B3B2B]">
+              <p className="font-bold text-[#8C5D3B]">
                 Quy tắc tính toán doanh thu & lợi nhuận minh bạch:
               </p>
               <p className="text-stone-500 mt-0.5">
@@ -325,7 +325,7 @@ export const AdminReportsPage: React.FC = () => {
             <div className="text-xs text-stone-500 font-semibold mb-1 flex items-center gap-1.5">
               <ShoppingBag className="w-3.5 h-3.5 text-stone-400" /> Tổng Giá Trị (GMV)
             </div>
-            <p className="text-lg font-serif font-bold text-[#1B3B2B] mt-1">
+            <p className="text-lg font-serif font-bold text-[#8C5D3B] mt-1">
               {formatCurrency(overview?.grossOrderValue)}
             </p>
             <p className="text-[11px] text-stone-400 mt-1">Bao gồm toàn bộ đơn</p>
@@ -336,7 +336,7 @@ export const AdminReportsPage: React.FC = () => {
             <div className="text-xs text-stone-500 font-semibold mb-1 flex items-center gap-1.5">
               <TrendingUp className="w-3.5 h-3.5 text-[#C5A880]" /> Đơn Trung Bình (AOV)
             </div>
-            <p className="text-lg font-serif font-bold text-[#1B3B2B] mt-1">
+            <p className="text-lg font-serif font-bold text-[#8C5D3B] mt-1">
               {formatCurrency(overview?.averageOrderValue)}
             </p>
             <p className="text-[11px] text-stone-400 mt-1">
@@ -375,7 +375,7 @@ export const AdminReportsPage: React.FC = () => {
         <div className="bg-white rounded-3xl p-6 border border-[#E7E0D5] shadow-xs">
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 mb-6">
             <div>
-              <h3 className="font-serif font-bold text-base text-[#1B3B2B] flex items-center gap-2">
+              <h3 className="font-serif font-bold text-base text-[#8C5D3B] flex items-center gap-2">
                 <TrendingUp className="w-4 h-4 text-emerald-700" /> Xu Hướng Doanh Thu Thực Nhận Theo Ngày
               </h3>
               <p className="text-xs text-stone-400 mt-0.5">
@@ -397,10 +397,10 @@ export const AdminReportsPage: React.FC = () => {
                   className="flex-1 flex flex-col items-center justify-end h-full min-w-[20px] group relative"
                 >
                   {/* Tooltip on Hover */}
-                  <div className="absolute -top-12 z-20 hidden group-hover:flex flex-col items-center bg-[#1B3B2B] text-white text-[10px] py-1.5 px-2.5 rounded-xl shadow-lg whitespace-nowrap pointer-events-none">
+                  <div className="absolute -top-12 z-20 hidden group-hover:flex flex-col items-center bg-[#8C5D3B] text-white text-[10px] py-1.5 px-2.5 rounded-xl shadow-lg whitespace-nowrap pointer-events-none">
                     <span className="font-bold">{point.label}</span>
                     <span>{formatCurrency(point.realizedRevenue)} ({point.validOrdersCount} đơn)</span>
-                    <div className="w-2 h-2 bg-[#1B3B2B] rotate-45 -mb-1 mt-0.5" />
+                    <div className="w-2 h-2 bg-[#8C5D3B] rotate-45 -mb-1 mt-0.5" />
                   </div>
 
                   <div
@@ -424,7 +424,7 @@ export const AdminReportsPage: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Box 1: Order Status Breakdown */}
           <div className="bg-white rounded-3xl p-6 border border-[#E7E0D5] shadow-xs">
-            <h3 className="font-serif font-bold text-base text-[#1B3B2B] mb-1 flex items-center gap-2">
+            <h3 className="font-serif font-bold text-base text-[#8C5D3B] mb-1 flex items-center gap-2">
               <PieChart className="w-4 h-4 text-[#C5A880]" /> Cơ Cấu Trạng Thái Đơn Hàng
             </h3>
             <p className="text-xs text-stone-400 mb-5">
@@ -478,7 +478,7 @@ export const AdminReportsPage: React.FC = () => {
 
           {/* Box 2: Category Performance */}
           <div className="bg-white rounded-3xl p-6 border border-[#E7E0D5] shadow-xs">
-            <h3 className="font-serif font-bold text-base text-[#1B3B2B] mb-1 flex items-center gap-2">
+            <h3 className="font-serif font-bold text-base text-[#8C5D3B] mb-1 flex items-center gap-2">
               <Layers className="w-4 h-4 text-[#C5A880]" /> Hiệu Quả Theo Thể Loại Sách
             </h3>
             <p className="text-xs text-stone-400 mb-5">
@@ -492,7 +492,7 @@ export const AdminReportsPage: React.FC = () => {
                 {categories.map((cat) => (
                   <div key={cat.categoryId} className="text-xs space-y-1">
                     <div className="flex items-center justify-between">
-                      <span className="font-bold text-[#1B3B2B]">{cat.categoryName}</span>
+                      <span className="font-bold text-[#8C5D3B]">{cat.categoryName}</span>
                       <div className="flex items-center gap-3">
                         <span className="text-stone-500">{cat.soldQuantity} cuốn bán</span>
                         <span className="font-mono font-bold text-emerald-800 w-24 text-right">
@@ -504,7 +504,7 @@ export const AdminReportsPage: React.FC = () => {
                     <div className="w-full h-1.5 bg-stone-100 rounded-full overflow-hidden">
                       <div
                         style={{ width: `${Math.min(100, cat.revenuePercentage)}%` }}
-                        className="h-full bg-[#1B3B2B] rounded-full"
+                        className="h-full bg-[#8C5D3B] rounded-full"
                       />
                     </div>
                   </div>
@@ -520,7 +520,7 @@ export const AdminReportsPage: React.FC = () => {
           <div className="bg-white rounded-3xl p-6 border border-[#E7E0D5] shadow-xs">
             <div className="flex items-center justify-between mb-4">
               <div>
-                <h3 className="font-serif font-bold text-base text-[#1B3B2B] flex items-center gap-2">
+                <h3 className="font-serif font-bold text-base text-[#8C5D3B] flex items-center gap-2">
                   <Award className="w-4 h-4 text-amber-600" /> Sách Bán Chạy Nhất
                 </h3>
                 <p className="text-xs text-stone-400 mt-0.5">Xếp hạng tác phẩm mang lại hiệu quả cao</p>
@@ -533,7 +533,7 @@ export const AdminReportsPage: React.FC = () => {
                   onClick={() => setBookSortBy('REVENUE')}
                   className={`px-2.5 py-1 text-[11px] font-semibold rounded-lg transition-all ${
                     bookSortBy === 'REVENUE'
-                      ? 'bg-white text-[#1B3B2B] shadow-xs font-bold'
+                      ? 'bg-white text-[#8C5D3B] shadow-xs font-bold'
                       : 'text-stone-500 hover:text-stone-800'
                   }`}
                 >
@@ -544,7 +544,7 @@ export const AdminReportsPage: React.FC = () => {
                   onClick={() => setBookSortBy('QUANTITY')}
                   className={`px-2.5 py-1 text-[11px] font-semibold rounded-lg transition-all ${
                     bookSortBy === 'QUANTITY'
-                      ? 'bg-white text-[#1B3B2B] shadow-xs font-bold'
+                      ? 'bg-white text-[#8C5D3B] shadow-xs font-bold'
                       : 'text-stone-500 hover:text-stone-800'
                   }`}
                 >
@@ -568,7 +568,7 @@ export const AdminReportsPage: React.FC = () => {
                         alt={b.bookTitle}
                         className="w-8 h-11 object-cover rounded border border-[#E7E0D5] shrink-0"
                       />
-                      <span className="font-bold text-[#1B3B2B] truncate max-w-[200px]">
+                      <span className="font-bold text-[#8C5D3B] truncate max-w-[200px]">
                         {b.bookTitle}
                       </span>
                     </div>
@@ -589,7 +589,7 @@ export const AdminReportsPage: React.FC = () => {
 
           {/* Top VIP Customers */}
           <div className="bg-white rounded-3xl p-6 border border-[#E7E0D5] shadow-xs">
-            <h3 className="font-serif font-bold text-base text-[#1B3B2B] mb-1 flex items-center gap-2">
+            <h3 className="font-serif font-bold text-base text-[#8C5D3B] mb-1 flex items-center gap-2">
               <Users className="w-4 h-4 text-emerald-700" /> Khách Hàng Tiêu Biểu (Top Spenders)
             </h3>
             <p className="text-xs text-stone-400 mb-4">
@@ -606,11 +606,11 @@ export const AdminReportsPage: React.FC = () => {
                       <span className="w-5 text-center font-serif font-bold text-stone-400">
                         {idx + 1}
                       </span>
-                      <div className="w-8 h-8 rounded-full bg-[#1B3B2B] text-white flex items-center justify-center font-bold text-xs shrink-0">
+                      <div className="w-8 h-8 rounded-full bg-[#8C5D3B] text-white flex items-center justify-center font-bold text-xs shrink-0">
                         {(c.fullName || c.email).charAt(0).toUpperCase()}
                       </div>
                       <div className="min-w-0">
-                        <span className="font-bold text-[#1B3B2B] block truncate">
+                        <span className="font-bold text-[#8C5D3B] block truncate">
                           {c.fullName || 'Khách vãng lai'}
                         </span>
                         <span className="text-[11px] text-stone-400 block truncate font-mono">
@@ -638,7 +638,7 @@ export const AdminReportsPage: React.FC = () => {
         {exportModalOpen && (
           <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-xs p-4 animate-fade-in">
             <div className="bg-white rounded-3xl max-w-md w-full p-6 border border-[#E7E0D5] shadow-2xl relative">
-              <h3 className="font-serif font-bold text-lg text-[#1B3B2B] mb-2 flex items-center gap-2">
+              <h3 className="font-serif font-bold text-lg text-[#8C5D3B] mb-2 flex items-center gap-2">
                 <FileSpreadsheet className="w-5 h-5 text-emerald-700" /> Xuất Báo Cáo Kinh Doanh (CSV)
               </h3>
               <p className="text-xs text-stone-500 mb-4">
@@ -649,13 +649,13 @@ export const AdminReportsPage: React.FC = () => {
                 <label
                   className={`flex items-center justify-between p-3 rounded-2xl border cursor-pointer transition-all ${
                     selectedExportType === 'OVERVIEW'
-                      ? 'border-[#1B3B2B] bg-[#FAF8F5]'
+                      ? 'border-[#8C5D3B] bg-[#FAF8F5]'
                       : 'border-[#E7E0D5] hover:bg-stone-50'
                   }`}
                   onClick={() => setSelectedExportType('OVERVIEW')}
                 >
                   <div className="text-xs">
-                    <p className="font-bold text-[#1B3B2B]">Báo cáo Tổng quan KPIs</p>
+                    <p className="font-bold text-[#8C5D3B]">Báo cáo Tổng quan KPIs</p>
                     <p className="text-stone-400 text-[11px]">Doanh thu thực nhận, GMV, AOV, tỷ lệ hủy, so sánh kỳ trước</p>
                   </div>
                   <input
@@ -663,20 +663,20 @@ export const AdminReportsPage: React.FC = () => {
                     name="exportType"
                     checked={selectedExportType === 'OVERVIEW'}
                     onChange={() => setSelectedExportType('OVERVIEW')}
-                    className="accent-[#1B3B2B]"
+                    className="accent-[#8C5D3B]"
                   />
                 </label>
 
                 <label
                   className={`flex items-center justify-between p-3 rounded-2xl border cursor-pointer transition-all ${
                     selectedExportType === 'DAILY_REVENUE'
-                      ? 'border-[#1B3B2B] bg-[#FAF8F5]'
+                      ? 'border-[#8C5D3B] bg-[#FAF8F5]'
                       : 'border-[#E7E0D5] hover:bg-stone-50'
                   }`}
                   onClick={() => setSelectedExportType('DAILY_REVENUE')}
                 >
                   <div className="text-xs">
-                    <p className="font-bold text-[#1B3B2B]">Báo cáo Doanh thu theo Ngày</p>
+                    <p className="font-bold text-[#8C5D3B]">Báo cáo Doanh thu theo Ngày</p>
                     <p className="text-stone-400 text-[11px]">Chi tiết doanh thu thực nhận, GMV và số đơn mỗi ngày</p>
                   </div>
                   <input
@@ -684,20 +684,20 @@ export const AdminReportsPage: React.FC = () => {
                     name="exportType"
                     checked={selectedExportType === 'DAILY_REVENUE'}
                     onChange={() => setSelectedExportType('DAILY_REVENUE')}
-                    className="accent-[#1B3B2B]"
+                    className="accent-[#8C5D3B]"
                   />
                 </label>
 
                 <label
                   className={`flex items-center justify-between p-3 rounded-2xl border cursor-pointer transition-all ${
                     selectedExportType === 'TOP_BOOKS'
-                      ? 'border-[#1B3B2B] bg-[#FAF8F5]'
+                      ? 'border-[#8C5D3B] bg-[#FAF8F5]'
                       : 'border-[#E7E0D5] hover:bg-stone-50'
                   }`}
                   onClick={() => setSelectedExportType('TOP_BOOKS')}
                 >
                   <div className="text-xs">
-                    <p className="font-bold text-[#1B3B2B]">Báo cáo Sách Bán Chạy</p>
+                    <p className="font-bold text-[#8C5D3B]">Báo cáo Sách Bán Chạy</p>
                     <p className="text-stone-400 text-[11px]">Xếp hạng tác phẩm theo số lượng bán và doanh thu</p>
                   </div>
                   <input
@@ -705,20 +705,20 @@ export const AdminReportsPage: React.FC = () => {
                     name="exportType"
                     checked={selectedExportType === 'TOP_BOOKS'}
                     onChange={() => setSelectedExportType('TOP_BOOKS')}
-                    className="accent-[#1B3B2B]"
+                    className="accent-[#8C5D3B]"
                   />
                 </label>
 
                 <label
                   className={`flex items-center justify-between p-3 rounded-2xl border cursor-pointer transition-all ${
                     selectedExportType === 'TOP_CUSTOMERS'
-                      ? 'border-[#1B3B2B] bg-[#FAF8F5]'
+                      ? 'border-[#8C5D3B] bg-[#FAF8F5]'
                       : 'border-[#E7E0D5] hover:bg-stone-50'
                   }`}
                   onClick={() => setSelectedExportType('TOP_CUSTOMERS')}
                 >
                   <div className="text-xs">
-                    <p className="font-bold text-[#1B3B2B]">Báo cáo Khách Hàng Tiêu Biểu</p>
+                    <p className="font-bold text-[#8C5D3B]">Báo cáo Khách Hàng Tiêu Biểu</p>
                     <p className="text-stone-400 text-[11px]">Danh sách khách hàng mua nhiều đơn và chi tiêu cao nhất</p>
                   </div>
                   <input
@@ -726,7 +726,7 @@ export const AdminReportsPage: React.FC = () => {
                     name="exportType"
                     checked={selectedExportType === 'TOP_CUSTOMERS'}
                     onChange={() => setSelectedExportType('TOP_CUSTOMERS')}
-                    className="accent-[#1B3B2B]"
+                    className="accent-[#8C5D3B]"
                   />
                 </label>
               </div>

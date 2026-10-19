@@ -21,8 +21,6 @@ import com.novelia.inventory.repository.InventoryRepository;
 import com.novelia.order.dto.CancelOrderRequest;
 import com.novelia.order.dto.UpdateOrderStatusRequest;
 import com.novelia.order.entity.Order;
-import com.novelia.order.entity.OrderItem;
-import com.novelia.order.repository.OrderItemRepository;
 import com.novelia.order.repository.OrderRepository;
 import com.novelia.security.JwtTokenProvider;
 import com.novelia.user.entity.Role;
@@ -68,7 +66,6 @@ class AdminSecurityAndAuditTest {
     @Autowired private InventoryRepository inventoryRepository;
     @Autowired private CouponRepository couponRepository;
     @Autowired private OrderRepository orderRepository;
-    @Autowired private OrderItemRepository orderItemRepository;
     @Autowired private AuditLogRepository auditLogRepository;
     @Autowired private AuditLogService auditLogService;
 

@@ -1,12 +1,10 @@
 package com.novelia.report.service;
 
 import com.novelia.common.dto.PageResponse;
-import com.novelia.common.exception.BadRequestException;
 import com.novelia.order.entity.Order;
 import com.novelia.order.entity.Order.OrderStatus;
 import com.novelia.order.repository.OrderRepository;
 import com.novelia.report.dto.*;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -24,7 +22,6 @@ import java.time.temporal.ChronoUnit;
 import java.util.*;
 import java.util.stream.Collectors;
 
-@Slf4j
 @Service
 public class ReportServiceImpl implements ReportService {
 

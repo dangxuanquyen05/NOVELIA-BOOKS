@@ -191,7 +191,7 @@ class AdminDashboardApiTest {
                 .andExpect(jsonPath("$.success", is(true)))
                 .andExpect(jsonPath("$.data.kpis.periodRevenue", notNullValue()))
                 .andExpect(jsonPath("$.data.kpis.grossOrderValue", notNullValue()))
-                .andExpect(jsonPath("$.data.kpis.estimatedNetProfit", notNullValue()))
+                .andExpect(jsonPath("$.data.kpis.averageOrderValue", notNullValue()))
                 .andExpect(jsonPath("$.data.revenueTrend", hasSize(6)))
                 .andExpect(jsonPath("$.data.categoryDistribution", notNullValue()));
     }

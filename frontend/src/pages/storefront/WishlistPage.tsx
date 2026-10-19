@@ -35,8 +35,10 @@ export const WishlistPage: React.FC = () => {
     <div className="py-8 sm:py-12 space-y-8 animate-fade-in max-w-7xl mx-auto">
       {/* Toast Notification */}
       {toastMessage && (
-        <div className="fixed bottom-6 right-6 z-50 bg-[#1B3B2B] text-white px-5 py-3 rounded-2xl shadow-xl flex items-center gap-3 text-xs font-semibold animate-slide-up border border-[#2D5A43]">
-          <ShoppingBag className="w-4 h-4 text-[#B88E52]" />
+        <div className="fixed bottom-6 right-6 z-50 bg-[#1C1917] text-white px-5 py-3 rounded-2xl shadow-2xl flex items-center gap-3 text-xs font-semibold animate-slide-up border border-white/10">
+          <div className="w-6 h-6 rounded-full bg-[#8C5D3B] flex items-center justify-center shrink-0">
+            <ShoppingBag className="w-3.5 h-3.5 text-white" />
+          </div>
           <span>{toastMessage}</span>
         </div>
       )}
@@ -44,8 +46,8 @@ export const WishlistPage: React.FC = () => {
       {/* Header Banner */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-[#E8E2D8]">
         <div>
-          <div className="flex items-center gap-2 text-xs uppercase font-bold tracking-widest text-[#B88E52] mb-1">
-            <Heart className="w-4 h-4 fill-[#B88E52]" />
+          <div className="flex items-center gap-2 text-xs uppercase font-bold tracking-widest text-[#8C5D3B] mb-1">
+            <Heart className="w-4 h-4 fill-[#8C5D3B]" />
             <span>Bộ Sưu Tập Riêng • Wishlist</span>
           </div>
           <h1 className="font-serif-title text-2xl sm:text-4xl font-bold text-[#1C1917]">
@@ -80,9 +82,9 @@ export const WishlistPage: React.FC = () => {
 
       {/* Empty State */}
       {wishlistCount === 0 ? (
-        <div className="py-16 sm:py-24 text-center space-y-5 bg-white/60 rounded-3xl border border-[#EDE7DD] p-8 max-w-xl mx-auto shadow-xs">
-          <div className="w-16 h-16 rounded-full bg-[#FAF5EE] text-[#B88E52] flex items-center justify-center mx-auto border border-[#EADBCA]">
-            <Heart className="w-8 h-8 text-[#B88E52]" />
+        <div className="py-16 sm:py-24 text-center space-y-5 bg-white rounded-3xl border border-[#EDE7DD] p-8 max-w-xl mx-auto shadow-xs">
+          <div className="w-16 h-16 rounded-full bg-[#FAF0E6] text-[#8C5D3B] flex items-center justify-center mx-auto border border-[#E8D7C5]">
+            <Heart className="w-8 h-8 text-[#8C5D3B]" />
           </div>
           <div className="space-y-1.5">
             <h2 className="font-serif-title text-xl sm:text-2xl font-bold text-stone-900">
@@ -94,7 +96,7 @@ export const WishlistPage: React.FC = () => {
           </div>
           <Link
             to="/books"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-xs font-bold bg-[#1B3B2B] text-white hover:bg-[#25523D] transition shadow-xs"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-xs font-bold bg-[#8C5D3B] text-white hover:bg-[#734A2E] transition shadow-xs"
           >
             <BookOpen className="w-4 h-4" />
             <span>Khám Phá Sách Ngay</span>
@@ -112,7 +114,7 @@ export const WishlistPage: React.FC = () => {
             return (
               <div
                 key={book.id}
-                className="group relative flex flex-col bg-white rounded-2xl p-4 border border-[#E8E2D8] hover:border-[#1B3B2B]/40 transition-all duration-300 hover:-translate-y-1 book-shadow"
+                className="group relative flex flex-col bg-white rounded-2xl p-4 border border-[#E8E2D8] hover:border-[#8C5D3B]/40 transition-all duration-300 hover:-translate-y-1 book-shadow"
               >
                 {/* Remove button */}
                 <button
@@ -144,11 +146,11 @@ export const WishlistPage: React.FC = () => {
 
                 {/* Book Details */}
                 <div className="flex-1 flex flex-col space-y-1.5">
-                  <span className="text-[10px] uppercase font-bold tracking-wider text-[#B88E52]">
+                  <span className="text-[10px] uppercase font-bold tracking-wider text-[#8C5D3B]">
                     {categoryName}
                   </span>
 
-                  <h3 className="font-serif-title text-sm sm:text-base font-bold text-stone-900 line-clamp-2 group-hover:text-[#1B3B2B] transition">
+                  <h3 className="font-serif-title text-sm sm:text-base font-bold text-stone-900 line-clamp-2 group-hover:text-[#8C5D3B] transition">
                     <Link to={`/books/${book.slug}`}>{book.title}</Link>
                   </h3>
 
@@ -163,7 +165,7 @@ export const WishlistPage: React.FC = () => {
 
                   <div className="mt-auto pt-3 border-t border-[#F2ECE4] flex items-center justify-between">
                     <div>
-                      <div className="text-sm sm:text-base font-bold font-mono text-[#1B3B2B]">
+                      <div className="text-sm sm:text-base font-bold font-mono text-[#1C1917]">
                         {formatCurrencyVND(book.salePrice)}
                       </div>
                       {book.originalPrice && book.originalPrice > book.salePrice && (
@@ -177,10 +179,10 @@ export const WishlistPage: React.FC = () => {
                       type="button"
                       onClick={() => handleAddToCart(book.id)}
                       disabled={isOutOfStock}
-                      className={`px-3.5 py-1.5 rounded-xl text-xs font-semibold flex items-center gap-1.5 transition cursor-pointer ${
+                      className={`px-3.5 py-1.5 rounded-full text-xs font-semibold flex items-center gap-1.5 transition cursor-pointer ${
                         isOutOfStock
                           ? 'bg-stone-100 text-stone-400 cursor-not-allowed'
-                          : 'bg-[#1B3B2B] text-white hover:bg-[#25523D] active:scale-95 shadow-xs'
+                          : 'bg-[#8C5D3B] text-white hover:bg-[#734A2E] active:scale-95 shadow-xs'
                       }`}
                     >
                       <ShoppingBag className="w-3.5 h-3.5" />

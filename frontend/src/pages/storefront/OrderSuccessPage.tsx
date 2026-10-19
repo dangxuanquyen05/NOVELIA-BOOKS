@@ -54,7 +54,7 @@ export const OrderSuccessPage: React.FC = () => {
     return (
       <div className="min-h-screen bg-[#FBF9F5] py-16 px-4 flex items-center justify-center">
         <div className="text-center space-y-4">
-          <div className="w-12 h-12 border-3 border-[#1B3B2B]/20 border-t-[#1B3B2B] rounded-full animate-spin mx-auto" />
+          <div className="w-12 h-12 border-3 border-[#8C5D3B]/20 border-t-[#8C5D3B] rounded-full animate-spin mx-auto" />
           <p className="text-xs text-stone-600 font-medium font-serif-title tracking-wide">
             Đang tải thông tin đơn hàng NOVELIA...
           </p>
@@ -85,12 +85,12 @@ export const OrderSuccessPage: React.FC = () => {
       <div className="max-w-4xl mx-auto space-y-8 animate-fade-in">
         {/* Success Header Card */}
         <div className="bg-white rounded-3xl p-8 sm:p-10 border border-[#E7E0D5] shadow-xs text-center space-y-4 relative overflow-hidden">
-          <div className="absolute -top-12 -right-12 w-48 h-48 bg-[#EDF3EF]/60 rounded-full blur-2xl -z-0" />
+          <div className="absolute -top-12 -right-12 w-48 h-48 bg-[#FAF0E6]/60 rounded-full blur-2xl -z-0" />
           <div className="absolute -bottom-12 -left-12 w-48 h-48 bg-[#FAF6EE] rounded-full blur-2xl -z-0" />
 
           <div className="relative z-10 space-y-4">
-            <div className="w-16 h-16 rounded-full bg-[#EDF3EF] text-[#1B3B2B] mx-auto flex items-center justify-center shadow-inner">
-              <CheckCircle2 className="w-9 h-9 text-[#1B3B2B]" />
+            <div className="w-16 h-16 rounded-full bg-[#FAF0E6] text-[#8C5D3B] mx-auto flex items-center justify-center shadow-inner">
+              <CheckCircle2 className="w-9 h-9 text-[#8C5D3B]" />
             </div>
 
             <div className="space-y-1">
@@ -108,13 +108,13 @@ export const OrderSuccessPage: React.FC = () => {
             {/* Order Code Box */}
             <div className="inline-flex items-center gap-3 bg-[#F7FAF8] border border-[#D5E4D8] px-5 py-3 rounded-2xl shadow-2xs">
               <span className="text-xs text-stone-500">Mã đơn hàng:</span>
-              <span className="font-mono text-sm sm:text-base font-bold text-[#1B3B2B] tracking-wider">
+              <span className="font-mono text-sm sm:text-base font-bold text-[#8C5D3B] tracking-wider">
                 {order.orderNumber}
               </span>
               <button
                 type="button"
                 onClick={handleCopyOrderNumber}
-                className="p-1.5 hover:bg-white rounded-lg text-stone-600 hover:text-[#1B3B2B] transition-colors"
+                className="p-1.5 hover:bg-white rounded-lg text-stone-600 hover:text-[#8C5D3B] transition-colors"
                 title="Sao chép mã đơn"
               >
                 {isCopied ? <Check className="w-4 h-4 text-emerald-600" /> : <Copy className="w-4 h-4" />}
@@ -149,7 +149,7 @@ export const OrderSuccessPage: React.FC = () => {
 
               <div className="pt-1.5 flex items-center justify-between text-[11px]">
                 <span className="text-stone-400">Đơn vị vận chuyển liên kết:</span>
-                <span className="font-semibold text-[#1B3B2B]">Giao Hàng Nhanh (GHN)</span>
+                <span className="font-semibold text-[#8C5D3B]">Giao Hàng Nhanh (GHN)</span>
               </div>
 
               {order.note && (
@@ -232,7 +232,7 @@ export const OrderSuccessPage: React.FC = () => {
                 </div>
 
                 <div className="text-right">
-                  <span className="font-serif-title text-sm sm:text-base font-bold text-[#1B3B2B] font-mono">
+                  <span className="font-serif-title text-sm sm:text-base font-bold text-[#8C5D3B] font-mono">
                     {formatCurrencyVND(item.totalPrice)}
                   </span>
                 </div>
@@ -260,7 +260,7 @@ export const OrderSuccessPage: React.FC = () => {
             </div>
             <div className="pt-3 border-t border-[#F0EBE3] flex items-baseline justify-between">
               <span className="font-bold text-sm text-[#1C1917]">Tổng Thanh Toán (COD):</span>
-              <span className="font-serif-title text-xl sm:text-2xl font-bold text-[#1B3B2B] font-mono">
+              <span className="font-serif-title text-xl sm:text-2xl font-bold text-[#8C5D3B] font-mono">
                 {formatCurrencyVND(order.totalAmount)}
               </span>
             </div>

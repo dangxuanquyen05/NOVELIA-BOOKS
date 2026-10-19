@@ -39,7 +39,7 @@ export const VNPayCallbackPage: React.FC = () => {
     return (
       <div className="min-h-screen bg-[#FDFBF7] py-16 flex items-center justify-center">
         <div className="flex flex-col items-center gap-4 text-center">
-          <div className="w-12 h-12 border-3 border-[#1B3B2B]/20 border-t-[#1B3B2B] rounded-full animate-spin" />
+          <div className="w-12 h-12 border-3 border-[#8C5D3B]/20 border-t-[#8C5D3B] rounded-full animate-spin" />
           <h2 className="font-serif-title text-base sm:text-lg font-bold text-[#1C1917]">
             Đang Xác Thực Chữ Ký Số Giao Dịch VNPay...
           </h2>
@@ -86,7 +86,7 @@ export const VNPayCallbackPage: React.FC = () => {
                 )}
                 <div className="flex justify-between">
                   <span className="text-stone-500">Số tiền:</span>
-                  <span className="font-mono font-bold text-[#1B3B2B]">{formatCurrencyVND(result.amount)}</span>
+                  <span className="font-mono font-bold text-[#8C5D3B]">{formatCurrencyVND(result.amount)}</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-stone-500">Phương thức:</span>
@@ -97,7 +97,7 @@ export const VNPayCallbackPage: React.FC = () => {
               <div className="pt-2 flex flex-col sm:flex-row gap-3">
                 <Link
                   to={`/account/orders`}
-                  className="flex-1 inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-[#1B3B2B] text-white text-xs font-bold hover:bg-[#234B37] transition-all shadow-sm"
+                  className="flex-1 inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-[#8C5D3B] text-white text-xs font-bold hover:bg-[#754C2F] transition-all shadow-sm"
                 >
                   <span>Xem Chi Tiết Đơn Hàng</span>
                   <ArrowRight className="w-4 h-4" />
@@ -131,7 +131,7 @@ export const VNPayCallbackPage: React.FC = () => {
               <div className="pt-2 flex flex-col sm:flex-row gap-3">
                 <Link
                   to="/account/orders"
-                  className="flex-1 inline-flex items-center justify-center py-3 px-4 rounded-xl bg-[#1B3B2B] text-white text-xs font-bold hover:bg-[#234B37] transition-all"
+                  className="flex-1 inline-flex items-center justify-center py-3 px-4 rounded-xl bg-[#8C5D3B] text-white text-xs font-bold hover:bg-[#754C2F] transition-all"
                 >
                   Quản Lý Đơn Hàng
                 </Link>
@@ -146,7 +146,7 @@ export const VNPayCallbackPage: React.FC = () => {
           )}
 
           <div className="pt-4 border-t border-[#F0EBE3] flex items-center justify-center gap-2 text-[11px] text-stone-400">
-            <ShieldCheck className="w-4 h-4 text-[#1B3B2B]" />
+            <ShieldCheck className="w-4 h-4 text-[#8C5D3B]" />
             <span>Thanh toán an toàn qua cổng VNPay Sandbox • Chuẩn PCI-DSS</span>
           </div>
         </div>

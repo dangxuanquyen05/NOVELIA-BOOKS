@@ -415,7 +415,7 @@ export const AdminBooksPage: React.FC = () => {
         {/* Top KPI Metrics Strip */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
           <div className="bg-white p-4 rounded-2xl border border-stone-200/80 shadow-xs flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-[#1B3B2B]/10 text-[#1B3B2B] flex items-center justify-center shrink-0">
+            <div className="w-10 h-10 rounded-xl bg-[#8C5D3B]/10 text-[#8C5D3B] flex items-center justify-center shrink-0">
               <BookOpen className="w-5 h-5" />
             </div>
             <div>
@@ -466,7 +466,7 @@ export const AdminBooksPage: React.FC = () => {
                 value={searchInput}
                 onChange={(e) => setSearchInput(e.target.value)}
                 placeholder="Tìm tựa sách, mã ISBN, tác giả..."
-                className="w-full pl-10 pr-9 py-2.5 bg-stone-50 border border-stone-200 rounded-xl text-xs sm:text-sm text-stone-900 focus:outline-none focus:border-[#1B3B2B] focus:bg-white transition-all"
+                className="w-full pl-10 pr-9 py-2.5 bg-stone-50 border border-stone-200 rounded-xl text-xs sm:text-sm text-stone-900 focus:outline-none focus:border-[#8C5D3B] focus:bg-white transition-all"
               />
               {searchInput && (
                 <button
@@ -496,7 +496,7 @@ export const AdminBooksPage: React.FC = () => {
                 size="sm"
                 onClick={handleOpenCreateModal}
                 leftIcon={<PlusCircle className="w-4 h-4" />}
-                className="bg-[#1B3B2B] hover:bg-[#142e22] text-white shadow-sm"
+                className="bg-[#8C5D3B] hover:bg-[#142e22] text-white shadow-sm"
               >
                 Thêm sách mới
               </Button>
@@ -516,7 +516,7 @@ export const AdminBooksPage: React.FC = () => {
                 setSelectedCategoryId(e.target.value ? Number(e.target.value) : undefined);
                 setCurrentPage(0);
               }}
-              className="py-1.5 px-3 bg-stone-50 border border-stone-200 rounded-lg text-stone-700 focus:outline-none focus:border-[#1B3B2B]"
+              className="py-1.5 px-3 bg-stone-50 border border-stone-200 rounded-lg text-stone-700 focus:outline-none focus:border-[#8C5D3B]"
             >
               <option value="">Tất cả danh mục ({categories.length})</option>
               {categories.map((c) => (
@@ -533,7 +533,7 @@ export const AdminBooksPage: React.FC = () => {
                 setSelectedAuthorId(e.target.value ? Number(e.target.value) : undefined);
                 setCurrentPage(0);
               }}
-              className="py-1.5 px-3 bg-stone-50 border border-stone-200 rounded-lg text-stone-700 focus:outline-none focus:border-[#1B3B2B]"
+              className="py-1.5 px-3 bg-stone-50 border border-stone-200 rounded-lg text-stone-700 focus:outline-none focus:border-[#8C5D3B]"
             >
               <option value="">Tất cả tác giả ({authors.length})</option>
               {authors.map((a) => (
@@ -550,7 +550,7 @@ export const AdminBooksPage: React.FC = () => {
                 setSelectedStatus(e.target.value);
                 setCurrentPage(0);
               }}
-              className="py-1.5 px-3 bg-stone-50 border border-stone-200 rounded-lg text-stone-700 focus:outline-none focus:border-[#1B3B2B]"
+              className="py-1.5 px-3 bg-stone-50 border border-stone-200 rounded-lg text-stone-700 focus:outline-none focus:border-[#8C5D3B]"
             >
               <option value="">Tất cả trạng thái</option>
               <option value="PUBLISHED">Đang xuất bản (PUBLISHED)</option>
@@ -567,7 +567,7 @@ export const AdminBooksPage: React.FC = () => {
                   setSortBy(e.target.value);
                   setCurrentPage(0);
                 }}
-                className="py-1.5 px-3 bg-stone-50 border border-stone-200 rounded-lg text-stone-700 focus:outline-none focus:border-[#1B3B2B]"
+                className="py-1.5 px-3 bg-stone-50 border border-stone-200 rounded-lg text-stone-700 focus:outline-none focus:border-[#8C5D3B]"
               >
                 <option value="newest">Mới nhất trước</option>
                 <option value="oldest">Cũ nhất trước</option>
@@ -606,7 +606,7 @@ export const AdminBooksPage: React.FC = () => {
                 {loading && books.length === 0 ? (
                   <tr>
                     <td colSpan={6} className="py-16 text-center text-stone-400">
-                      <RefreshCw className="w-7 h-7 animate-spin mx-auto mb-2 text-[#1B3B2B]" />
+                      <RefreshCw className="w-7 h-7 animate-spin mx-auto mb-2 text-[#8C5D3B]" />
                       <p className="font-medium">Đang tải cơ sở dữ liệu sách...</p>
                     </td>
                   </tr>
@@ -764,7 +764,7 @@ export const AdminBooksPage: React.FC = () => {
                           <div className="flex items-center justify-end gap-1.5">
                             <button
                               onClick={() => handleOpenEditModal(b)}
-                              className="p-2 text-stone-500 hover:text-[#1B3B2B] hover:bg-[#1B3B2B]/10 rounded-lg transition-colors"
+                              className="p-2 text-stone-500 hover:text-[#8C5D3B] hover:bg-[#8C5D3B]/10 rounded-lg transition-colors"
                               title="Chỉnh sửa toàn bộ thông tin"
                             >
                               <Edit className="w-4 h-4" />
@@ -833,7 +833,7 @@ export const AdminBooksPage: React.FC = () => {
                         onClick={() => setCurrentPage(pageNum)}
                         className={`w-8 h-8 rounded-lg text-xs font-semibold transition-all ${
                           currentPage === pageNum
-                            ? 'bg-[#1B3B2B] text-white shadow-xs'
+                            ? 'bg-[#8C5D3B] text-white shadow-xs'
                             : 'text-stone-600 hover:bg-stone-100'
                         }`}
                       >
@@ -861,7 +861,7 @@ export const AdminBooksPage: React.FC = () => {
             <div className="bg-white rounded-2xl max-w-3xl w-full p-6 shadow-2xl border border-stone-200 my-8 animate-in zoom-in-95">
               <div className="flex items-center justify-between pb-4 border-b border-stone-100">
                 <div className="flex items-center gap-2.5">
-                  <div className="w-9 h-9 rounded-xl bg-[#1B3B2B]/10 text-[#1B3B2B] flex items-center justify-center">
+                  <div className="w-9 h-9 rounded-xl bg-[#8C5D3B]/10 text-[#8C5D3B] flex items-center justify-center">
                     <BookOpen className="w-5 h-5" />
                   </div>
                   <div>
@@ -901,7 +901,7 @@ export const AdminBooksPage: React.FC = () => {
                         }}
                         placeholder="Nhập tên tựa sách đầy đủ..."
                         className={`w-full px-3.5 py-2.5 bg-stone-50 border rounded-xl focus:bg-white focus:outline-none transition-all ${
-                          formErrors.title ? 'border-rose-400 bg-rose-50/50' : 'border-stone-200 focus:border-[#1B3B2B]'
+                          formErrors.title ? 'border-rose-400 bg-rose-50/50' : 'border-stone-200 focus:border-[#8C5D3B]'
                         }`}
                       />
                       {formErrors.title && (
@@ -916,7 +916,7 @@ export const AdminBooksPage: React.FC = () => {
                         <button
                           type="button"
                           onClick={generateRandomIsbn}
-                          className="text-[11px] text-[#1B3B2B] hover:underline flex items-center gap-1 font-medium"
+                          className="text-[11px] text-[#8C5D3B] hover:underline flex items-center gap-1 font-medium"
                         >
                           <Sparkles className="w-3 h-3 text-amber-500" /> Tạo tự động
                         </button>
@@ -934,7 +934,7 @@ export const AdminBooksPage: React.FC = () => {
                         }}
                         placeholder="9786045638101"
                         className={`w-full px-3.5 py-2.5 bg-stone-50 border rounded-xl font-mono focus:bg-white focus:outline-none transition-all ${
-                          formErrors.isbn ? 'border-rose-400 bg-rose-50/50' : 'border-stone-200 focus:border-[#1B3B2B]'
+                          formErrors.isbn ? 'border-rose-400 bg-rose-50/50' : 'border-stone-200 focus:border-[#8C5D3B]'
                         }`}
                       />
                       {formErrors.isbn && (
@@ -948,7 +948,7 @@ export const AdminBooksPage: React.FC = () => {
                       <select
                         value={formData.status}
                         onChange={(e) => setFormData({ ...formData, status: e.target.value })}
-                        className="w-full px-3.5 py-2.5 bg-stone-50 border border-stone-200 rounded-xl focus:bg-white focus:outline-none focus:border-[#1B3B2B]"
+                        className="w-full px-3.5 py-2.5 bg-stone-50 border border-stone-200 rounded-xl focus:bg-white focus:outline-none focus:border-[#8C5D3B]"
                       >
                         <option value="PUBLISHED">Đang xuất bản & Mở bán (PUBLISHED)</option>
                         <option value="DRAFT">Bản nháp / Chưa mở bán (DRAFT)</option>
@@ -972,7 +972,7 @@ export const AdminBooksPage: React.FC = () => {
                           }
                         }}
                         className={`w-full px-3 py-2 bg-stone-50 border rounded-xl h-24 focus:bg-white focus:outline-none ${
-                          formErrors.authorIds ? 'border-rose-400' : 'border-stone-200 focus:border-[#1B3B2B]'
+                          formErrors.authorIds ? 'border-rose-400' : 'border-stone-200 focus:border-[#8C5D3B]'
                         }`}
                       >
                         {authors.map((a) => (
@@ -1003,7 +1003,7 @@ export const AdminBooksPage: React.FC = () => {
                           }
                         }}
                         className={`w-full px-3 py-2 bg-stone-50 border rounded-xl h-24 focus:bg-white focus:outline-none ${
-                          formErrors.categoryIds ? 'border-rose-400' : 'border-stone-200 focus:border-[#1B3B2B]'
+                          formErrors.categoryIds ? 'border-rose-400' : 'border-stone-200 focus:border-[#8C5D3B]'
                         }`}
                       >
                         {categories.map((c) => (
@@ -1046,7 +1046,7 @@ export const AdminBooksPage: React.FC = () => {
                         }
                       }}
                       className={`w-full px-3 py-2 bg-stone-50 border rounded-xl focus:bg-white focus:outline-none font-semibold ${
-                        formErrors.originalPrice ? 'border-rose-400' : 'border-stone-200 focus:border-[#1B3B2B]'
+                        formErrors.originalPrice ? 'border-rose-400' : 'border-stone-200 focus:border-[#8C5D3B]'
                       }`}
                     />
                     {formErrors.originalPrice && (
@@ -1070,7 +1070,7 @@ export const AdminBooksPage: React.FC = () => {
                         }
                       }}
                       className={`w-full px-3 py-2 bg-stone-50 border rounded-xl focus:bg-white focus:outline-none font-semibold text-emerald-800 ${
-                        formErrors.salePrice ? 'border-rose-400' : 'border-stone-200 focus:border-[#1B3B2B]'
+                        formErrors.salePrice ? 'border-rose-400' : 'border-stone-200 focus:border-[#8C5D3B]'
                       }`}
                     />
                     {formErrors.salePrice && (
@@ -1093,7 +1093,7 @@ export const AdminBooksPage: React.FC = () => {
                         }
                       }}
                       className={`w-full px-3 py-2 bg-stone-50 border rounded-xl focus:bg-white focus:outline-none font-semibold ${
-                        formErrors.stockQuantity ? 'border-rose-400' : 'border-stone-200 focus:border-[#1B3B2B]'
+                        formErrors.stockQuantity ? 'border-rose-400' : 'border-stone-200 focus:border-[#8C5D3B]'
                       }`}
                     />
                     {formErrors.stockQuantity && (
@@ -1178,7 +1178,7 @@ export const AdminBooksPage: React.FC = () => {
                       id="create-isFeatured"
                       checked={formData.isFeatured}
                       onChange={(e) => setFormData({ ...formData, isFeatured: e.target.checked })}
-                      className="w-4 h-4 rounded text-[#1B3B2B] focus:ring-[#1B3B2B]"
+                      className="w-4 h-4 rounded text-[#8C5D3B] focus:ring-[#8C5D3B]"
                     />
                     <label htmlFor="create-isFeatured" className="text-xs font-semibold text-stone-800 cursor-pointer">
                       Đánh dấu là tác phẩm nổi bật (Hiển thị trang chủ)
@@ -1195,7 +1195,7 @@ export const AdminBooksPage: React.FC = () => {
                     size="sm"
                     type="submit"
                     isLoading={submitting}
-                    className="bg-[#1B3B2B] hover:bg-[#142e22] text-white"
+                    className="bg-[#8C5D3B] hover:bg-[#142e22] text-white"
                   >
                     Lưu tựa sách mới
                   </Button>
@@ -1249,7 +1249,7 @@ export const AdminBooksPage: React.FC = () => {
                           }
                         }}
                         className={`w-full px-3.5 py-2.5 bg-stone-50 border rounded-xl focus:bg-white focus:outline-none transition-all ${
-                          formErrors.title ? 'border-rose-400 bg-rose-50/50' : 'border-stone-200 focus:border-[#1B3B2B]'
+                          formErrors.title ? 'border-rose-400 bg-rose-50/50' : 'border-stone-200 focus:border-[#8C5D3B]'
                         }`}
                       />
                       {formErrors.title && (
@@ -1271,7 +1271,7 @@ export const AdminBooksPage: React.FC = () => {
                           }
                         }}
                         className={`w-full px-3.5 py-2.5 bg-stone-50 border rounded-xl font-mono focus:bg-white focus:outline-none transition-all ${
-                          formErrors.isbn ? 'border-rose-400 bg-rose-50/50' : 'border-stone-200 focus:border-[#1B3B2B]'
+                          formErrors.isbn ? 'border-rose-400 bg-rose-50/50' : 'border-stone-200 focus:border-[#8C5D3B]'
                         }`}
                       />
                       {formErrors.isbn && (
@@ -1284,7 +1284,7 @@ export const AdminBooksPage: React.FC = () => {
                       <select
                         value={formData.status}
                         onChange={(e) => setFormData({ ...formData, status: e.target.value })}
-                        className="w-full px-3.5 py-2.5 bg-stone-50 border border-stone-200 rounded-xl focus:bg-white focus:outline-none focus:border-[#1B3B2B]"
+                        className="w-full px-3.5 py-2.5 bg-stone-50 border border-stone-200 rounded-xl focus:bg-white focus:outline-none focus:border-[#8C5D3B]"
                       >
                         <option value="PUBLISHED">Đang xuất bản & Mở bán (PUBLISHED)</option>
                         <option value="DRAFT">Bản nháp / Chưa mở bán (DRAFT)</option>
@@ -1456,7 +1456,7 @@ export const AdminBooksPage: React.FC = () => {
                       id="edit-isFeatured"
                       checked={formData.isFeatured}
                       onChange={(e) => setFormData({ ...formData, isFeatured: e.target.checked })}
-                      className="w-4 h-4 rounded text-[#1B3B2B] focus:ring-[#1B3B2B]"
+                      className="w-4 h-4 rounded text-[#8C5D3B] focus:ring-[#8C5D3B]"
                     />
                     <label htmlFor="edit-isFeatured" className="text-xs font-semibold text-stone-800 cursor-pointer">
                       Đánh dấu là tác phẩm nổi bật (Hiển thị trang chủ)
@@ -1473,7 +1473,7 @@ export const AdminBooksPage: React.FC = () => {
                     size="sm"
                     type="submit"
                     isLoading={submitting}
-                    className="bg-[#1B3B2B] hover:bg-[#142e22] text-white"
+                    className="bg-[#8C5D3B] hover:bg-[#142e22] text-white"
                   >
                     Lưu cập nhật
                   </Button>

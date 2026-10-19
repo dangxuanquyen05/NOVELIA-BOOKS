@@ -227,7 +227,7 @@ export const AdminOrdersPage: React.FC = () => {
         weightGrams: 500,
       });
       setCalculatedFeeInfo(res);
-    } catch (err: any) {
+    } catch {
       showToast('Không thể ước tính cước GHN lúc này', true);
     } finally {
       setIsCalculatingFee(false);
@@ -503,7 +503,7 @@ export const AdminOrdersPage: React.FC = () => {
                 value={searchInput}
                 onChange={(e) => setSearchInput(e.target.value)}
                 placeholder="Tìm theo mã đơn (NOV-...), tên khách, số điện thoại, email..."
-                className="w-full text-xs rounded-xl border border-[#D5CDC0] pl-9 pr-3 py-2.5 focus:outline-none focus:border-[#1B3B2B] bg-[#FAFAF8]"
+                className="w-full text-xs rounded-xl border border-[#D5CDC0] pl-9 pr-3 py-2.5 focus:outline-none focus:border-[#8C5D3B] bg-[#FAFAF8]"
               />
             </div>
             <Button type="submit" variant="primary" size="md">
@@ -538,7 +538,7 @@ export const AdminOrdersPage: React.FC = () => {
                   setPaymentMethodFilter(e.target.value);
                   setPage(0);
                 }}
-                className="w-full text-xs rounded-xl border border-[#D5CDC0] px-3 py-2 bg-[#FAFAF8] focus:outline-none focus:border-[#1B3B2B]"
+                className="w-full text-xs rounded-xl border border-[#D5CDC0] px-3 py-2 bg-[#FAFAF8] focus:outline-none focus:border-[#8C5D3B]"
               >
                 <option value="ALL">Tất cả phương thức</option>
                 <option value="COD">Thanh toán khi nhận (COD)</option>
@@ -558,7 +558,7 @@ export const AdminOrdersPage: React.FC = () => {
                   setPaymentStatusFilter(e.target.value);
                   setPage(0);
                 }}
-                className="w-full text-xs rounded-xl border border-[#D5CDC0] px-3 py-2 bg-[#FAFAF8] focus:outline-none focus:border-[#1B3B2B]"
+                className="w-full text-xs rounded-xl border border-[#D5CDC0] px-3 py-2 bg-[#FAFAF8] focus:outline-none focus:border-[#8C5D3B]"
               >
                 <option value="ALL">Tất cả tình trạng TT</option>
                 <option value="UNPAID">Chưa thanh toán (UNPAID)</option>
@@ -580,7 +580,7 @@ export const AdminOrdersPage: React.FC = () => {
                   setStartDateFilter(e.target.value);
                   setPage(0);
                 }}
-                className="w-full text-xs rounded-xl border border-[#D5CDC0] px-3 py-2 bg-[#FAFAF8] focus:outline-none focus:border-[#1B3B2B]"
+                className="w-full text-xs rounded-xl border border-[#D5CDC0] px-3 py-2 bg-[#FAFAF8] focus:outline-none focus:border-[#8C5D3B]"
               />
             </div>
 
@@ -596,7 +596,7 @@ export const AdminOrdersPage: React.FC = () => {
                   setEndDateFilter(e.target.value);
                   setPage(0);
                 }}
-                className="w-full text-xs rounded-xl border border-[#D5CDC0] px-3 py-2 bg-[#FAFAF8] focus:outline-none focus:border-[#1B3B2B]"
+                className="w-full text-xs rounded-xl border border-[#D5CDC0] px-3 py-2 bg-[#FAFAF8] focus:outline-none focus:border-[#8C5D3B]"
               />
             </div>
           </div>
@@ -621,7 +621,7 @@ export const AdminOrdersPage: React.FC = () => {
                 }}
                 className={`px-3 py-1.5 rounded-full text-xs font-semibold transition-all ${
                   statusFilter === tab.value
-                    ? 'bg-[#1B3B2B] text-white shadow-xs'
+                    ? 'bg-[#8C5D3B] text-white shadow-xs'
                     : 'bg-[#FAFAF8] text-stone-600 border border-[#E7E0D5] hover:border-stone-400'
                 }`}
               >
@@ -635,7 +635,7 @@ export const AdminOrdersPage: React.FC = () => {
         <div className="bg-white rounded-3xl border border-[#E7E0D5] shadow-xs overflow-hidden">
           {isLoading ? (
             <div className="p-12 text-center space-y-3">
-              <div className="w-8 h-8 border-2 border-[#1B3B2B]/20 border-t-[#1B3B2B] rounded-full animate-spin mx-auto" />
+              <div className="w-8 h-8 border-2 border-[#8C5D3B]/20 border-t-[#8C5D3B] rounded-full animate-spin mx-auto" />
               <p className="text-xs text-stone-500">Đang tải danh sách đơn hàng...</p>
             </div>
           ) : orders.length === 0 ? (
@@ -669,7 +669,7 @@ export const AdminOrdersPage: React.FC = () => {
                       <tr key={order.id} className="hover:bg-stone-50/70 transition-colors">
                         {/* Code & Date */}
                         <td className="py-3.5 px-4 space-y-1">
-                          <span className="font-mono font-bold text-[#1B3B2B] block text-xs">
+                          <span className="font-mono font-bold text-[#8C5D3B] block text-xs">
                             {order.orderNumber}
                           </span>
                           <span className="text-[11px] text-stone-400 block">
@@ -708,7 +708,7 @@ export const AdminOrdersPage: React.FC = () => {
 
                         {/* Total */}
                         <td className="py-3.5 px-4 text-right space-y-0.5">
-                          <span className="font-mono font-bold text-[#1B3B2B] block text-xs">
+                          <span className="font-mono font-bold text-[#8C5D3B] block text-xs">
                             {formatCurrencyVND(order.totalAmount)}
                           </span>
                           {order.discountAmount && order.discountAmount > 0 ? (
@@ -734,7 +734,7 @@ export const AdminOrdersPage: React.FC = () => {
                             <button
                               type="button"
                               onClick={() => handleOpenDetailModal(order)}
-                              className="p-1.5 rounded-lg border border-stone-200 hover:bg-white text-stone-600 hover:text-[#1B3B2B]"
+                              className="p-1.5 rounded-lg border border-stone-200 hover:bg-white text-stone-600 hover:text-[#8C5D3B]"
                               title="Xem chi tiết đơn & lịch sử"
                             >
                               <Eye className="w-3.5 h-3.5" />
@@ -871,7 +871,7 @@ export const AdminOrdersPage: React.FC = () => {
                     Chi Tiết Đơn Hàng & Lịch Sử
                   </span>
                   <div className="flex items-center gap-3 mt-1">
-                    <h3 className="font-mono font-bold text-lg sm:text-xl text-[#1B3B2B]">
+                    <h3 className="font-mono font-bold text-lg sm:text-xl text-[#8C5D3B]">
                       {selectedOrder.orderNumber}
                     </h3>
                     {renderStatusBadge(selectedOrder.status)}
@@ -921,7 +921,7 @@ export const AdminOrdersPage: React.FC = () => {
                     <button
                       type="button"
                       onClick={() => handleOpenPaymentModal(selectedOrder)}
-                      className="text-[10px] font-semibold text-[#1B3B2B] hover:underline"
+                      className="text-[10px] font-semibold text-[#8C5D3B] hover:underline"
                     >
                       Cập nhật TT
                     </button>
@@ -972,7 +972,7 @@ export const AdminOrdersPage: React.FC = () => {
                   <div className="flex items-center gap-2">
                     {currentShipment ? (
                       <>
-                        <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-[#EDF3EF] text-[#1B3B2B] border border-[#D5E4D8]">
+                        <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-[#FAF0E6] text-[#8C5D3B] border border-[#D5E4D8]">
                           {currentShipment.shippingStatus}
                         </span>
                         {currentShipment.liveCarrierConnected ? (
@@ -1019,7 +1019,7 @@ export const AdminOrdersPage: React.FC = () => {
                       <span className="text-stone-500 block text-[11px] mb-1">Mã vận đơn bưu cục:</span>
                       {currentShipment.trackingNumber ? (
                         <div className="flex items-center gap-2 bg-white px-3 py-1.5 rounded-xl border border-stone-200 w-fit">
-                          <span className="font-mono font-bold text-sm text-[#1B3B2B]">
+                          <span className="font-mono font-bold text-sm text-[#8C5D3B]">
                             {currentShipment.trackingNumber}
                           </span>
                           <button
@@ -1106,7 +1106,7 @@ export const AdminOrdersPage: React.FC = () => {
                 {/* Box hiển thị kết quả tính cước GHN */}
                 {calculatedFeeInfo && (
                   <div className="mt-3 p-3 rounded-xl bg-white border border-[#D5E4D8] space-y-1.5 text-[11px] animate-fade-in">
-                    <div className="flex items-center justify-between font-bold text-[#1B3B2B]">
+                    <div className="flex items-center justify-between font-bold text-[#8C5D3B]">
                       <span>Ước tính cước ({calculatedFeeInfo.carrierName}):</span>
                       <span className="font-mono text-xs">{formatCurrencyVND(calculatedFeeInfo.shippingFee)}</span>
                     </div>
@@ -1159,7 +1159,7 @@ export const AdminOrdersPage: React.FC = () => {
                           </p>
                         </div>
                       </div>
-                      <span className="font-mono font-bold text-[#1B3B2B]">
+                      <span className="font-mono font-bold text-[#8C5D3B]">
                         {formatCurrencyVND(item.totalPrice)}
                       </span>
                     </div>
@@ -1185,7 +1185,7 @@ export const AdminOrdersPage: React.FC = () => {
                     <span className="font-mono font-medium">-{formatCurrencyVND(selectedOrder.discountAmount)}</span>
                   </div>
                 ) : null}
-                <div className="flex justify-between text-sm font-bold text-[#1B3B2B] pt-2 border-t border-[#E7E0D5]">
+                <div className="flex justify-between text-sm font-bold text-[#8C5D3B] pt-2 border-t border-[#E7E0D5]">
                   <span>Tổng tiền thanh toán (COD / Chuyển khoản):</span>
                   <span className="font-mono text-base">{formatCurrencyVND(selectedOrder.totalAmount)}</span>
                 </div>
@@ -1207,7 +1207,7 @@ export const AdminOrdersPage: React.FC = () => {
                   <div className="relative pl-6 space-y-4 before:absolute before:left-2 before:top-2 before:bottom-2 before:w-0.5 before:bg-[#E7E0D5]">
                     {selectedOrder.histories.map((h) => (
                       <div key={h.id} className="relative text-xs">
-                        <div className="absolute -left-6 top-1 w-3.5 h-3.5 rounded-full bg-[#1B3B2B] border-2 border-white ring-2 ring-stone-200" />
+                        <div className="absolute -left-6 top-1 w-3.5 h-3.5 rounded-full bg-[#8C5D3B] border-2 border-white ring-2 ring-stone-200" />
                         <div className="bg-[#FAFAF8] p-3 rounded-xl border border-[#E7E0D5] space-y-1">
                           <div className="flex items-center justify-between">
                             <span className="font-bold text-[#1C1917] flex items-center gap-1.5">
@@ -1255,11 +1255,11 @@ export const AdminOrdersPage: React.FC = () => {
               <div className="flex items-center justify-between pb-3 border-b border-[#F0EBE3]">
                 <div>
                   <h3 className="font-bold text-base text-[#1C1917] flex items-center gap-2">
-                    <ShieldCheck className="w-5 h-5 text-[#1B3B2B]" />
+                    <ShieldCheck className="w-5 h-5 text-[#8C5D3B]" />
                     Xác Nhận Chuyển Trạng Thái
                   </h3>
                   <p className="text-xs text-stone-500 mt-0.5">
-                    Đơn hàng: <strong className="font-mono text-[#1B3B2B]">{updatingOrder.orderNumber}</strong>
+                    Đơn hàng: <strong className="font-mono text-[#8C5D3B]">{updatingOrder.orderNumber}</strong>
                   </p>
                 </div>
                 <button
@@ -1301,7 +1301,7 @@ export const AdminOrdersPage: React.FC = () => {
               <form onSubmit={handleConfirmStatusUpdate} className="space-y-4">
                 <div className="space-y-1.5 text-xs">
                   <label className="font-semibold text-stone-700">Trạng thái mới chuyển sang:</label>
-                  <div className="p-2.5 rounded-xl bg-[#FAFAF8] border border-[#D5CDC0] font-bold text-[#1B3B2B]">
+                  <div className="p-2.5 rounded-xl bg-[#FAFAF8] border border-[#D5CDC0] font-bold text-[#8C5D3B]">
                     {targetStatus}
                   </div>
                 </div>
@@ -1319,7 +1319,7 @@ export const AdminOrdersPage: React.FC = () => {
                         ? 'Ví dụ: Khách gọi yêu cầu hủy do đặt nhầm, không thể giao hàng...'
                         : 'Nhập ghi chú hoặc mã vận đơn gửi hàng...'
                     }
-                    className="w-full rounded-xl border border-[#D5CDC0] p-3 text-xs focus:outline-none focus:border-[#1B3B2B] bg-[#FAFAF8]"
+                    className="w-full rounded-xl border border-[#D5CDC0] p-3 text-xs focus:outline-none focus:border-[#8C5D3B] bg-[#FAFAF8]"
                     required={targetStatus === 'CANCELLED'}
                   />
                 </div>
@@ -1361,7 +1361,7 @@ export const AdminOrdersPage: React.FC = () => {
                     Cập Nhật Thanh Toán
                   </h3>
                   <p className="text-xs text-stone-500 mt-0.5">
-                    Đơn hàng: <strong className="font-mono text-[#1B3B2B]">{payingOrder.orderNumber}</strong>
+                    Đơn hàng: <strong className="font-mono text-[#8C5D3B]">{payingOrder.orderNumber}</strong>
                   </p>
                 </div>
                 <button
@@ -1392,7 +1392,7 @@ export const AdminOrdersPage: React.FC = () => {
                   <select
                     value={targetPaymentStatus}
                     onChange={(e) => setTargetPaymentStatus(e.target.value)}
-                    className="w-full text-xs rounded-xl border border-[#D5CDC0] p-2.5 bg-[#FAFAF8] focus:outline-none focus:border-[#1B3B2B]"
+                    className="w-full text-xs rounded-xl border border-[#D5CDC0] p-2.5 bg-[#FAFAF8] focus:outline-none focus:border-[#8C5D3B]"
                   >
                     <option value="PAID">Đã thanh toán (PAID)</option>
                     <option value="UNPAID">Chưa thanh toán (UNPAID)</option>
@@ -1408,7 +1408,7 @@ export const AdminOrdersPage: React.FC = () => {
                     value={paymentTxCode}
                     onChange={(e) => setPaymentTxCode(e.target.value)}
                     placeholder="Ví dụ: VNP12345678, FT26019283..."
-                    className="w-full text-xs rounded-xl border border-[#D5CDC0] p-2.5 bg-[#FAFAF8] focus:outline-none focus:border-[#1B3B2B]"
+                    className="w-full text-xs rounded-xl border border-[#D5CDC0] p-2.5 bg-[#FAFAF8] focus:outline-none focus:border-[#8C5D3B]"
                   />
                 </div>
 
@@ -1419,7 +1419,7 @@ export const AdminOrdersPage: React.FC = () => {
                     value={paymentNote}
                     onChange={(e) => setPaymentNote(e.target.value)}
                     placeholder="Ghi chú xác nhận từ sao kê kế toán..."
-                    className="w-full rounded-xl border border-[#D5CDC0] p-2.5 text-xs focus:outline-none focus:border-[#1B3B2B] bg-[#FAFAF8]"
+                    className="w-full rounded-xl border border-[#D5CDC0] p-2.5 text-xs focus:outline-none focus:border-[#8C5D3B] bg-[#FAFAF8]"
                   />
                 </div>
 
@@ -1453,7 +1453,7 @@ export const AdminOrdersPage: React.FC = () => {
                     Cập Nhật Trạng Thái Vận Đơn GHN
                   </h3>
                   <p className="text-xs text-stone-500 mt-0.5">
-                    Mã vận đơn: <strong className="font-mono text-[#1B3B2B]">{currentShipment.trackingNumber || 'Chưa cấp mã'}</strong>
+                    Mã vận đơn: <strong className="font-mono text-[#8C5D3B]">{currentShipment.trackingNumber || 'Chưa cấp mã'}</strong>
                   </p>
                 </div>
                 <button
@@ -1472,7 +1472,7 @@ export const AdminOrdersPage: React.FC = () => {
                 </div>
               )}
 
-              <div className="p-3 rounded-xl bg-[#EDF3EF] border border-[#D5E4D8] text-xs text-[#1B3B2B]">
+              <div className="p-3 rounded-xl bg-[#FAF0E6] border border-[#D5E4D8] text-xs text-[#8C5D3B]">
                 <p>
                   <strong>Đồng bộ tự động:</strong> Khi trạng thái chuyển sang <strong>DELIVERED</strong>, đơn hàng sẽ được tự động đồng bộ sang trạng thái <strong>ĐÃ GIAO THÀNH CÔNG</strong>.
                 </p>
@@ -1484,7 +1484,7 @@ export const AdminOrdersPage: React.FC = () => {
                   <select
                     value={targetShipmentStatus}
                     onChange={(e) => setTargetShipmentStatus(e.target.value as ShippingStatus)}
-                    className="w-full text-xs rounded-xl border border-[#D5CDC0] p-2.5 bg-[#FAFAF8] focus:outline-none focus:border-[#1B3B2B]"
+                    className="w-full text-xs rounded-xl border border-[#D5CDC0] p-2.5 bg-[#FAFAF8] focus:outline-none focus:border-[#8C5D3B]"
                   >
                     <option value="PENDING">PENDING - Chờ bưu cục lấy hàng</option>
                     <option value="PICKED_UP">PICKED_UP - Bưu tá đã nhận sách</option>
@@ -1502,7 +1502,7 @@ export const AdminOrdersPage: React.FC = () => {
                     value={shipmentNote}
                     onChange={(e) => setShipmentNote(e.target.value)}
                     placeholder="Ví dụ: Đã giao khách ký nhận, hoặc khách hẹn giao lại chiều..."
-                    className="w-full rounded-xl border border-[#D5CDC0] p-2.5 text-xs focus:outline-none focus:border-[#1B3B2B] bg-[#FAFAF8]"
+                    className="w-full rounded-xl border border-[#D5CDC0] p-2.5 text-xs focus:outline-none focus:border-[#8C5D3B] bg-[#FAFAF8]"
                   />
                 </div>
 

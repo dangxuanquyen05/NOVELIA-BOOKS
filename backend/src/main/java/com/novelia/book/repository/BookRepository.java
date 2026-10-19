@@ -26,4 +26,8 @@ public interface BookRepository extends JpaRepository<Book, Long>, JpaSpecificat
 
     @Query("SELECT b FROM Book b JOIN b.categories c WHERE c.slug = :categorySlug AND b.status = :status")
     Page<Book> findByCategorySlug(@Param("categorySlug") String categorySlug, @Param("status") Book.BookStatus status, Pageable pageable);
+
+    @org.springframework.data.jpa.repository.EntityGraph(attributePaths = {"categories", "authors"})
+    @Query("SELECT b FROM Book b WHERE b.status = :status")
+    java.util.List<Book> findPublishedCandidatesForRecommendation(@Param("status") Book.BookStatus status, Pageable pageable);
 }

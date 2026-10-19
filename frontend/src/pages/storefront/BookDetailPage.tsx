@@ -11,8 +11,10 @@ import { useCart } from '../../contexts/CartContext';
 import { useAuth } from '../../contexts/AuthContext';
 import { useWishlist } from '../../contexts/WishlistContext';
 import { BookSampleModal } from '../../components/common/BookSampleModal';
+import { BookCard } from '../../components/common/BookCard';
 import { reviewService } from '../../services/reviewService';
 import type { Review, BookReviewSummary } from '../../types/review';
+import { NOVELIA_BESTSELLERS } from '../../data/noveliaBooksData';
 
 const FALLBACK_COVER = 'https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&q=80&w=800';
 
@@ -23,6 +25,7 @@ export const BookDetailPage: React.FC = () => {
   const { user } = useAuth();
 
   const [book, setBook] = useState<Book | null>(null);
+  const [relatedBooks, setRelatedBooks] = useState<Book[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -54,13 +57,35 @@ export const BookDetailPage: React.FC = () => {
           setBook(res.data);
           setImgSrc(res.data.coverImage || FALLBACK_COVER);
           loadReviews(res.data.id);
+          bookService.getRelatedBooks(res.data.slug, 4)
+            .then((relRes) => {
+              if (relRes.success && relRes.data) {
+                setRelatedBooks(relRes.data);
+              }
+            })
+            .catch(() => setRelatedBooks(NOVELIA_BESTSELLERS.filter((b) => b.slug !== slug).slice(0, 4)));
         } else {
-          setError(res.message || 'Không tìm thấy thông tin tác phẩm.');
+          // Check local curated catalogue
+          const localMatch = NOVELIA_BESTSELLERS.find((b) => b.slug === slug || b.id.toString() === slug);
+          if (localMatch) {
+            setBook(localMatch);
+            setImgSrc(localMatch.coverImage || FALLBACK_COVER);
+            setRelatedBooks(NOVELIA_BESTSELLERS.filter((b) => b.slug !== slug).slice(0, 4));
+          } else {
+            setError(res.message || 'Không tìm thấy thông tin tác phẩm.');
+          }
         }
       })
       .catch((err) => {
         console.error('Lỗi khi tải chi tiết sách:', err);
-        setError('Tác phẩm không tồn tại hoặc đã ngừng xuất bản.');
+        const localMatch = NOVELIA_BESTSELLERS.find((b) => b.slug === slug || b.id.toString() === slug);
+        if (localMatch) {
+          setBook(localMatch);
+          setImgSrc(localMatch.coverImage || FALLBACK_COVER);
+          setRelatedBooks(NOVELIA_BESTSELLERS.filter((b) => b.slug !== slug).slice(0, 4));
+        } else {
+          setError('Tác phẩm không tồn tại hoặc đã ngừng xuất bản.');
+        }
       })
       .finally(() => {
         setIsLoading(false);
@@ -188,26 +213,24 @@ export const BookDetailPage: React.FC = () => {
     <div className="py-8 sm:py-12 space-y-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       {/* Toast Notification */}
       {toastMessage && (
-        <div className="fixed bottom-6 right-6 z-50 flex items-center gap-3 p-4 rounded-2xl bg-[#1B3B2B] text-white shadow-xl border border-white/10 animate-fade-in max-w-md">
-          <div className="w-8 h-8 rounded-full bg-[#B88E52] flex items-center justify-center shrink-0">
+        <div className="fixed bottom-6 right-6 z-50 flex items-center gap-3 p-4 rounded-2xl bg-[#1C1917] text-white shadow-2xl border border-white/10 animate-fade-in max-w-md">
+          <div className="w-8 h-8 rounded-full bg-[#8C5D3B] flex items-center justify-center shrink-0">
             <Check className="w-4 h-4 text-white" />
           </div>
           <div className="flex-1 text-xs">
             <p className="font-bold text-white">Thành công:</p>
-            <p className="text-[#C9DDD2]">{toastMessage}</p>
+            <p className="text-[#D4AF7A]">{toastMessage}</p>
           </div>
         </div>
       )}
 
-      {/* Breadcrumb Navigation */}
-      <nav className="flex items-center gap-2 text-xs text-[#78716C]">
-        <Link to="/" className="hover:text-[#1B3B2B] transition">Trang Chủ</Link>
-        <span>/</span>
-        <Link to="/books" className="hover:text-[#1B3B2B] transition">Tủ Sách</Link>
-        <span>/</span>
-        <span className="text-[#1B3B2B] font-medium">{categoryName}</span>
-        <span>/</span>
-        <span className="text-[#1C1917] font-bold truncate max-w-xs">{book.title}</span>
+      {/* Breadcrumb Navigation matching screenshot */}
+      <nav className="flex items-center gap-2 text-xs text-stone-500">
+        <Link to="/" className="hover:text-[#8C5D3B] transition">Trang chủ</Link>
+        <span>›</span>
+        <Link to="/books" className="hover:text-[#8C5D3B] transition">Sách</Link>
+        <span>›</span>
+        <span className="text-[#1C1917] font-semibold truncate max-w-xs">{book.title}</span>
       </nav>
 
       {/* Product Hero Section */}
@@ -240,17 +263,17 @@ export const BookDetailPage: React.FC = () => {
           {/* Quick Assurance Badges */}
           <div className="grid grid-cols-3 gap-3 p-4 rounded-2xl bg-[#F4EFEB] border border-[#E5DFD4] text-center text-xs">
             <div className="space-y-1">
-              <ShieldCheck className="w-4 h-4 text-[#1B3B2B] mx-auto" />
+              <ShieldCheck className="w-4 h-4 text-[#8C5D3B] mx-auto" />
               <p className="font-bold text-stone-800 text-[11px]">100% Chính Ngạch</p>
               <p className="text-[10px] text-stone-500">Bản quyền xuất bản</p>
             </div>
             <div className="space-y-1 border-x border-[#E0D9CD]">
-              <Truck className="w-4 h-4 text-[#1B3B2B] mx-auto" />
+              <Truck className="w-4 h-4 text-[#8C5D3B] mx-auto" />
               <p className="font-bold text-stone-800 text-[11px]">Bọc Sách Cẩn Thận</p>
               <p className="text-[10px] text-stone-500">Chống móp góc 100%</p>
             </div>
             <div className="space-y-1">
-              <RotateCcw className="w-4 h-4 text-[#1B3B2B] mx-auto" />
+              <RotateCcw className="w-4 h-4 text-[#8C5D3B] mx-auto" />
               <p className="font-bold text-stone-800 text-[11px]">Đổi Trả 7 Ngày</p>
               <p className="text-[10px] text-stone-500">Nếu lỗi in ấn</p>
             </div>
@@ -280,7 +303,7 @@ export const BookDetailPage: React.FC = () => {
           {/* Author & Publisher */}
           <div className="flex flex-wrap items-center gap-4 text-xs sm:text-sm text-stone-600 pb-2 border-b border-stone-200">
             <p>
-              Tác giả: <strong className="text-[#1B3B2B] font-semibold">{authorsString}</strong>
+              Tác giả: <strong className="text-[#8C5D3B] font-semibold">{authorsString}</strong>
             </p>
             {book.publisher && (
               <>
@@ -321,7 +344,7 @@ export const BookDetailPage: React.FC = () => {
           {/* Price Box */}
           <div className="p-6 rounded-3xl bg-[#FAF7F2] border border-[#EAE3D8] space-y-3">
             <div className="flex items-baseline gap-4">
-              <span className="font-serif-title text-3xl sm:text-4xl font-bold text-[#1B3B2B] font-mono">
+              <span className="font-serif-title text-3xl sm:text-4xl font-bold text-[#8C5D3B] font-mono">
                 {formatCurrencyVND(book.salePrice)}
               </span>
               {book.originalPrice && book.originalPrice > book.salePrice && (
@@ -451,7 +474,7 @@ export const BookDetailPage: React.FC = () => {
         </h2>
 
         {book.shortDescription && (
-          <p className="text-sm sm:text-base font-serif-title italic text-[#1B3B2B] leading-relaxed p-6 rounded-2xl bg-[#EDF3EF] border border-[#D8E6DE]">
+          <p className="text-sm sm:text-base font-serif-title italic text-[#8C5D3B] leading-relaxed p-6 rounded-2xl bg-[#FAF0E6] border border-[#E7D6C5]">
             “{book.shortDescription}”
           </p>
         )}
@@ -474,7 +497,7 @@ export const BookDetailPage: React.FC = () => {
                 className="w-14 h-14 rounded-full object-cover border-2 border-white shadow-xs"
               />
             ) : (
-              <div className="w-14 h-14 rounded-full bg-[#1B3B2B] text-white flex items-center justify-center font-serif-title text-lg font-bold">
+              <div className="w-14 h-14 rounded-full bg-[#2A1D13] text-[#E6C687] flex items-center justify-center font-serif-title text-lg font-bold border border-[#D4AF7A]/30">
                 {book.authors[0].name.charAt(0)}
               </div>
             )}
@@ -508,7 +531,7 @@ export const BookDetailPage: React.FC = () => {
         {/* Rating Overview Card */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-6 p-6 sm:p-8 rounded-3xl bg-[#FAF7F2] border border-[#EAE3D8]">
           <div className="md:col-span-4 flex flex-col items-center justify-center border-b md:border-b-0 md:border-r border-[#EAE3D8] pb-6 md:pb-0 md:pr-6 text-center">
-            <span className="font-serif-title text-5xl font-bold text-[#1B3B2B]">
+            <span className="font-serif-title text-5xl font-bold text-[#8C5D3B]">
               {reviewSummary?.averageRating?.toFixed(1) || (book.averageRating ? book.averageRating.toFixed(1) : '5.0')}
             </span>
             <div className="flex items-center gap-1 my-2 text-amber-500">
@@ -595,7 +618,7 @@ export const BookDetailPage: React.FC = () => {
                   value={newComment}
                   onChange={(e) => setNewComment(e.target.value)}
                   placeholder="Chia sẻ trải nghiệm đọc sách, đánh giá chất lượng in ấn, dịch thuật hoặc đóng gói của NOVELIA..."
-                  className="w-full text-xs rounded-xl border border-[#D5CDC0] p-3.5 focus:outline-none focus:border-[#1B3B2B] bg-[#FAFAF8]"
+                  className="w-full text-xs rounded-xl border border-[#D5CDC0] p-3.5 focus:outline-none focus:border-[#8C5D3B] focus:ring-1 focus:ring-[#8C5D3B] bg-[#FAFAF8]"
                   required
                 />
               </div>
@@ -625,7 +648,7 @@ export const BookDetailPage: React.FC = () => {
               <span>Vui lòng đăng nhập tài khoản để viết đánh giá cho tác phẩm này.</span>
               <Link
                 to="/login"
-                className="px-4 py-2 rounded-xl bg-[#1B3B2B] text-white font-bold hover:bg-[#234B37] transition-all"
+                className="px-4 py-2 rounded-xl bg-[#8C5D3B] text-white font-bold hover:bg-[#754C2F] transition-all"
               >
                 Đăng Nhập
               </Link>
@@ -649,7 +672,7 @@ export const BookDetailPage: React.FC = () => {
                 <div key={rev.id} className="p-5 rounded-2xl bg-white border border-[#EAE3D8] shadow-2xs space-y-2">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2.5">
-                      <div className="w-8 h-8 rounded-full bg-[#1B3B2B]/10 text-[#1B3B2B] font-bold flex items-center justify-center text-xs">
+                      <div className="w-8 h-8 rounded-full bg-[#8C5D3B]/10 text-[#8C5D3B] font-bold flex items-center justify-center text-xs">
                         {(rev.userFullName || 'Độc giả').charAt(0).toUpperCase()}
                       </div>
                       <div>
@@ -677,6 +700,39 @@ export const BookDetailPage: React.FC = () => {
           )}
         </div>
       </div>
+
+      {/* BookMatch Related Books */}
+      {relatedBooks.length > 0 && (
+        <div className="pt-8 border-t border-[#EAE3D8] space-y-6">
+          <div className="flex items-center justify-between">
+            <div>
+              <span className="text-[10px] font-bold uppercase tracking-widest text-[#B88E52]">
+                BOOKMATCH™ SUGGESTIONS
+              </span>
+              <h3 className="font-serif-title text-xl font-bold text-stone-900 mt-1">
+                Tác Phẩm Tương Tự Có Thể Bạn Sẽ Thích
+              </h3>
+            </div>
+            <Link
+              to="/books"
+              className="text-xs font-semibold text-[#8C5D3B] hover:text-[#754C2F] transition-colors"
+            >
+              Xem tất cả &rarr;
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6">
+            {relatedBooks.map((relBook) => (
+              <BookCard
+                key={relBook.id}
+                book={relBook}
+                onAddToCart={() => addToCart(relBook.id, 1)}
+                onQuickView={() => navigate(`/books/${relBook.slug}`)}
+              />
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* Book Excerpt / Sample Reader Modal */}
       {book && (

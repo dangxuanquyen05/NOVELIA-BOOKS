@@ -81,7 +81,7 @@ export const RegisterPage: React.FC = () => {
       <div className="w-full max-w-lg bg-white rounded-3xl p-8 sm:p-10 border border-[#E7E0D5] shadow-xl space-y-6">
         {/* Header */}
         <div className="text-center space-y-2">
-          <div className="w-12 h-12 rounded-2xl bg-[#EDF3EF] text-[#1B3B2B] flex items-center justify-center mx-auto mb-2 shadow-xs">
+          <div className="w-12 h-12 rounded-2xl bg-[#2A1D13] text-[#E6C687] flex items-center justify-center mx-auto mb-2 shadow-xs">
             <BookOpen className="w-6 h-6" />
           </div>
           <h1 className="font-serif-title text-2xl sm:text-3xl font-bold text-[#1C1917]">
@@ -170,11 +170,11 @@ export const RegisterPage: React.FC = () => {
           {/* Policy Agreement */}
           <div className="text-[11px] text-[#78716C] leading-relaxed pt-1">
             Bằng việc đăng ký, bạn đồng ý với các{' '}
-            <a href="#terms" className="text-[#1B3B2B] font-semibold underline">
+            <a href="#terms" className="text-[#8C5D3B] font-semibold hover:underline">
               Điều khoản dịch vụ
             </a>{' '}
             và{' '}
-            <a href="#privacy" className="text-[#1B3B2B] font-semibold underline">
+            <a href="#privacy" className="text-[#8C5D3B] font-semibold hover:underline">
               Chính sách bảo mật
             </a>{' '}
             của NOVELIA BOOKS.
@@ -196,7 +196,7 @@ export const RegisterPage: React.FC = () => {
         {/* Login Link */}
         <div className="pt-4 border-t border-[#F2ECE4] text-center text-xs text-[#78716C]">
           <span>Đã có tài khoản độc giả? </span>
-          <Link to="/login" className="text-[#1B3B2B] font-bold hover:underline">
+          <Link to="/login" className="text-[#8C5D3B] font-bold hover:underline">
             Đăng nhập ngay
           </Link>
         </div>

@@ -13,7 +13,7 @@
 | **Frontend** | React 19, TypeScript 5, Vite | Single Page Application (SPA), Tailwind CSS, React Router v7, Axios Interceptors, Lucide Icons |
 | **Database** | MySQL 8.0+ | InnoDB Engine, `utf8mb4_unicode_ci`, Foreign Keys, Check Constraints, B-Tree Indexes |
 | **Tích hợp mở rộng** | Payment & Shipping Adapters | VNPay Sandbox (HMAC-SHA512 Checksum), GHN Carrier Integration Framework (Adapter Pattern) |
-| **Testing** | JUnit 5, Mockito, MockMvc, H2 | 162/162 Unit & Integration Tests đạt 100% tỷ lệ vượt qua |
+| **Testing** | JUnit 5, Mockito, MockMvc, H2 | 167/167 Unit & Integration Tests đạt 100% tỷ lệ vượt qua |
 
 ---
 
@@ -37,7 +37,7 @@ NOVELIA-BOOKS/
 │   │   ├── review/                        # Đánh giá sách & Kiểm duyệt đánh giá
 │   │   ├── shipment/                      # Khung tích hợp đơn vị vận chuyển (GHN)
 │   │   └── user/                          # Xác thực (Auth), Người dùng & Địa chỉ
-│   ├── src/test/java/com/novelia/         # 162 Unit & Integration tests (16 test suites)
+│   ├── src/test/java/com/novelia/         # 167 Unit & Integration tests (16 test suites)
 │   ├── src/main/resources/
 │   │   └── application.yml                # Cấu hình Datasource, JPA, JWT, VNPay, GHN
 │   └── pom.xml                            # Quản lý thư viện Maven
@@ -59,6 +59,7 @@ NOVELIA-BOOKS/
 │   ├── architecture.md                    # Tài liệu thiết kế kiến trúc hệ thống
 │   ├── database.md                        # Thiết kế CSDL, ERD Mermaid & Chiến lược Indexing
 │   ├── api.md                             # Quy chuẩn REST API và danh mục Endpoints
+│   ├── bookmatch_handover.md              # Tài liệu bàn giao & đặc tả tính năng BookMatch (Phase 1-9)
 │   ├── demo_guide.md                      # Kịch bản luồng demo thực tế từng bước
 │   └── defense_qa.md                      # Cẩm nang 50+ câu hỏi vấn đáp bảo vệ đồ án
 ├── INTEGRATION_GUIDE.md                   # Hướng dẫn chi tiết cổng thanh toán & vận chuyển
@@ -102,7 +103,7 @@ NOVELIA-BOOKS/
    ```powershell
    mvn clean test
    ```
-   *(Kết quả: 162 tests đạt `BUILD SUCCESS`)*
+   *(Kết quả: 167 tests đạt `BUILD SUCCESS`)*
 4. Khởi chạy ứng dụng:
    ```powershell
    mvn spring-boot:run

@@ -13,7 +13,6 @@ import org.springframework.web.client.RestClientResponseException;
 import org.springframework.web.client.RestTemplate;
 
 import java.math.BigDecimal;
-import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -26,6 +25,7 @@ public class GhnApiClient {
     private final RestTemplate restTemplate;
     private final ObjectMapper objectMapper;
 
+    @org.springframework.beans.factory.annotation.Autowired
     public GhnApiClient(ShippingProperties shippingProperties, RestTemplateBuilder builder, ObjectMapper objectMapper) {
         this.shippingProperties = shippingProperties;
         this.objectMapper = objectMapper;
@@ -37,6 +37,12 @@ public class GhnApiClient {
         this.restTemplate = builder
                 .requestFactory(() -> requestFactory)
                 .build();
+    }
+
+    public GhnApiClient(ShippingProperties shippingProperties, RestTemplate restTemplate, ObjectMapper objectMapper) {
+        this.shippingProperties = shippingProperties;
+        this.restTemplate = restTemplate;
+        this.objectMapper = objectMapper;
     }
 
     /**

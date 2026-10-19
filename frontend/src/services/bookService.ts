@@ -49,4 +49,26 @@ export const bookService = {
     const response = await apiClient.get<ApiResponse<Author[]>>('/authors');
     return response.data;
   },
+
+  // Lấy gợi ý sách thông minh BookMatch (cá nhân hóa hoặc xu hướng)
+  getRecommendations: async (limit: number = 8): Promise<ApiResponse<Book[]>> => {
+    const response = await apiClient.get<ApiResponse<Book[]>>('/books/recommendations', {
+      params: { limit },
+    });
+    return response.data;
+  },
+
+  // Lấy danh sách tác phẩm tương tự/liên quan theo BookMatch
+  getRelatedBooks: async (slugOrId: string | number, limit: number = 6): Promise<ApiResponse<Book[]>> => {
+    const response = await apiClient.get<ApiResponse<Book[]>>(`/books/${slugOrId}/related`, {
+      params: { limit },
+    });
+    return response.data;
+  },
+
+  // Khảo sát gợi ý sách BookMatch theo tiêu chí
+  getSurveyRecommendations: async (request: any): Promise<ApiResponse<any>> => {
+    const response = await apiClient.post<ApiResponse<any>>('/books/recommendations/survey', request);
+    return response.data;
+  },
 };

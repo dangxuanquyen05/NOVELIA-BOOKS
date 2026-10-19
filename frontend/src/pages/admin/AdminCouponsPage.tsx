@@ -249,7 +249,7 @@ export const AdminCouponsPage: React.FC = () => {
               value={searchKeyword}
               onChange={(e) => setSearchKeyword(e.target.value)}
               placeholder="Tìm kiếm mã ưu đãi (VD: NOVELIA, TET2026)..."
-              className="w-full pl-10 pr-4 py-2.5 text-xs rounded-xl border border-stone-200 focus:outline-none focus:border-[#1B3B2B] bg-white shadow-2xs transition-colors"
+              className="w-full pl-10 pr-4 py-2.5 text-xs rounded-xl border border-stone-200 focus:outline-none focus:border-[#8C5D3B] bg-white shadow-2xs transition-colors"
             />
           </form>
 
@@ -293,7 +293,7 @@ export const AdminCouponsPage: React.FC = () => {
                 {loading ? (
                   <tr>
                     <td colSpan={7} className="py-12 text-center text-stone-400">
-                      <div className="w-6 h-6 border-2 border-[#1B3B2B]/20 border-t-[#1B3B2B] rounded-full animate-spin mx-auto mb-2" />
+                      <div className="w-6 h-6 border-2 border-[#8C5D3B]/20 border-t-[#8C5D3B] rounded-full animate-spin mx-auto mb-2" />
                       Đang tải danh sách mã giảm giá...
                     </td>
                   </tr>
@@ -312,7 +312,7 @@ export const AdminCouponsPage: React.FC = () => {
                       <tr key={c.id} className="hover:bg-stone-50/70 transition-colors">
                         <td className="py-3.5 px-4">
                           <div className="flex items-center gap-2">
-                            <span className="font-mono font-bold text-sm text-[#1B3B2B] bg-[#1B3B2B]/5 px-2.5 py-1 rounded-lg border border-[#1B3B2B]/10">
+                            <span className="font-mono font-bold text-sm text-[#8C5D3B] bg-[#8C5D3B]/5 px-2.5 py-1 rounded-lg border border-[#8C5D3B]/10">
                               {c.code}
                             </span>
                           </div>
@@ -403,7 +403,7 @@ export const AdminCouponsPage: React.FC = () => {
                           <button
                             type="button"
                             onClick={() => openEditModal(c)}
-                            className="p-1.5 text-stone-500 hover:text-[#1B3B2B] hover:bg-stone-100 rounded-lg transition-colors cursor-pointer"
+                            className="p-1.5 text-stone-500 hover:text-[#8C5D3B] hover:bg-stone-100 rounded-lg transition-colors cursor-pointer"
                             title="Chỉnh sửa thông số mã"
                           >
                             <Edit2 className="w-3.5 h-3.5" />
@@ -523,7 +523,7 @@ export const AdminCouponsPage: React.FC = () => {
                       value={code}
                       onChange={(e) => setCode(e.target.value.toUpperCase())}
                       placeholder="VD: NOVELIA20, SPRING2026..."
-                      className="w-full uppercase font-mono p-2.5 rounded-xl border border-stone-300 focus:outline-none focus:border-[#1B3B2B]"
+                      className="w-full uppercase font-mono p-2.5 rounded-xl border border-stone-300 focus:outline-none focus:border-[#8C5D3B]"
                       required
                     />
                   </div>
@@ -535,7 +535,7 @@ export const AdminCouponsPage: React.FC = () => {
                     <select
                       value={discountType}
                       onChange={(e) => setDiscountType(e.target.value as DiscountType)}
-                      className="w-full p-2.5 rounded-xl border border-stone-300 focus:outline-none focus:border-[#1B3B2B] bg-white"
+                      className="w-full p-2.5 rounded-xl border border-stone-300 focus:outline-none focus:border-[#8C5D3B] bg-white"
                     >
                       <option value="PERCENTAGE">Phần trăm (%)</option>
                       <option value="FIXED_AMOUNT">Số tiền cố định (VNĐ)</option>
@@ -551,7 +551,7 @@ export const AdminCouponsPage: React.FC = () => {
                       max={discountType === 'PERCENTAGE' ? '100' : undefined}
                       value={discountValue}
                       onChange={(e) => setDiscountValue(Number(e.target.value))}
-                      className="w-full p-2.5 rounded-xl border border-stone-300 focus:outline-none focus:border-[#1B3B2B]"
+                      className="w-full p-2.5 rounded-xl border border-stone-300 focus:outline-none focus:border-[#8C5D3B]"
                       required
                     />
                   </div>
@@ -566,7 +566,7 @@ export const AdminCouponsPage: React.FC = () => {
                       value={minOrderValue}
                       onChange={(e) => setMinOrderValue(Number(e.target.value))}
                       placeholder="0"
-                      className="w-full p-2.5 rounded-xl border border-stone-300 focus:outline-none focus:border-[#1B3B2B]"
+                      className="w-full p-2.5 rounded-xl border border-stone-300 focus:outline-none focus:border-[#8C5D3B]"
                     />
                   </div>
                   <div>
@@ -577,7 +577,7 @@ export const AdminCouponsPage: React.FC = () => {
                       value={maxDiscountAmount ?? ''}
                       onChange={(e) => setMaxDiscountAmount(e.target.value ? Number(e.target.value) : undefined)}
                       placeholder="Không giới hạn trần"
-                      className="w-full p-2.5 rounded-xl border border-stone-300 focus:outline-none focus:border-[#1B3B2B]"
+                      className="w-full p-2.5 rounded-xl border border-stone-300 focus:outline-none focus:border-[#8C5D3B]"
                     />
                   </div>
                 </div>
@@ -591,7 +591,7 @@ export const AdminCouponsPage: React.FC = () => {
                       value={usageLimit ?? ''}
                       onChange={(e) => setUsageLimit(e.target.value ? Number(e.target.value) : undefined)}
                       placeholder="Không giới hạn"
-                      className="w-full p-2.5 rounded-xl border border-stone-300 focus:outline-none focus:border-[#1B3B2B]"
+                      className="w-full p-2.5 rounded-xl border border-stone-300 focus:outline-none focus:border-[#8C5D3B]"
                     />
                   </div>
                   <div>
@@ -602,7 +602,7 @@ export const AdminCouponsPage: React.FC = () => {
                       value={usageLimitPerUser}
                       onChange={(e) => setUsageLimitPerUser(Number(e.target.value))}
                       placeholder="1 lần/khách"
-                      className="w-full p-2.5 rounded-xl border border-stone-300 focus:outline-none focus:border-[#1B3B2B]"
+                      className="w-full p-2.5 rounded-xl border border-stone-300 focus:outline-none focus:border-[#8C5D3B]"
                       required
                     />
                   </div>
@@ -615,7 +615,7 @@ export const AdminCouponsPage: React.FC = () => {
                       type="datetime-local"
                       value={startDate}
                       onChange={(e) => setStartDate(e.target.value)}
-                      className="w-full p-2 rounded-xl border border-stone-300 focus:outline-none focus:border-[#1B3B2B]"
+                      className="w-full p-2 rounded-xl border border-stone-300 focus:outline-none focus:border-[#8C5D3B]"
                       required
                     />
                   </div>
@@ -625,7 +625,7 @@ export const AdminCouponsPage: React.FC = () => {
                       type="datetime-local"
                       value={endDate}
                       onChange={(e) => setEndDate(e.target.value)}
-                      className="w-full p-2 rounded-xl border border-stone-300 focus:outline-none focus:border-[#1B3B2B]"
+                      className="w-full p-2 rounded-xl border border-stone-300 focus:outline-none focus:border-[#8C5D3B]"
                       required
                     />
                   </div>
@@ -637,7 +637,7 @@ export const AdminCouponsPage: React.FC = () => {
                     id="isActiveCheck"
                     checked={isActive}
                     onChange={(e) => setIsActive(e.target.checked)}
-                    className="rounded text-[#1B3B2B] focus:ring-[#1B3B2B]"
+                    className="rounded text-[#8C5D3B] focus:ring-[#8C5D3B]"
                   />
                   <label htmlFor="isActiveCheck" className="font-semibold text-stone-700 cursor-pointer">
                     Kích hoạt áp dụng mã ngay lập tức

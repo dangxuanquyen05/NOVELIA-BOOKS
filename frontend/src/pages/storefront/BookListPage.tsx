@@ -169,67 +169,59 @@ export const BookListPage: React.FC = () => {
     <div className="py-8 sm:py-12 space-y-8 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       {/* Toast Notification */}
       {cartToast.show && (
-        <div className="fixed bottom-6 right-6 z-50 flex items-center gap-3 p-4 rounded-2xl bg-[#1B3B2B] text-white shadow-xl border border-white/10 animate-fade-in max-w-md">
-          <div className="w-8 h-8 rounded-full bg-[#B88E52] flex items-center justify-center shrink-0">
+        <div className="fixed bottom-6 right-6 z-50 flex items-center gap-3 p-4 rounded-2xl bg-[#1C1917] text-white shadow-2xl border border-white/10 animate-fade-in max-w-sm">
+          <div className="w-7 h-7 rounded-full bg-[#8C5D3B] flex items-center justify-center shrink-0">
             <Check className="w-4 h-4 text-white" />
           </div>
           <div className="flex-1 text-xs">
             <p className="font-bold text-white">Đã thêm vào giỏ hàng:</p>
-            <p className="text-[#C9DDD2] line-clamp-1">{cartToast.title}</p>
+            <p className="text-stone-300 line-clamp-1">{cartToast.title}</p>
           </div>
           <button
             onClick={() => setCartToast({ show: false, title: '' })}
-            className="text-stone-300 hover:text-white p-1"
+            className="text-stone-400 hover:text-white p-1"
           >
             <X className="w-4 h-4" />
           </button>
         </div>
       )}
 
-      {/* Header Banner & Breadcrumbs */}
-      <div className="space-y-4">
-        <nav className="flex items-center gap-2 text-xs text-[#78716C]">
-          <Link to="/" className="hover:text-[#1B3B2B] transition">Trang Chủ</Link>
-          <span>/</span>
-          <span className="text-[#1C1917] font-semibold">Tủ Sách Tuyển Chọn</span>
+      {/* Header Banner & Breadcrumbs matching screenshot */}
+      <div className="space-y-3">
+        <nav className="flex items-center gap-2 text-xs text-stone-500">
+          <Link to="/" className="hover:text-[#8C5D3B] transition">Trang chủ</Link>
+          <span>›</span>
+          <span className="text-[#1C1917] font-semibold">Sách</span>
           {currentCategorySlug && (
             <>
-              <span>/</span>
-              <span className="text-[#1B3B2B] font-bold">
-                {categories.find(c => c.slug === currentCategorySlug)?.name || currentCategorySlug}
+              <span>›</span>
+              <span className="text-[#8C5D3B] font-bold">
+                {categories.find((c) => c.slug === currentCategorySlug)?.name || currentCategorySlug}
               </span>
             </>
           )}
         </nav>
 
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-[#EAE4DC] pb-6">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-4">
           <div>
-            <h1 className="font-serif-title text-3xl sm:text-4xl font-bold text-[#1C1917]">
-              Tuyển Tập Tác Phẩm
+            <h1 className="font-serif-title text-2xl sm:text-3xl font-bold text-[#1C1917]">
+              Tất cả sách
             </h1>
-            <p className="text-sm text-[#57534E] mt-1 font-normal">
-              {isLoading
-                ? 'Đang nạp danh mục tác phẩm...'
-                : `Khám phá ${booksData?.totalElements || 0} tựa sách tinh hoa từ các tác giả và dịch giả danh tiếng.`}
+            <p className="text-xs sm:text-sm text-stone-500 mt-1 font-normal">
+              Khám phá hàng ngàn cuốn sách từ nhiều thể loại khác nhau
             </p>
           </div>
 
           {/* Quick Search inside list */}
-          <form onSubmit={handleSearchSubmit} className="relative w-full md:w-80">
+          <form onSubmit={handleSearchSubmit} className="relative w-full md:w-72">
             <input
               type="text"
               value={searchInput}
               onChange={(e) => setSearchInput(e.target.value)}
-              placeholder="Tìm theo tên sách, ISBN..."
-              className="w-full pl-9 pr-20 py-2 text-xs rounded-full bg-white border border-[#E2DDD5] text-stone-900 placeholder:text-stone-400 focus:outline-none focus:border-[#1B3B2B] focus:ring-1 focus:ring-[#1B3B2B]/20"
+              placeholder="Tìm kiếm sách, tác giả..."
+              className="w-full pl-9 pr-4 py-2 text-xs rounded-full bg-white border border-[#E2DDD5] text-stone-900 placeholder:text-stone-400 focus:outline-hidden focus:border-[#8C5D3B]"
             />
             <Search className="w-4 h-4 text-stone-400 absolute left-3 top-1/2 -translate-y-1/2" />
-            <button
-              type="submit"
-              className="absolute right-1 top-1/2 -translate-y-1/2 px-3 py-1 rounded-full bg-[#1B3B2B] text-white text-[11px] font-semibold hover:bg-[#25523D]"
-            >
-              Tìm
-            </button>
           </form>
         </div>
       </div>
@@ -239,7 +231,7 @@ export const BookListPage: React.FC = () => {
         {/* DESKTOP SIDEBAR FILTERS */}
         <aside className="hidden lg:block space-y-6 bg-white rounded-2xl p-6 border border-[#EBE5DC] shadow-xs sticky top-28">
           <div className="flex items-center justify-between pb-3 border-b border-[#F0EBE3]">
-            <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#1B3B2B]">
+            <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#8C5D3B]">
               <SlidersHorizontal className="w-4 h-4" />
               <span>Bộ Lọc Tuyển Chọn</span>
             </div>
@@ -247,7 +239,7 @@ export const BookListPage: React.FC = () => {
               <button
                 type="button"
                 onClick={handleResetFilters}
-                className="text-[11px] text-[#B88E52] hover:underline font-semibold"
+                className="text-[11px] text-[#8C5D3B] hover:underline font-semibold"
               >
                 Xóa tất cả
               </button>
@@ -263,7 +255,7 @@ export const BookListPage: React.FC = () => {
                 onClick={() => updateUrlParams({ category: null, page: 0 })}
                 className={`w-full text-left px-3 py-2 rounded-xl text-xs flex items-center justify-between transition cursor-pointer ${
                   !currentCategorySlug
-                    ? 'bg-[#1B3B2B] text-white font-bold'
+                    ? 'bg-[#8C5D3B] text-white font-bold shadow-xs'
                     : 'text-stone-700 hover:bg-[#F4EFEB]'
                 }`}
               >
@@ -279,7 +271,7 @@ export const BookListPage: React.FC = () => {
                     onClick={() => handleCategorySelect(cat.slug)}
                     className={`w-full text-left px-3 py-2 rounded-xl text-xs flex items-center justify-between transition cursor-pointer ${
                       isSelected
-                        ? 'bg-[#1B3B2B] text-white font-bold'
+                        ? 'bg-[#8C5D3B] text-white font-bold shadow-xs'
                         : 'text-stone-700 hover:bg-[#F4EFEB]'
                     }`}
                   >
@@ -304,12 +296,12 @@ export const BookListPage: React.FC = () => {
                     onClick={() => handlePriceRangeSelect(range.min, range.max)}
                     className={`w-full text-left px-3 py-2 rounded-xl text-xs flex items-center justify-between transition cursor-pointer ${
                       isSelected
-                        ? 'bg-[#EDF3EF] text-[#1B3B2B] font-bold border border-[#D5E3DA]'
+                        ? 'bg-[#FAF0E6] text-[#8C5D3B] font-bold border border-[#E8D7C5]'
                         : 'text-stone-700 hover:bg-[#F4EFEB]'
                     }`}
                   >
                     <span>{range.label}</span>
-                    {isSelected && <Check className="w-3.5 h-3.5 text-[#1B3B2B]" />}
+                    {isSelected && <Check className="w-3.5 h-3.5 text-[#8C5D3B]" />}
                   </button>
                 );
               })}
@@ -325,7 +317,7 @@ export const BookListPage: React.FC = () => {
             <button
               type="button"
               onClick={() => setIsMobileFilterOpen(true)}
-              className="lg:hidden flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#EDF3EF] text-[#1B3B2B] text-xs font-semibold cursor-pointer"
+              className="lg:hidden flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#FAF0E6] text-[#8C5D3B] text-xs font-semibold cursor-pointer border border-[#E8D7C5]"
             >
               <Filter className="w-4 h-4" />
               <span>Bộ lọc ({hasActiveFilters ? 'Đang lọc' : 'Tất cả'})</span>
@@ -334,7 +326,7 @@ export const BookListPage: React.FC = () => {
             {/* Active Filters Tags */}
             <div className="flex flex-wrap items-center gap-2 text-xs">
               <span className="text-stone-500 hidden sm:inline">Hiển thị:</span>
-              <span className="font-bold text-[#1B3B2B] font-mono">
+              <span className="font-bold text-[#8C5D3B] font-mono">
                 {booksData?.totalElements || 0}
               </span>
               <span className="text-stone-500">tác phẩm</span>
@@ -349,7 +341,7 @@ export const BookListPage: React.FC = () => {
               )}
 
               {currentCategorySlug && (
-                <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200 text-[11px]">
+                <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-[#FAF0E6] text-[#8C5D3B] border border-[#E8D7C5] text-[11px]">
                   Danh mục: {categories.find(c => c.slug === currentCategorySlug)?.name || currentCategorySlug}
                   <button onClick={() => updateUrlParams({ category: null, page: 0 })}>
                     <X className="w-3 h-3 hover:text-black" />
@@ -368,7 +360,7 @@ export const BookListPage: React.FC = () => {
                 id="sortBy"
                 value={currentSortBy}
                 onChange={handleSortChange}
-                className="text-xs font-semibold text-stone-800 bg-[#FAF7F2] border border-[#E0D9CE] rounded-xl px-3 py-1.5 focus:outline-none focus:border-[#1B3B2B] cursor-pointer"
+                className="text-xs font-semibold text-stone-800 bg-[#FAF7F2] border border-[#E0D9CE] rounded-xl px-3 py-1.5 focus:outline-none focus:border-[#8C5D3B] cursor-pointer"
               >
                 {SORT_OPTIONS.map((opt) => (
                   <option key={opt.value} value={opt.value}>
@@ -424,7 +416,7 @@ export const BookListPage: React.FC = () => {
                     key={book.id}
                     book={book}
                     onAddToCart={handleAddToCart}
-                    onQuickView={(b) => alert(`Tác phẩm: ${b.title}\nISBN: ${b.isbn}\nGiá: ${b.salePrice}đ`)}
+                    onQuickView={(b: Book) => alert(`Tác phẩm: ${b.title}\nISBN: ${b.isbn}\nGiá: ${b.salePrice}đ`)}
                   />
                 ))}
               </div>
@@ -449,7 +441,7 @@ export const BookListPage: React.FC = () => {
                         onClick={() => handlePageChange(idx)}
                         className={`w-8 h-8 rounded-xl text-xs font-semibold transition cursor-pointer ${
                           currentPage === idx
-                            ? 'bg-[#1B3B2B] text-white font-bold'
+                            ? 'bg-[#8C5D3B] text-white font-bold shadow-xs'
                             : 'bg-white text-stone-700 hover:bg-[#F4EFEB] border border-[#E7E0D5]'
                         }`}
                       >
@@ -495,7 +487,7 @@ export const BookListPage: React.FC = () => {
 
             {/* Mobile Categories */}
             <div className="space-y-2">
-              <h4 className="font-bold text-xs uppercase text-[#1B3B2B]">Danh Mục</h4>
+              <h4 className="font-bold text-xs uppercase text-[#8C5D3B]">Danh Mục</h4>
               <div className="space-y-1">
                 <button
                   onClick={() => {
@@ -503,7 +495,7 @@ export const BookListPage: React.FC = () => {
                     setIsMobileFilterOpen(false);
                   }}
                   className={`w-full text-left px-3 py-2 rounded-xl text-xs ${
-                    !currentCategorySlug ? 'bg-[#1B3B2B] text-white font-bold' : 'hover:bg-[#F4EFEB]'
+                    !currentCategorySlug ? 'bg-[#8C5D3B] text-white font-bold' : 'hover:bg-[#F4EFEB]'
                   }`}
                 >
                   Tất cả danh mục
@@ -517,7 +509,7 @@ export const BookListPage: React.FC = () => {
                     }}
                     className={`w-full text-left px-3 py-2 rounded-xl text-xs ${
                       currentCategorySlug === c.slug
-                        ? 'bg-[#1B3B2B] text-white font-bold'
+                        ? 'bg-[#8C5D3B] text-white font-bold'
                         : 'hover:bg-[#F4EFEB]'
                     }`}
                   >
@@ -529,7 +521,7 @@ export const BookListPage: React.FC = () => {
 
             {/* Mobile Price */}
             <div className="space-y-2 pt-2 border-t border-[#EAE4DC]">
-              <h4 className="font-bold text-xs uppercase text-[#1B3B2B]">Khoảng Giá</h4>
+              <h4 className="font-bold text-xs uppercase text-[#8C5D3B]">Khoảng Giá</h4>
               <div className="space-y-1">
                 {PRICE_RANGES.map((r, i) => (
                   <button
@@ -540,7 +532,7 @@ export const BookListPage: React.FC = () => {
                     }}
                     className={`w-full text-left px-3 py-2 rounded-xl text-xs ${
                       currentMinPrice === r.min && currentMaxPrice === r.max
-                        ? 'bg-[#1B3B2B] text-white font-bold'
+                        ? 'bg-[#8C5D3B] text-white font-bold'
                         : 'hover:bg-[#F4EFEB]'
                     }`}
                   >
